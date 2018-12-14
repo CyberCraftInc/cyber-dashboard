@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
+  gem 'pry-rails', '~> 0.3.8'
   gem 'rspec-rails','3.8.1'
   gem 'factory_bot_rails','4.11.1'
 end
