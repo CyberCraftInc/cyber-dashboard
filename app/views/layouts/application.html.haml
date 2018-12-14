@@ -5,7 +5,10 @@
     %title Cyber Dashboard
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application'
+    = stylesheet_link_tag 'application', media: 'all' # delete if unnecessary
+    = javascript_include_tag 'application'            # delete if unnecessary
+    = stylesheet_pack_tag 'stylesheet', media: 'all'
+    = javascript_pack_tag 'application'
   %body
-    =yield
+    .container{ 'data-behavior': 'vue' }
+      =yield
