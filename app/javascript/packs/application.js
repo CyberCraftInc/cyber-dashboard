@@ -1,16 +1,11 @@
 import Vue from 'vue/dist/vue.esm';
-import App from '../components/App.vue'
-import usersList from '../components/UsersList.vue'
-
-Vue.component('app', App)
-Vue.component('usersList', usersList)
+import UsersList from '../components/UsersList.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: '[data-behavior="vue"]',
-    data: {
-      currentView: 'app'
+    components: {
+      'users-component': UsersList,
     }
   })
-  app.currentView = 'usersList' // Switching pages in any route handler:
 })
