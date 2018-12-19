@@ -1,4 +1,11 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:google_oauth2]
+  validates :phone, :email, uniqueness: true
+  validates :first_name, :last_name, :phone, :project_id, presence: true
   belongs_to :project
   scope :users_joins_project, -> { includes(:project) }
 
@@ -23,5 +30,21 @@ class User < ApplicationRecord
       }
     end
     users_lst_for_json.to_json
+  end
+
+  def self.from_omniauth(access_token)
+    data = access_token.info
+    user = User.find_by(email: data['email'])
+    unless user
+      password = Devise.friendly_token[0, 20]
+      user = User.new(
+        first_name: data.name.partition(' ').first,
+        last_name: data.name.partition(' ').last,
+        email: data.email, project_id: 1,
+        password: password, password_confirmation: password
+      )
+      user.save if user.valid?
+    end
+    user
   end
 end

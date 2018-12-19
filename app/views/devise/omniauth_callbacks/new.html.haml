@@ -1,0 +1,33 @@
+%h2 For finishing registrations please fill empty fields
+.row
+  = devise_error_messages!
+  .col-md-6
+    = form_for(resource, as: resource_name, class: 'input-group', url: registration_path(resource_name)) do |f|
+      = hidden_field(:user, :first_name)
+      = hidden_field(:user, :last_name)
+      = hidden_field(:user, :email)
+      = f.hidden_field(:project_id, value: 1)
+
+      = f.label :phone
+      = f.telephone_field :phone, pattern: "+38(0\\d{2})\\d{3}-\\d{2}-\\d{2}", class: 'form-control', autofocus: true, placeholder: '+38(xxx)-xxx-xx-xx', autocomplete: "phone", required: true
+
+      .field
+        = f.label :project_id
+        = f.select :project_id, @projects.collect { |p| [ p.name, p.id ] }, {} , class: 'form-control'
+      
+      .field
+        = f.label :password
+        - if @minimum_password_length
+          %em
+            = @minimum_password_length
+            characters minimum
+        = f.password_field :password, class: 'form-control', autocomplete: "new-password"
+
+      .field
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, class: 'form-control', autocomplete: "new-password"
+
+      %div
+        = f.submit "Sign up", class: "btn btn-primary"
+        - if controller_name != 'sessions'
+          = link_to "Log in", new_session_path(resource_name), class: "btn btn-primary"
