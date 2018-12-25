@@ -10,5 +10,13 @@
     = stylesheet_pack_tag 'stylesheet', media: 'all'
     = javascript_pack_tag 'application'
   %body
+    %nav.navbar.navbar-dark.bg-dark
+      %a.navbar-brand{:href => users_path}
+        %img.d-inline-block.align-top{:alt => "", :width => "90", :height => "35", :src => "/images/logo.png"}/
+        .header_text
+          CyberCraft Dashboard
     .container{ 'data-behavior': 'vue' }
       =yield
+    %footer.footer
+      .container
+        %span &copy; CyberCraftInc 2018
