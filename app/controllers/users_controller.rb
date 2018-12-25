@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   def index
-    @users = User.joins(:project)
-    .select('users.first_name,users.last_name,users.email,users.phone,projects.name')
+    @projects = Project.all.to_json
+    @users = User.as_json(User.filter(params[:id]))
+    respond_to do |format|
+      format.html
+      format.json {render :json => @users}
+    end
   end
 end
