@@ -1,0 +1,9 @@
+PreCommit:
+  RuboCop:
+    enabled: true
+    command: ['bin/bundle', 'exec', 'rubocop', '-R']
+    on_warn: fail
+
+PrePush:
+  RSpec:
+    enabled: true
