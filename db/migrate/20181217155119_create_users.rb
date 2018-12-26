@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :first_name
       t.string :email
       t.string :phone
-      t.belongs_to :project,index: true
+      t.belongs_to :project, index: true
       t.timestamps
     end
   end
