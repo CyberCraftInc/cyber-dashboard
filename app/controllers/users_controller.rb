@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @users = User.as_json(User.filter(params[:id]))
     respond_to do |format|
       format.html
-      format.json {render :json => @users}
+      format.json { render json: @users }
     end
   end
 end
