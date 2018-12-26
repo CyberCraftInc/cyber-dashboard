@@ -1,11 +1,13 @@
 -<template>
   <div>
     <h1>{{ tableName }}</h1>
-      <select v-model="selected" @change='created'>
-        <option value="0">All Projects</option>
-        <option v-for="project in listOfProjects" v-bind:value="project.id" >{{ project.name }}</option>
-      </select>
+      <div class="form-group select-project">
+        <select v-model="selected" @change='created' class="form-control select">
+          <option value="0">All Projects</option>
+          <option v-for="project in listOfProjects" v-bind:value="project.id" >{{ project.name }}</option>
+        </select>
       <input type="text" v-model="search" placeholder="Search">
+      </div>
     <table class="table">
       <thead class="thead-dark">
         <tr>

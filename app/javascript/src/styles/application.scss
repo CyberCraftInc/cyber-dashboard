@@ -1,14 +1,28 @@
 @import 'abstracts/variables';
 @import 'vendors/bootstrap';
 @import 'base/typography';
+
 @import 'layout/header';
 @import 'layout/footer';
 @import 'layout/forms';
+@import 'layout/devise_errors';
+
 @import 'modules/buttons';
+
 @import 'pages/home';
+@import 'pages/login';
+
 @import 'themes/theme';
 @import 'themes/admin';
 
 body {
   font-family: 'Lato', sans-serif;
+}
+
+.alert {
+  color: rgb(233, 76, 48);
+}
+
+.notice {
+  color: rgb(48, 233, 116);
 }

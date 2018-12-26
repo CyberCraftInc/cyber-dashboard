@@ -1,3 +1,14 @@
 .users_component {
   margin-top: 35px;
 }
+
+.select-project {
+  display: flex;
+  justify-content: space-between;
+  select {
+    width: 30%;
+  }
+  input {
+    padding-left: 10px;
+  }
+}

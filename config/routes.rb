@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  get '/users/', to: 'users#index'
+  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'  }
+  root to: 'users#index'
 end
