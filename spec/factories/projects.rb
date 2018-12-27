@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :project do
-    name { 'MyString' }
-    desc { 'MyString' }
+    name { 'ProjectName' }
+    desc { 'ProjectDescription' }
   end
 end
