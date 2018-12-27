@@ -40,10 +40,9 @@ class User < ApplicationRecord
       user = User.new(
         first_name: data.name.partition(' ').first,
         last_name: data.name.partition(' ').last,
-        email: data.email, project_id: 1,
+        email: data.email, project: Project.first,
         password: password, password_confirmation: password
       )
-      user.save if user.valid?
     end
     user
   end
