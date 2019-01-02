@@ -57,7 +57,10 @@ export default {
   },
   methods: {
     created() {
-      axios.get(this.usersPath, {
+      this.$axios.defaults.headers.common['X-CSRF-Token'] = document.getElementsByName('csrf-token')[0];
+      this.$axios.defaults.headers.common['Accept'] = 'application/json';
+
+      this.$axios.get(this.usersPath, {
         params: {
           id: this.selected
         }
