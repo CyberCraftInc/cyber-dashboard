@@ -21,7 +21,6 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3.8'
   gem 'rspec-rails', '3.8.1'
   gem 'rubocop', '~> 0.61.1', require: false
-  gem 'simplecov', '0.16.1', require: false
 end
 
 group :test do
