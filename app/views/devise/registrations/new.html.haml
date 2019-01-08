@@ -36,4 +36,4 @@
         = f.submit "Sign up", class: 'btn'
         - if devise_mapping.omniauthable?
           - resource_class.omniauth_providers.each do |provider|
-            = link_to link_to image_tag("https://developers.google.com/+/images/branding/g+138.png", height: 50, width: 50, border: 0), omniauth_authorize_path(resource_name, provider)
+            = link_to link_to image_tag("/images/google+.png", height: 50, width: 50, border: 0), omniauth_authorize_path(resource_name, provider)
