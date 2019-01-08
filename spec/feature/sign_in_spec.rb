@@ -19,7 +19,6 @@ describe 'Sign in', type: :feature do
     fill_in 'Email', with: user.email
     click_button 'Log in'
 
-    # Error message will be created
-    expect(page).to have_content 'Some error message must be here'
+    expect(page).to have_content 'Invalid Email or password.'
   end
 end

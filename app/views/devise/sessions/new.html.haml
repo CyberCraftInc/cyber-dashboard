@@ -1,11 +1,13 @@
 #logging-box
-  %h4 Log in
   .row
-  .offset-md-2.col-md-8
-    = form_for(resource, as: resource_name, class: 'input-group', url: session_path(resource_name)) do |f|
-      .field
-        = f.label :email
-        = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+    .offset-md-2.col-md-8
+      %h4 Log in
+      - flash.each do |message_type, message|
+        = content_tag(:div, message,  class: "alert alert-danger flash_notice", role: "alert")
+      = form_for(resource, as: resource_name, class: 'input-group', url: session_path(resource_name)) do |f|
+        .field
+          = f.label :email
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
 
         .field
           = f.label :password
