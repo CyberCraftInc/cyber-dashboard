@@ -11,7 +11,9 @@
     <table class="table">
       <thead class="thead-dark">
         <tr>
-          <th scope="row" v-for="(title, index) in theadTitles" ><a @click="change_col(sortTitles[index])" >{{ title }}</a></th>
+          <th scope="row" v-for="(title) in Object.keys(theadSortTitles)">
+            <a @click="change_col(theadSortTitles[title])" >{{ title }}</a>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -34,13 +36,20 @@ export default {
   data: function () {
     return {
       listOfUsers: JSON.parse(this.listUsersAll),
-      theadTitles: ['#', 'First name', 'Last name', 'Email', 'Phone', 'Project'],
-      sortTitles: ['id', 'first_name', 'last_name', 'email', 'phone', 'project.name'],
+      theadSortTitles: {
+        "#": "id",
+        "First name": "first_name",
+        "Last name": "last_name",
+        "Email": "email",
+        "Phone": "phone",
+        "Project name": "project.name",
+      },
+      blackListSort: ["id","project.name"],
       tableName: 'List of users',
       listOfProjects: JSON.parse(this.listProjectsAll),
       selected: '0',
       search: '',
-      currentSort: 'email',
+      currentSort: 'last_name',
       currentSortDir: 'asc'
     }
   },
@@ -68,6 +77,8 @@ export default {
               .catch((error) => console.log(error.response.data));
     },
     change_col(s) {
+      // if not sorting title
+      if (this.blackListSort.includes(s)) { return }
       //if s == current sort, reverse
       if (s === this.currentSort) {
         this.currentSortDir = this.currentSortDir === 'asc' ? 'desc' : 'asc';
