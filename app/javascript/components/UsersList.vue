@@ -6,7 +6,7 @@
           <option value="0">All Projects</option>
           <option v-for="project in listOfProjects" v-bind:value="project.id" >{{ project.name }}</option>
         </select>
-      <input type="text" v-model="search" placeholder="Search">
+      <input type="text" v-model="search" placeholder="Search" id="search">
       </div>
     <table class="table">
       <thead class="thead-dark">
@@ -31,7 +31,6 @@
 </template>
 
 <script>
-
 export default {
   data: function () {
     return {
@@ -84,7 +83,6 @@ export default {
         this.currentSortDir = 'asc';
         this.currentSort = s;
       }
-
     }
   },
   computed: {
