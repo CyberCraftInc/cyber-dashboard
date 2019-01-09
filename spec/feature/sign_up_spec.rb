@@ -7,7 +7,7 @@ describe 'Sign up', type: :feature do
       email: 'example@test.com',
       last_name: 'Test',
       first_name: 'test',
-      phone: '380972618388',
+      phone: '380000000000',
       password: 'secret',
       project: project.name
     }

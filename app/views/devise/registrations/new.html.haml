@@ -10,7 +10,7 @@
       = f.text_field :last_name, autofocus: true, class: 'form-control', required: true
 
       = f.label :phone
-      = f.telephone_field :phone, pattern: "+38(0\\d{2})\\d{3}-\\d{2}-\\d{2}", class: 'form-control', autofocus: true, placeholder: '+38(xxx)-xxx-xx-xx', autocomplete: "phone", required: true
+      = f.telephone_field :phone, class: 'form-control phone-input', autofocus: true, placeholder: '+38(xxx)-xxx-xx-xx', autocomplete: "phone", required: true
 
       .field
         = f.label :email
@@ -33,7 +33,7 @@
         = f.select :project_id, @projects.collect { |p| [ p.name, p.id ] }, {} , class: 'form-control'
 
       .actions
-        = f.submit "Sign up", class: 'btn'
+        = f.submit "Sign up", class: 'btn', onclick: 'unmaskPhone()'
         - if devise_mapping.omniauthable?
           - resource_class.omniauth_providers.each do |provider|
             = link_to link_to image_tag("/images/google+.png", height: 50, width: 50, border: 0), omniauth_authorize_path(resource_name, provider)

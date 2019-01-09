@@ -1,10 +1,8 @@
 import Vue from 'vue/dist/vue.esm';
 import UsersList from '../components/UsersList.vue'
-import axios from 'axios';
-
-Vue.prototype.$axios = axios;
-axios.defaults.headers.common['X-CSRF-Token'] = document.getElementsByName('csrf-token')[0];
-axios.defaults.headers.common['Accept'] = 'application/json';
+require('../../assets/javascripts/mask');
+require('imask');
+Vue.prototype.$axios = require('axios');
 
 document.addEventListener('DOMContentLoaded', () => {
     const app = new Vue({
