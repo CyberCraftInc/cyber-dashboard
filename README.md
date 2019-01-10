@@ -1,82 +1,50 @@
+![alt text](https://s.dou.ua/CACHE/images/img/static/companies/CC-logo-gorizontal_gliGwd8/c2b2018adc57696d5abe1d7939bb3e79.png)
 # Cyber-dashboard
 
-If you would like to use one of this options, perform the following:
-1. In whatever repo you want this turned on in, navigate to .git/hooks in the terminal.
-2. Run `mv pre-commit.sample pre-commit` to rename the sample file and activate it.
-3. Paste one of the following into that file and save.
-4. Feel free to edit anything you would like in your own hook! They aren't commited, so you're welcome to have a custom configuration.
+1. [Description](#description)
+2. [How to setup and run](#how-to-setup-and-run)
+3. [How to run tests](#how-to-run-tests)
+4. [Code climate](#code-climate)
+5. [Test coverage](#test-coverage)
+5. [License section](#license)
+6. [Contribution section](#contribution)
 
-All of these assume that `rubocop` is installed in the Gemfile and that a `rubocop.yml` file exists in the directory. At a minimum, `rubocop` must be installed. If you don't have a `rubocop.yml` file, the default configuration will be used.
+#### Description
+Cyber-dashboard is a web app for workers review. Everyone knows about each. You know what learn to next review and what you failed in the previous review, also reviewer know about your previous skills and result from your previous review
 
-### Useful for command line interfaces as it stops to ask the user if they want to run with autocorrect on before committing. Does not work with SourceTree or RubyMine.
+#### How to setup and run
+To run this project you need
+1. install Ruby version 2.5.1 and Rails version 5.2.2
+2. install Node.JS version 6+
+3. install PostgreSQL [official site](https://www.postgresql.org/download/)
 
-```
-#!/bin/sh
-#
-# An example hook script to verify what is about to be committed.
-# Called by "git commit" with no arguments.  The hook should
-# exit with non-zero status after issuing an appropriate message if
-# it wants to stop the commit.
-#
-# To enable this hook, rename this file to "pre-commit".
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
-cyan='\033[0;36m'
-white='\033[1;37m'
-NC='\033[0m'
+4. install all gems `bundle install`
+5. install yarn version 1.12.3
+6. install all yarn packages `yarn`
+7. migrate database `rake db:create db:migrate` for set default projects from [db/seed.rb](https://github.com/CyberCraftInc/cyber-dashboard/blob/master/db/seeds.rb/) add `db:seed` to previous command
+ *instead of 4-7 you can run bin/setup* [bin/setup](https://github.com/CyberCraftInc/cyber-dashboard/blob/master/bin/setup) *! bin/setup not run seed.rb*
+8. run project `foreman start`
 
-if git rev-parse --verify HEAD >/dev/null 2>&1
-then
-	against=HEAD
-else
-	# Initial commit: diff against an empty tree object
-	against=cc79c00a6302a0b54840b6dee0a583a43f9c5427
-fi
+#### How to run tests
+This app using RSpec and Capybara. `bundle` install needed gems, but for working feature test you must install **geckodriver** for your browser. After this run all test `rake spec`
 
-# Allows us to read user input below, assigns stdin to keyboard
-exec < /dev/tty
 
-# Get only the staged files
-FILES="$(git diff --cached --name-only --diff-filter=AMC | grep "\.rb$" | tr '\n' ' ')"
+#### Test Coverage
+This project had gem **simplecov** result about testing every time refresh location: **coverage/index.html** directory coverage in .gitignore and create after first running*
 
-echo "${green}[Ruby Style][Info]: Checking Ruby Style for all files staged for this commit!${NC}"
-echo "${cyan}[Ruby Style][Info]: If you would like to skip this check while committing, add --no-verify or -n to the git commit command${NC}"
-echo "${yellow}[Ruby Style][Warning]: Style violations will prevent you from commiting. If you choose not to fix them, you will need the --no-verify flag${NC}"
-echo ""
-echo "${white}Before we get started, would you like to turn on autocorrect to correct simple style violations automatically [y/n]?${NC}"
-read autocorrect
+#### Code climate
 
-if [ -n "$FILES" ]
-then
-	echo "${green}[Ruby Style][Info]: Checking the following staged files:${NC}"
-	echo "${green}[Ruby Style][Info]: ${FILES}${NC}"
+The Code Climate workflow steps are:
 
-	# Run rubocop on the staged files
-	if [ "$autocorrect" = "" ]; then
-    autocorrect='n'
-  fi
-  case $autocorrect in
-      [Yy] )
-			    echo "${green}[Ruby Style][Info]: Running rubocop with autocorrect!${NC}"
-					bin/bundle exec rubocop -a ${FILES}
-					;;
-      [Nn] )
-					echo "${green}[Ruby Style][Info]: Running rubocop without autocorrect!${NC}"
-			    bin/bundle exec rubocop ${FILES}
-					;;
-  esac
+1. Check if an app is works
+2. Run tests. All examples must be without failures
+3. Rubocop must return no offenses
+4. All commits must be squashed to one
+5. Do rebase. Then fix conflicts with (master).
+6. Repeat step 2
+7. Create pull request
 
-	if [ $? -ne 0 ]; then
-	  echo "${red}[Ruby Style][Error]: Please fix the issues and try to commit again, or commit with --no-verify if you do not think they need to be fixed${NC}"
-	  exit 1
-	fi
-else
-	echo "${green}[Ruby Style][Info]: No files to check${NC}"
-fi
+#### License
+© Copyright 2019
 
-# If there are whitespace errors, print the offending file names and fail.
-exec git diff-index --check --cached $against --
-
-exit 0
-```
+#### Contribution
