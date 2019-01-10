@@ -316,7 +316,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   capybara (= 3.12.0)
-  devise
+  devise (= 4.5.0)
   factory_bot_rails (= 4.11.1)
   foreman (= 0.64.0)
   guard-rspec (= 4.7.3)
