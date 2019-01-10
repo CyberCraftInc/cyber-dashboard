@@ -9,7 +9,7 @@
       = f.hidden_field(:project_id, value: 1)
 
       = f.label :phone
-      = f.telephone_field :phone, pattern: "+38(0\\d{2})\\d{3}-\\d{2}-\\d{2}", class: 'form-control', autofocus: true, placeholder: '+38(xxx)-xxx-xx-xx', autocomplete: "phone", required: true
+      = f.telephone_field :phone, class: 'form-control phone-input', autofocus: true, placeholder: '+38(xxx)-xxx-xx-xx', autocomplete: "phone", required: true
 
       .field
         = f.label :project_id
@@ -28,6 +28,6 @@
         = f.password_field :password_confirmation, class: 'form-control', autocomplete: "new-password"
 
       %div
-        = f.submit "Sign up", class: "btn btn-primary"
+        = f.submit "Sign up", class: "btn btn-primary", onclick: 'unmaskPhone()'
         - if controller_name != 'sessions'
           = link_to "Log in", new_session_path(resource_name), class: "btn btn-primary"
