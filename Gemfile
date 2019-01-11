@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'devise','4.5.0'
+gem 'devise', '4.5.0'
 gem 'foreman', '0.64.0'
 gem 'jbuilder', '~> 2.5'
 gem 'omniauth-google-oauth2'
@@ -28,7 +28,7 @@ group :test do
   gem 'capybara', '3.12.0'
   gem 'guard-rspec', '4.7.3'
   gem 'launchy', '2.4.3'
-  gem 'selenium-webdriver','3.141.0'
+  gem 'selenium-webdriver', '3.141.0'
 end
 
 gem 'haml', '5.0.4'

@@ -12,18 +12,18 @@
       <thead class="thead-dark">
         <tr>
           <th scope="row" v-for="(title) in Object.keys(theadSortTitles)">
-            <a @click="change_col(theadSortTitles[title])" >{{ title }}</a>
+            <span @click="change_col(theadSortTitles[title])" >{{ title }}</span>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(user, index) in sortedUsers">
           <th scope="row">{{ index + 1 }}</th>
-          <td>{{ user.first_name }}</td>
-          <td>{{ user.last_name }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.phone }}</td>
-          <td>{{ user.project.name }}</td>
+          <td class="first-name-column">{{ user.first_name }}</td>
+          <td class="last-name-column">{{ user.last_name }}</td>
+          <td class="email-column">{{ user.email }}</td>
+          <td class="phone-column">{{ user.phone }}</td>
+          <td class="project-name-column">{{ user.project.name }}</td>
         </tr>
       </tbody>
     </table>

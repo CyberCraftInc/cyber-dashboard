@@ -10,10 +10,7 @@ describe 'Select Project', type: :feature do
   let!(:third_user) { FactoryBot.create(:user, project: project_with_user) }
 
   before(:each) do
-    visit new_user_session_path
-    fill_in 'Email', with: first_user.email
-    fill_in 'Password', with: first_user.password
-    click_button 'Log in'
+    sign_in(first_user)
   end
 
   it 'returns all users if project is not provided', js: true do
