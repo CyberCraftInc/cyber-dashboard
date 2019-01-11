@@ -51,8 +51,8 @@ RSpec.describe User, type: :model do
 
   describe '.from_omniauth' do
     context 'when single sign-on via Google' do
-      let(:access_token) { OmniAuth.config.mock_auth[:google] }
-      let(:user) { create(:user, email: 'test@google.com') }
+      let(:access_token) { google_oauth2_mock }
+      let(:user) { create(:user, email: 'fakeemail@gmail-fake.com') }
       let(:user_sso) { User.from_omniauth(access_token) }
 
       it 'is retrieve existent user if user exist in data base' do
@@ -63,8 +63,8 @@ RSpec.describe User, type: :model do
       end
 
       it 'returns prepared new user for next step of registration if user absent in data base' do
-        first_name = 'Dulla'
-        last_name = 'Ilppa'
+        first_name = 'David'
+        last_name = 'McDonald'
 
         expect(user_sso).to be_a_new(User)
         expect(user_sso.first_name).to eq first_name

@@ -7,14 +7,14 @@
       = f.text_field :first_name, autofocus: true, class: 'form-control', required: true
 
       = f.label :last_name
-      = f.text_field :last_name, autofocus: true, class: 'form-control', required: true
+      = f.text_field :last_name, class: 'form-control', required: true
 
       = f.label :phone
-      = f.telephone_field :phone, class: 'form-control phone-input', autofocus: true, placeholder: '+38(xxx)-xxx-xx-xx', autocomplete: "phone", required: true
+      = f.telephone_field :phone, class: 'form-control phone-input', placeholder: '+38(xxx)-xxx-xx-xx', autocomplete: "phone", required: true
 
       .field
         = f.label :email
-        = f.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email"
+        = f.email_field :email, class: 'form-control', autocomplete: "email"
 
       .field
         = f.label :password
