@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :phone, :email, uniqueness: true
   validates :first_name, :last_name, :phone, :project_id, presence: true
   belongs_to :project
+  has_many :events, dependent: :nullify
   scope :users_joins_project, -> { includes(:project) }
 
   def self.filter(id)
