@@ -20,4 +20,3 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Exclude:
     - "**/*_spec.rb"
-    - "db/schema.rb"
