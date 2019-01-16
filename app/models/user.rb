@@ -47,4 +47,20 @@ class User < ApplicationRecord
     end
     user
   end
+
+  def self.event_as_json(user)
+    events_lst_for_json = user.events.order(finish_date: :desc).map do |event|
+      {
+        id: event.id,
+        description: event.description,
+        start_date: event.start_date,
+        finish_date: event.finish_date,
+        comments: event.comments,
+        summary: event.summary,
+        targets: event.targets
+      }
+    end
+
+    events_lst_for_json.to_json
+  end
 end
