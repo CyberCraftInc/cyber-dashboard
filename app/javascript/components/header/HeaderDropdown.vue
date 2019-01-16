@@ -4,7 +4,7 @@
       <span>{{ user }}</span>
       <span class="dropdown-toggle" data-toggle='' href=""></span>
     </div>
-    
+
     <div class="dropdown__content" @mouseleave="mouseLeave">
       <ul class="nav navbar-nav">
         <li><a :href="profileLink">{{ profile }}</a></li>

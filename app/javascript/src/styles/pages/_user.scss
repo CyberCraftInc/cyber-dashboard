@@ -1,0 +1,33 @@
+.event-visible-item {
+  background: #343a40;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.event-status {
+  border-radius: 5px;
+  padding-left: 10px;
+  background: #0a568c;
+  margin-top: 10px;
+}
+
+.scheduled {
+  background: orange;
+}
+
+.done {
+  background: green;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.edit-event-button {
+  margin-top: 10px;
+}

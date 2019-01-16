@@ -9,15 +9,6 @@ RSpec.feature 'Edit user', type: :feature do
     visit_edit_page
   end
 
-  scenario 'show profile page' do
-    open_dropdown_and_click_on('Profile')
-
-    expect(page).to have_content 'Profile page'
-    expect(page).to have_content user.first_name
-    expect(page).to have_content user.last_name
-    expect(page).to have_content user.phone
-  end
-
   scenario 'show edit page' do
     open_dropdown_and_click_on('Edit profile')
     expect(page).to have_content 'Profile information'

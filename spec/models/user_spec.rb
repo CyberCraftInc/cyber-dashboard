@@ -30,21 +30,21 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '.as_json' do
+  describe 'data' do
     context 'when array of instances converting to json' do
       let(:project) { create(:project) }
       let(:user) { create(:user, project: project) }
 
       it 'returns an array of objects as json' do
-        as_json = JSON.parse(User.as_json([user])).first
+        as_json = user.data
 
-        expect(as_json['first_name']).to eq(user.first_name)
-        expect(as_json['last_name']).to eq(user.last_name)
-        expect(as_json['email']).to eq(user.email)
-        expect(as_json['phone']).to eq(user.phone)
+        expect(as_json[:first_name]).to eq(user.first_name)
+        expect(as_json[:last_name]).to eq(user.last_name)
+        expect(as_json[:email]).to eq(user.email)
+        expect(as_json[:phone]).to eq(user.phone)
 
-        expect(as_json['project']['name']).to eq(user.project.name)
-        expect(as_json['project']['desc']).to eq(user.project.desc)
+        expect(as_json[:project][:name]).to eq(user.project.name)
+        expect(as_json[:project][:desc]).to eq(user.project.desc)
       end
     end
   end
