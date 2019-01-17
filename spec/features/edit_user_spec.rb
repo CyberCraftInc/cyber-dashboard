@@ -73,6 +73,6 @@ RSpec.feature 'Edit user', type: :feature do
   end
 
   def visit_edit_page
-    visit user_edit_path
+    visit edit_user_path(user)
   end
 end
