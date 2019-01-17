@@ -25,4 +25,49 @@ RSpec.describe UsersController, type: :controller do
       end
     end
   end
+
+  describe 'PUT #update' do
+    let(:user) { create(:user) }
+    let(:params) do
+      {
+        format: 'json',
+        id: user.id,
+        user: {
+          first_name: 'Jonatan',
+          last_name: 'Edison',
+          phone: '063123123'
+        }
+      }
+    end
+
+    before do
+      sign_in(user)
+    end
+
+    context 'when parameter is valid' do
+      it 'succeeds in updating user' do
+        put :update, params: params
+
+        user.reload
+        expect(response).to have_http_status(200)
+        expect(user.first_name).to eq('Jonatan')
+        expect(user.last_name).to eq('Edison')
+        expect(user.phone).to eq('063123123')
+      end
+    end
+
+    context 'when parameter is invalid' do
+      it 'fail in updating user' do
+        params[:user][:first_name] = ''
+        put :update, params: params
+
+        user.reload
+        expect(response).to have_http_status(200)
+        expect(user.first_name).not_to be_empty
+        expect(user.first_name).to_not eq('Jonatan')
+        expect(user.last_name).to_not eq('Edison')
+        expect(user.phone).to_not eq('063123123')
+      end
+    end
+  end
 end
