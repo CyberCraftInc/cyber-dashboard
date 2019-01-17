@@ -12,3 +12,27 @@
     padding-left: 10px;
   }
 }
+
+tbody > tr  {
+  line-height: 40px;
+  .btn-show {
+    padding: 6px 12px 6px 12px;
+    background: map-get($colors, 'yellow');
+    border-color: map-get($colors, 'yellow');
+    border-radius: 4px;
+    color: map-get($colors, 'white');
+    text-decoration: none;
+  }
+}
+
+table > thead > tr > th {
+  &:nth-child(n+2):nth-child(-n+5) {
+    span {
+      cursor: pointer;
+    }
+    &::after {
+      content: ' ⇳';
+      color: map-get($colors, 'yellow');
+    }
+  }
+}

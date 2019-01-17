@@ -7,3 +7,52 @@
     color: #fff;
   }
 }
+
+.dropdown {
+  &__header {
+    cursor: pointer;
+    position: relative;
+    width: 150px;
+    padding: 0px 0px 5px 20px;
+    span {
+      color: map-get($colors, 'white');
+    }
+    &.is-active {
+      + .dropdown__content {
+          position: absolute;
+          height: auto;
+          opacity: 1;
+          display: block;
+          width: 150px;
+          border: 1px solid map-get($colors, 'black');
+          border-top: 2px solid map-get($colors, 'yellow');
+          border-radius: 0 0 4px 4px;
+      }
+    }
+  }
+  &__content {
+    z-index: 1;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity .3s;
+    display: none;
+    background: map-get($colors, 'black');
+    a {
+      color: map-get($colors, 'black');
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding-left: 20px;
+    }
+    li {
+      padding: 3px 0px 3px 0px;
+      cursor: pointer;
+      background: map-get($colors, 'white');
+      &:hover {
+        background: #D3D3D3;
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
     %title Cyber Dashboard
     = csrf_meta_tags
     = csp_meta_tag
@@ -10,14 +11,16 @@
     = stylesheet_pack_tag 'stylesheet', media: 'all'
     = javascript_pack_tag 'application'
   %body
-    %nav.navbar.navbar-dark.bg-dark
-      %a.navbar-brand{:href => root_path}
-        %img.d-inline-block.align-top{:alt => "", :width => "90", :height => "35", :src => "/images/logo.png"}/
-        .header_text
-          CyberCraft Dashboard
-      #log_out= link_to('Logout', destroy_user_session_path, method: :delete) if current_user       
-    .container{ 'data-behavior': 'vue' }
-      =yield
-    %footer.footer
+    .div{ 'data-behavior': 'vue' }
+      %nav.navbar.navbar-dark.bg-dark
+        %a.navbar-brand{:href => root_path}
+          %img.d-inline-block.align-top{:alt => "", :width => "90", :height => "35", :src => "/images/logo.png"}/
+          .header_text
+            CyberCraft Dashboard
+        - if current_user
+          %header-dropdown{ "edit-user-link": edit_user_path(current_user), "profile-link": profile_path, "log-out-link": destroy_user_session_path, "user-name": current_user.first_name }
       .container
-        %span &copy; CyberCraftInc 2018
+        =yield
+      %footer.footer
+        .container
+          %span &copy; CyberCraftInc 2018

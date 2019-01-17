@@ -8,25 +8,30 @@
         </select>
       <input type="text" v-model="search" placeholder="Search" id="search">
       </div>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="row" v-for="(title) in Object.keys(theadSortTitles)">
-            <span @click="change_col(theadSortTitles[title])" >{{ title }}</span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(user, index) in sortedUsers">
-          <th scope="row">{{ index + 1 }}</th>
-          <td class="first-name-column">{{ user.first_name }}</td>
-          <td class="last-name-column">{{ user.last_name }}</td>
-          <td class="email-column">{{ user.email }}</td>
-          <td class="phone-column">{{ user.phone }}</td>
-          <td class="project-name-column">{{ user.project.name }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="row" v-for="(title) in Object.keys(theadSortTitles)">
+              <span @click="change_col(theadSortTitles[title])" >{{ title }}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(user, index) in sortedUsers">
+            <th scope="row">{{ index + 1 }}</th>
+            <td class="first-name-column">{{ user.first_name }}</td>
+            <td class="last-name-column">{{ user.last_name }}</td>
+            <td class="email-column">{{ user.email }}</td>
+            <td class="phone-column">{{ user.phone }}</td>
+            <td class="project-name-column">{{ user.project.name }}</td>
+            <td>
+              <a class='btn-show' :href="userPath + user.id">show</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -42,6 +47,7 @@ export default {
         "Email": "email",
         "Phone": "phone",
         "Project name": "project.name",
+        "": ""
       },
       blackListSort: ["id","project.name"],
       tableName: 'List of users',
@@ -49,7 +55,8 @@ export default {
       selected: '0',
       search: '',
       currentSort: 'last_name',
-      currentSortDir: 'asc'
+      currentSortDir: 'asc',
+      userPath: this.usersPath + '/'
     }
   },
   props: {
