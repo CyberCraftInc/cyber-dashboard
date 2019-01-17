@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @projects = Project.all.to_json
-    @users = User.as_json(User.filter(params[:id]))
+    @users = User.filter(params[:id]).map(&:data)
     respond_to do |format|
       format.html
       format.json { render json: @users }
@@ -27,6 +27,7 @@ class UsersController < ApplicationController
 
   def show
     @user = params[:id] ? User.find(params[:id]) : current_user
+    @events = @user.events.sort_reverse_by_finish_date.map(&:data)
   end
 
   protected

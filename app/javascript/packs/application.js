@@ -2,6 +2,8 @@ import Vue from 'vue/dist/vue.esm';
 import UsersList from '../components/users/UsersList.vue'
 import UserEdit from '../components/users/edit/UserEdit.vue'
 import HeaderDropdown from '../components/header/HeaderDropdown.vue'
+import UserInfo from '../components/users/UserInfo.vue'
+import UserEvents from '../components/users/UserEvents'
 import axios from 'axios'
 
 require('../../assets/javascripts/mask');
@@ -15,7 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     components: {
       'users-component': UsersList,
       'users-edit-component': UserEdit,
-      'header-dropdown': HeaderDropdown
+      'header-dropdown': HeaderDropdown,
+      'user-info-component': UserInfo,
+      'user-events-component': UserEvents
     }
   });
 

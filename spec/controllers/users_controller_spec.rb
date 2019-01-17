@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'login_helper'
 
 RSpec.describe UsersController, type: :controller do
   describe 'GET #index' do

@@ -14,23 +14,19 @@ class User < ApplicationRecord
     @users = id.to_i.zero? ? User.users_joins_project : Project.find(id.to_i).users.users_joins_project
   end
 
-  def self.as_json(users)
-    users_lst_for_json = users.map do |user|
-      user_project_info = user.project
-      {
-        id: user.id,
-        first_name: user.first_name,
-        last_name: user.last_name,
-        email: user.email,
-        phone: user.phone,
-        project: {
-          id: user_project_info.id,
-          name: user_project_info.name,
-          desc: user_project_info.desc
-        }
+  def data
+    {
+      id: id,
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      phone: phone,
+      project: {
+        id: project.id,
+        name: project.name,
+        desc: project.desc
       }
-    end
-    users_lst_for_json.to_json
+    }
   end
 
   def self.from_omniauth(access_token)

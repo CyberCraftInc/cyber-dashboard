@@ -9,3 +9,11 @@ input[type=submit] {
 .btn {
   margin: 20px 5px 20px 0px;
 }
+.gray-button {
+  background-color: map-get($colors, 'background');
+  margin: 15px 0 15px 0;
+  color: map-get($colors, 'black');
+  border-radius: 2px;
+  border: 1px solid map-get($colors, 'black');
+  cursor: pointer;
+}

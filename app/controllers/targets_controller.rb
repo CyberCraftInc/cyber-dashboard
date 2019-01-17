@@ -1,11 +1,10 @@
 class TargetsController < ApplicationController
-  before_action :set_target, only: %i[update destroy]
+  before_action :set_target, only: %i[update destroy toggle_achieved]
 
   def create
-    @target = Target.new(target_params)
-
+    @target = Target.create(target_params[:target][:targets])
     respond_to do |format|
-      if @target.save
+      if @target
         format.json { render json: { status: true } }
       else
         format.json { render json: @target.errors, status: :unprocessable_entity }
@@ -30,6 +29,17 @@ class TargetsController < ApplicationController
     end
   end
 
+  def toggle_achieved
+    @target.achieved = !@target.achieved
+    respond_to do |format|
+      if @target.save
+        format.json { render status: :ok, json: { status: true } }
+      else
+        format.json { render json: @target.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   def set_target
@@ -37,6 +47,6 @@ class TargetsController < ApplicationController
   end
 
   def target_params
-    params.require(:event).permit(:description, :achieved)
+    params.permit(target: [targets: %i[description achieved event_id]])
   end
 end
