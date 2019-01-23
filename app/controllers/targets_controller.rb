@@ -1,5 +1,5 @@
 class TargetsController < ApplicationController
-  before_action :set_target, only: %i[update destroy]
+  before_action :set_target, only: %i[update destroy toggle_achieved]
 
   def create
     @target = Target.new(target_params)
@@ -27,6 +27,17 @@ class TargetsController < ApplicationController
     @target.destroy
     respond_to do |format|
       format.json
+    end
+  end
+
+  def toggle_achieved
+    @target.achieved = !@target.achieved
+    respond_to do |format|
+      if @target.save
+        format.json { render status: :ok, json: { status: true } }
+      else
+        format.json { render json: @target.errors, status: :unprocessable_entity }
+      end
     end
   end
 
