@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   has_many :targets, dependent: :destroy
   belongs_to :user
   enum status: %i[scheduled done]
+  validates :description, :finish_date, :user_id, presence: true
   scope :sort_reverse_by_finish_date, -> { order(finish_date: :desc) }
 
   def data

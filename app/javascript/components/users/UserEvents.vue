@@ -14,7 +14,7 @@
             <span>{{ event.description }}</span>
           </div>
           <div class="col-2">
-            <button class="btn-warning edit-event-button">Edit event</button>
+            <button class="btn-warning edit-event-button" v-bind:disabled="!canEditEvent">Edit event</button>
           </div>
           <div class="col-2">
             <p class="event-status" :class="event.status">{{ event.status }}</p>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-2">
                   <input v-bind:id="'target'+target.id" type="checkbox" class="checkbox" v-bind:checked="target.achieved"
-                         @click="changeTargetAchieved(target)">
+                         @click="changeTargetAchieved(target)" v-bind:disabled="!canEditEvent">
                 </div>
               </div>
             </div>
@@ -60,7 +60,8 @@
       }
     },
     props: {
-      eventsForProps: { type: String }
+      eventsForProps: { type: String },
+      canEditEvent: { type: Boolean }
     },
     methods: {
       getFullYear(event) {

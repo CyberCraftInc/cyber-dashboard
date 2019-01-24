@@ -32,6 +32,8 @@ class TargetsController < ApplicationController
 
   def toggle_achieved
     @target.achieved = !@target.achieved
+    authorize @target
+
     respond_to do |format|
       if @target.save
         format.json { render status: :ok, json: { status: true } }
