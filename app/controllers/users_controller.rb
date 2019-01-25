@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   def show
     @user = params[:id] ? User.find(params[:id]) : current_user
     @events = EventPolicy::Scope.new(current_user, @user.events).resolve.sort_reverse_by_finish_date
+    @statuses = Event.statuses.keys
   end
 
   protected

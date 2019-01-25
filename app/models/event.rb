@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   enum status: %i[scheduled done]
   validates :description, :finish_date, :user_id, presence: true
   scope :sort_reverse_by_finish_date, -> { order(finish_date: :desc) }
+  accepts_nested_attributes_for :targets, allow_destroy: true
 
   def data
     {

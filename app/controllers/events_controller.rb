@@ -3,10 +3,10 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-
+    authorize @event
     respond_to do |format|
       if @event.save
-        format.json { render json: { status: true } }
+        format.json { render json: { status: :created } }
       else
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
@@ -14,6 +14,7 @@ class EventsController < ApplicationController
   end
 
   def update
+    authorize @event
     respond_to do |format|
       if @event.update(event_params)
         format.json { render json: { status: true } }
@@ -37,6 +38,8 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:description, :start_date, :finish_date, :comments, :summary, :status)
+    params.require(:event).permit(:description, :status, :start_date, :finish_date,
+                                  :comments, :summary, :user_id,
+                                  targets_attributes: %i[id description achieved _destroy])
   end
 end
