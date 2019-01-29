@@ -1,6 +1,7 @@
 class Target < ApplicationRecord
   belongs_to :event
   include Rails.application.routes.url_helpers
+  validates :description, :event_id, presence: true
 
   def data
     {

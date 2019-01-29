@@ -9,6 +9,7 @@ class User < ApplicationRecord
   belongs_to :project
   has_many :events, dependent: :destroy
   scope :users_joins_project, -> { includes(:project) }
+  enum role: %i[admin]
 
   def self.filter(id)
     @users = id.to_i.zero? ? User.users_joins_project : Project.find(id.to_i).users.users_joins_project
