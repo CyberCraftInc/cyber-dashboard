@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe TargetsController, type: :controller do
   describe 'GET #toggle_achieved' do
     context 'admin' do
-      let!(:user) { FactoryBot.create(:user, role: 0) }
-      let!(:event) { FactoryBot.create(:event, user: user) }
+      let!(:admin) { FactoryBot.create(:admin) }
+      let!(:event) { FactoryBot.create(:event, user: admin) }
       let!(:target) { FactoryBot.create(:target, event: event) }
 
       before(:each) do
-        login_user user
+        login_user admin
       end
 
       it 'mark as achieved if target is unachieved' do

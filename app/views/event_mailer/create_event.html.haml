@@ -1,0 +1,9 @@
+%h1
+  You have upcoming event!
+%p
+  #{@author.first_name + ' '+ @author.last_name} create event - #{@event.description},
+  which finished at #{@event.finish_date}
+  %br/
+%p
+  To login to the site, just follow this link: #{@url}.
+  %br/
