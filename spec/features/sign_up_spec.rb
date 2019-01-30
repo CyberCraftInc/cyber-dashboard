@@ -38,7 +38,7 @@ describe 'Sign up', type: :feature do
     options = sign_in_params.merge(default_options)
     fill_in 'First name', with: options[:first_name]
     fill_in 'Last name', with: options[:last_name]
-    fill_in 'Phone', with: options[:phone]
+    fill_in 'Phone', with: phone_without_ukraine_code(options[:phone])
     fill_in 'Email', with: options[:email]
     fill_in 'Password', with: options[:password]
     fill_in 'Password confirmation', with: options[:password]

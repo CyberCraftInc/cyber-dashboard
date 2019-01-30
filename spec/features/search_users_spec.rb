@@ -28,10 +28,7 @@ RSpec.feature 'Search users', type: :feature do
   end
 
   def given_page_list_of_users_with_logged_user
-    visit new_user_session_path
-    fill_in 'Email', with: users.last.email
-    fill_in 'Password', with: users.last.password
-    click_button 'Log in'
+    sign_in(users.first)
     expect(page).to have_content 'List of users'
   end
 
