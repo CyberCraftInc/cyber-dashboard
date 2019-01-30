@@ -2,6 +2,47 @@ RailsAdmin.config do |config|
   config.parent_controller = 'ApplicationController'
   config.authorize_with :pundit
   config.current_user_method(&:current_user)
+  config.label_methods << :description
+
+  config.model 'User' do
+    object_label_method do
+      :custom_label_user
+    end
+  end
+
+  config.model 'Project' do
+    object_label_method do
+      :custom_label_project
+    end
+  end
+
+  config.model 'Event' do
+    object_label_method do
+      :custom_label_event
+    end
+  end
+
+  config.model 'Target' do
+    object_label_method do
+      :custom_label_target
+    end
+  end
+
+  def custom_label_user
+    "#{first_name}  #{last_name}"
+  end
+
+  def custom_label_project
+    name
+  end
+
+  def custom_label_event
+    "#{description}  #{finish_date}"
+  end
+
+  def custom_label_target
+    description
+  end
 end
 
 module RailsAdmin
