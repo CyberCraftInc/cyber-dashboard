@@ -14,7 +14,7 @@
             <span>{{ event.description }}</span>
           </div>
           <div class="col-2">
-            <button class="btn-warning edit-event-button" v-bind:disabled="!canEditEvent">Edit event</button>
+            <button class="btn-warning edit-event-button" v-bind:disabled="!canEditEvent" @click='onClickButton(event)'>Edit event</button>
           </div>
           <div class="col-2">
             <p class="event-status" :class="event.status">{{ event.status }}</p>
@@ -92,6 +92,10 @@
           }
         }).then(() => this.axiosFlashNotice = false)
           .catch(() => this.axiosFlashNotice = "Failed change checkbox ");
+      },
+      onClickButton(event) {
+        this.$emit('show', true)
+        this.$emit('eventProps', event)
       }
 
     }

@@ -1,3 +1,2 @@
 .users_component
-  %user-info-component{ "user-for-props": @user.data.to_json }
-  %user-events-component{ "events-for-props": @events.map(&:data).to_json, "can-edit-event": policy(@events).update? }
+  %user-info-component{ "user-for-props": @user.data.to_json, "events-path": events_path, "events-for-props": @events.map(&:data).to_json, "statuses": @statuses.to_json, "can-edit-event": policy(@events).update? }
