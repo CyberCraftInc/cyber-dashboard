@@ -61,7 +61,7 @@ RSpec.feature 'Socialmedia login via Google', type: :feature do
   end
 
   def when_i_successfully_sign_up
-    fill_in 'Phone', with: '+3654815245'
+    fill_in 'Phone', with: '+365481524500'
     select(project.name, from: 'Project')
     fill_in 'Password', with: '123123'
     fill_in 'Password confirmation', with: '123123'
@@ -69,7 +69,7 @@ RSpec.feature 'Socialmedia login via Google', type: :feature do
   end
 
   def when_i_forgot_to_fill_some_fields
-    fill_in 'Phone', with: '+3654815245'
+    fill_in 'Phone', with: '+365481524500'
     click_button 'Sign up'
   end
 

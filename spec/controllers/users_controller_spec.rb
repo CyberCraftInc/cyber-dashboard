@@ -34,7 +34,7 @@ RSpec.describe UsersController, type: :controller do
         user: {
           first_name: 'Jonatan',
           last_name: 'Edison',
-          phone: '063123123'
+          phone: '380631231231'
         }
       }
     end
@@ -51,7 +51,7 @@ RSpec.describe UsersController, type: :controller do
         expect(response).to have_http_status(200)
         expect(user.first_name).to eq('Jonatan')
         expect(user.last_name).to eq('Edison')
-        expect(user.phone).to eq('063123123')
+        expect(user.phone).to eq('380631231231')
       end
     end
 
@@ -65,7 +65,7 @@ RSpec.describe UsersController, type: :controller do
         expect(user.first_name).not_to be_empty
         expect(user.first_name).to_not eq('Jonatan')
         expect(user.last_name).to_not eq('Edison')
-        expect(user.phone).to_not eq('063123123')
+        expect(user.phone).to_not eq('380631231231')
       end
     end
   end
