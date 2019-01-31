@@ -1,7 +1,7 @@
 <template>
   <div class="user-events">
     <div class="row" v-for="event in events">
-      <div class="col-12" v-if="!topEqualCurrent(event)">
+      <div class="col-12" v-if="topEqualCurrent(event)">
         <h5>{{ getFullYear(event) }}<br></h5>
         <hr/>
       </div>
@@ -49,7 +49,7 @@
     data: function () {
       return {
         events: JSON.parse(this.eventsForProps),
-        topYear: null,
+        yearsHeader: [],
         axiosFlashNotice: false,
         titlesEvent: {
           "Comments": "comments",
@@ -68,11 +68,13 @@
         return new Date(event['finish_date']).getFullYear()
       },
       topEqualCurrent(event) {
-        if (this.getFullYear(event) === this.topYear) {
-          return true
+        if (this.yearsHeader.includes(this.getFullYear(event))) {
+          console.log(false);
+          return false;
         } else {
-          this.topYear = this.getFullYear(event);
-          return false
+          console.log(true);
+          this.yearsHeader.push(this.getFullYear(event));
+          return !false;
         }
       },
       changeActiveEvent(eventId) {
@@ -93,7 +95,6 @@
         }).then(() => this.axiosFlashNotice = false)
           .catch(() => this.axiosFlashNotice = "Failed change checkbox ");
       }
-
     }
   }
 </script>
