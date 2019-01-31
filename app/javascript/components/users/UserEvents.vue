@@ -1,5 +1,6 @@
 <template>
   <div class="user-events">
+    <div v-for="year in years">{{ topEqualCurrentTMP(year) }}</div>
     <div class="row" v-for="event in events">
       <div class="col-12" v-if="topEqualCurrent(event)">
         <h5>{{ getFullYear(event) }}<br></h5>
@@ -50,6 +51,8 @@
       return {
         events: JSON.parse(this.eventsForProps),
         yearsHeader: [],
+        yearsHeaderTMP: [],
+        years: [2021, 2020, 2020, 2019, 2019, 2019, 2019],
         axiosFlashNotice: false,
         titlesEvent: {
           "Comments": "comments",
@@ -74,7 +77,18 @@
         } else {
           console.log(true);
           this.yearsHeader.push(this.getFullYear(event));
-          return !false;
+          return true;
+        }
+      },
+      topEqualCurrentTMP(year) {
+        console.log('tmp function start');
+        if (this.yearsHeaderTMP.includes(year)) {
+          console.log(false);
+          return false;
+        } else {
+          console.log(true);
+          this.yearsHeaderTMP.push(year);
+          return true;
         }
       },
       changeActiveEvent(eventId) {
