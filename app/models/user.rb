@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_many :events, dependent: :destroy
+  belongs_to :project
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
+
   validates :phone, :email, uniqueness: true
-  validates :first_name, :last_name, :phone, :project_id, presence: true
+  validates :first_name, :last_name, :phone, :project, presence: true
   validates :phone, length: { is: 12 }
-  belongs_to :project
-  has_many :events, dependent: :destroy
+
   scope :users_joins_project, -> { includes(:project) }
   enum role: %i[admin employee]
 
