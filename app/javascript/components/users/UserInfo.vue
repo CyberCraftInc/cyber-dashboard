@@ -31,6 +31,7 @@
     <user-events-component
       :events-for-props="eventsForProps"
       :can-edit-event="canEditEvent"
+      :events-statistic="eventsStatistic"
       @show="onClickCreateEvent"
       @eventProps="onClickEditEvent"
     ></user-events-component>
@@ -90,7 +91,8 @@
       EventsPath: { type: String },
       eventsForProps: { type: String },
       canEditEvent: { type: Boolean },
-      statuses: { type: String }
+      statuses: { type: String },
+      eventsStatistic: { type: String }
     }
   }
 </script>

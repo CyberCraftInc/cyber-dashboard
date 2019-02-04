@@ -49,6 +49,7 @@
     data: function () {
       return {
         events: JSON.parse(this.eventsForProps),
+        eventsStatuses: JSON.parse(this.eventsStatistic),
         topYear: null,
         axiosFlashNotice: false,
         titlesEvent: {
@@ -61,7 +62,8 @@
     },
     props: {
       eventsForProps: { type: String },
-      canEditEvent: { type: Boolean }
+      canEditEvent: { type: Boolean },
+      eventsStatistic: { type: String }
     },
     methods: {
       getFullYear(event) {
