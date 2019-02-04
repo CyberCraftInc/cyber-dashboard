@@ -6,6 +6,7 @@ class EventsController < ApplicationController
     authorize @event
     respond_to do |format|
       if @event.save
+        send_email_create_event
         format.json { render json: { status: :created } }
       else
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -41,5 +42,9 @@ class EventsController < ApplicationController
     params.require(:event).permit(:description, :status, :start_date, :finish_date,
                                   :comments, :summary, :user_id,
                                   targets_attributes: %i[id description achieved _destroy])
+  end
+
+  def send_email_create_event
+    EventMailer.with(event: @event, author: current_user).create_event.deliver_now
   end
 end

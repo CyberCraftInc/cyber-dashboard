@@ -7,6 +7,9 @@ FactoryBot.define do
     password              { 'secret' }
     password_confirmation { password }
     association :project, factory: :project
-    role { nil }
+    role { 'employee' }
+    factory :admin do
+      role { 'admin' }
+    end
   end
 end

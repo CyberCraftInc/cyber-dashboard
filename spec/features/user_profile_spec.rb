@@ -64,13 +64,13 @@ RSpec.feature 'User profile', type: :feature, js: true do
   end
 
   context 'admin' do
-    let!(:user) { FactoryBot.create(:user, role: 0) }
-    let!(:first_event) { FactoryBot.create(:event, user: user, finish_date: '31/12/2018', start_date: '30/12/2018') }
+    let!(:admin) { FactoryBot.create(:admin) }
+    let!(:first_event) { FactoryBot.create(:event, user: admin, finish_date: '31/12/2018', start_date: '30/12/2018') }
     let!(:target_to_first_event) { FactoryBot.create(:target, event: first_event) }
 
     before(:each) do
-      sign_in(user)
-      visit user_path(id: user.id)
+      sign_in(admin)
+      visit user_path(id: admin.id)
     end
 
     it 'mark target as achieved' do
@@ -84,7 +84,7 @@ RSpec.feature 'User profile', type: :feature, js: true do
   end
 
   context 'user/admin display other profile' do
-    let!(:admin) { FactoryBot.create(:user, role: 0) }
+    let!(:admin) { FactoryBot.create(:admin) }
     let!(:user) { FactoryBot.create(:user) }
     let!(:admin_event) { FactoryBot.create(:event, user: admin, finish_date: '31/12/2018', start_date: '30/12/2018') }
     let!(:user_event) { FactoryBot.create(:event, user: user, finish_date: '31/12/2018', start_date: '30/12/2018') }
