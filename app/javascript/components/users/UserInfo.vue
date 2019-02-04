@@ -83,6 +83,11 @@
         this.formValue = value;
         this.eventsPath =  this.EventsPath;
         this.axiosRequestType = 'put';
+      },
+      showButtonForCanEditEvent() {
+        if (!this.canEditEvent) {
+          return "display-none";
+        }
       }
     },
     props: {

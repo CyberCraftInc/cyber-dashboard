@@ -23,7 +23,7 @@
             <div data-toggle="" href="" class="dropdown-toggle"></div>
           </div>
           <div class="col-2 d-flex justify-content-center p-0">
-            <button class="btn btn-warning m-2 p-1 rounded" v-bind:disabled="!canEditEvent" @click='onClickButton(event)'>Edit event</button>
+            <button class="btn btn-warning m-2 p-1 rounded" v-bind:class="showButtonForCanEditEvent()" @click='onClickButton(event)'>Edit event</button>
           </div>
         </div>
         <div v-bind:id="'event'+event.id" class="display-none p-3">
@@ -83,6 +83,9 @@
       canEditEvent: { type: Boolean }
     },
     methods: {
+      showButtonForCanEditEvent(){
+        return this.$parent.showButtonForCanEditEvent()
+      },
       dateYear(index) {
         let year = this.events[index].finish_date.match(/^\d*/gi).toString()
         let nextYear = this.events[index-1].finish_date.match(/^\d*/gi).toString()
