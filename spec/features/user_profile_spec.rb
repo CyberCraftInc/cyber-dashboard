@@ -29,11 +29,11 @@ RSpec.feature 'User profile', type: :feature, js: true do
       expected_events.map! { |event| event.scan(/^\d*/).first }
       expected_events.uniq!
 
-      page_events = page.all('.event-finish-date').map(&:text).reject(&:empty?)
+      page_events = page.all('.event-unique-year').map(&:text).reject(&:empty?)
 
       expect(page).to have_content first_event.description
       expect(page).to have_content second_event.description
-      expect(page).to have_content third_event.status
+      expect(page).to have_content third_event.status.upcase
       expect(page).to have_content first_event.finish_date.year
       expect(page).to have_content second_event.finish_date.year
 
@@ -47,11 +47,9 @@ RSpec.feature 'User profile', type: :feature, js: true do
     it 'show hidden event data when click on event header' do
       click_on_event_header(first_event)
 
-      expect(page).to have_content first_event.start_date
       expect(page).to have_content first_event.comments
       expect(page).to have_content first_event.summary
 
-      expect(page).to_not have_content second_event.start_date
       expect(page).to_not have_content second_event.comments
       expect(page).to_not have_content second_event.summary
     end
@@ -97,7 +95,7 @@ RSpec.feature 'User profile', type: :feature, js: true do
       visit user_path(id: user.id)
 
       expect(page).to have_content user_event.description
-      expect(page).to have_content user_event.status
+      expect(page).to have_content user_event.status.upcase
       expect(page).to have_content user_event.finish_date.year
     end
 
@@ -106,7 +104,7 @@ RSpec.feature 'User profile', type: :feature, js: true do
       visit user_path(id: admin.id)
 
       expect(page).to_not have_content admin_event.description
-      expect(page).to_not have_content admin_event.status
+      expect(page).to_not have_content admin_event.status.upcase
       expect(page).to_not have_content admin_event.finish_date.year
     end
   end

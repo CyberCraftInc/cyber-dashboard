@@ -26,6 +26,9 @@ class User < ApplicationRecord
       last_name: last_name,
       email: email,
       phone: phone,
+      birthday: birthday,
+      position: position,
+      start_in_company: start_in_company,
       project: {
         id: project.id,
         name: project.name,

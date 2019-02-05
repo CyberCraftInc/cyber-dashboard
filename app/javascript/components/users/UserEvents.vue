@@ -1,60 +1,49 @@
 <template>
   <div class="user-events">
+    <h3 v-if="events.length>0" class="text-muted">EVENTS TIMELINE</h3>
     <div class="row" v-for="(event, index) in events">
-      <div class="col-12 event-finish-date">
+      <div class="col-12">
         <span v-if="index > 0">
-          <h3 v-show="dateYear(index)">{{ dateYear(index) }}</h3>
+          <h1 class="event-unique-year mt-5" v-show="dateYear(index)">{{ dateYear(index) }}</h1>
         </span>
         <span v-else>
-          <h3>{{ event.finish_date.match(/^\d*/gi).toString() }}</h3>
+          <h1 class="event-unique-year mt-3">{{ event.finish_date.match(/^\d*/gi).toString() }}</h1>
         </span>
-        <hr/>
       </div>
-      <div class="col-2 d-flex align-items-start pt-2 justify-content-center">
+      <div class="col-1 pr-0 ml-4 d-flex align-items-start day-month-event justify-content-center">
         <h5>
-          <span class="badge badge-secondary" :class="event.status">{{ event.status }}</span>
-          <span class="badge badge-secondary">{{ getMonthAndDate(event["finish_date"]) }}</span>
+          <span class="">{{ getMonthAndDate(event["finish_date"]) }}</span>
         </h5>
       </div>
-      <div class="col-10">
+      <div class="col-10 pl-0 ml-4">
         <div class="d-flex flex-wrap align-items-center">
-          <div class="col-10 d-flex align-items-center justify-content-between flex-row pl-2 event-visible-item bg-dark text-light  border border-secondary rounded" @click="changeActiveEvent(event.id)">
-            <span class="p-2">{{ event.description }}</span>
-            <div data-toggle="" href="" class="dropdown-toggle"></div>
-          </div>
-          <div class="col-2 d-flex justify-content-center p-0">
-            <button class="btn btn-warning m-2 p-1 rounded" v-bind:disabled="!canEditEvent" @click='onClickButton(event)'>Edit event</button>
+          <div class="col-12 pt-2 pb-2 d-flex align-items-center justify-content-between flex-row pl-2 event-visible-item mt-2 mb-0" @click="changeActiveEvent(event.id)">
+            <div v-bind:class="showButtonForCanEditEvent()" class="pl-2 " @click='onClickButton(event)'><i class="fas fa-edit fa-lg"></i></div>
+            <div class="col-8 event-description-text " v-if="addTagDelToEventDescription(event.status)"><span><del>{{ event.description }}</del></span></div>
+            <div class="col-8 event-description-text " v-else><span>{{ event.description }}</span></div>
+            <div class="text-white text-uppercase event-status-item mx-4 mt-1 py-1" :class="eventBadgesStyle[event.status]">{{event.status}}</div>
+            <div class="col-1 mt-1"><i v-bind:id="'open-event'+event.id"class="fas fa-angle-down fa-2x"></i></div>
           </div>
         </div>
-        <div v-bind:id="'event'+event.id" class="display-none p-3">
-          <div class="row" v-if="event.targets.length!==0">
-            <div class="col-2">
-              <h3>Targets</h3>
+        <div v-bind:id="'event'+event.id" class="display-none event-full-data-item px-3 py-1 mt-0 border border-top-0 border-width-2">
+          <span class="text-muted" v-if="isFieldNotEmpty(event.start_date)">START DATE</span>
+          <div v-if="isFieldNotEmpty(event.start_date)">{{getYearMonthAndDate(event.start_date)}}</div>
+          <span class="text-muted">FINISH DATE</span>
+          <div>{{getYearMonthAndDate(event.finish_date)}}</div>
+          <span class="text-muted">EVENT DESCRIPTION</span>
+          <div>{{event.description}}</div>
+          <span class="text-muted" v-if="isFieldNotEmpty(event.comments)">COMMENT</span>
+          <div v-if="isFieldNotEmpty(event.comments)">{{event.comments}}</div>
+          <span v-if="isFieldNotEmpty(event.summary)" class="text-muted">SUMMARY</span>
+          <div v-if="isFieldNotEmpty(event.summary)">{{event.summary}}</div>
+          <span class="text-muted" v-if="event.targets.length!==0">TARGETS</span>
+          <div v-for="target in event.targets" class="round">
+            <div v-if="axiosFlashNotice" class="alert alert-danger flash_notice">{{ axiosFlashNotice }}</div>
+            <div class="d-inline">
+              <input class="pt-1" v-bind:id="'target'+target.id" type="checkbox" v-bind:checked="target.achieved"
+                     @click="changeTargetAchieved(target)" v-bind:disabled="!canEditEvent"/>
             </div>
-            <div class="col-8">
-              <div class="alert alert-secondary d-flex align-items-center justify-content-center m-1 p-0 text-dark" v-for="target in event.targets">
-                <div v-if="axiosFlashNotice" class="alert alert-danger flash_notice">{{ axiosFlashNotice }}</div>
-                <div class="col-10 d-flex">
-                  <label v-bind:for="'target'+target.id">{{ target.description }}</label>
-                </div>
-                <div class="col-2 d-flex justify-content-end">
-                  <input v-bind:id="'target'+target.id" type="checkbox" class="checkbox" v-bind:checked="target.achieved"
-                         @click="changeTargetAchieved(target)" v-bind:disabled="!canEditEvent">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row" v-for="title in Object.keys(titlesEvent)" v-if="event[titlesEvent[title]]!==null">
-            <div class="col-3 mt-3" v-if="title.toLowerCase() == 'start date' || title.toLowerCase() == 'finish date' ">
-              <div class="alert alert-secondary d-flex align-items-center justify-content-center m-0 p-2" v-show="event[titlesEvent[title]]">
-                <span class="text-dark pr-3">{{ title }}</span>
-                <span class="badge badge-secondary p-2">{{ event[titlesEvent[title]] }} </span>
-              </div>
-            </div>
-            <div class="col-10 mt-3" v-else>
-              <div v-show="event[titlesEvent[title]]" class='col-12 p-0'><h3>{{ title }}</h3></div>
-              <div v-show="event[titlesEvent[title]]" class='col-10'>{{ event[titlesEvent[title]] }}</div>
-            </div>
+            <label class='ml-3 d-inline' v-bind:for="'target'+target.id">{{ target.description }}</label>
           </div>
         </div>
       </div>
@@ -75,6 +64,11 @@
           "Comments": "comments",
           "Summary": "summary"
         },
+        eventBadgesStyle: {
+          'scheduled': 'badge badge-info',
+          'done': 'badge badge-success',
+          'canceled': 'badge badge-secondary'
+        },
         date: []
       }
     },
@@ -83,6 +77,12 @@
       canEditEvent: { type: Boolean }
     },
     methods: {
+      showButtonForCanEditEvent(){
+        return this.$parent.showButtonForCanEditEvent()
+      },
+      isFieldNotEmpty(field){
+        return (field === null || field === '') ? false : true
+      },
       dateYear(index) {
         let year = this.events[index].finish_date.match(/^\d*/gi).toString()
         let nextYear = this.events[index-1].finish_date.match(/^\d*/gi).toString()
@@ -92,18 +92,21 @@
           return year
         }
       },
+      addTagDelToEventDescription(eventStatus){
+        return ["canceled"].includes(eventStatus)
+      },
       getMonthAndDate(date){
-        return date.replace(/^\d*-/gi, '')
+        return new Date(date).toLocaleDateString("en-US", {month: 'short', day: 'numeric'}).toLocaleLowerCase()
+      },
+      getYearMonthAndDate(date){
+        return new Date(date).toLocaleDateString("en-US", {month: 'short', day: 'numeric', year:'numeric'})
       },
       changeActiveEvent(eventId) {
-        let hiddenEventInfo = document.getElementById('event' + eventId);
-        if (hiddenEventInfo.classList.contains("display-none")) {
-          hiddenEventInfo.classList.add("display-block");
-          hiddenEventInfo.classList.remove("display-none");
-        } else {
-          hiddenEventInfo.classList.remove("display-block");
-          hiddenEventInfo.classList.add("display-none");
-        }
+        document.getElementById('event' + eventId).classList.toggle('display-block')
+        document.getElementById('open-event' + eventId).classList.toggle('fa-angle-up')
+      },
+      openedEventData(eventId){
+        return document.getElementById('event' + eventId).classList.contains('display-block');
       },
       changeTargetAchieved(target) {
         this.$axios.put(target.toggle_achieved_path , {

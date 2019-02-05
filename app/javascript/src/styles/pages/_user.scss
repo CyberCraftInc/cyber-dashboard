@@ -1,25 +1,69 @@
-.event-visible-item {
-  font-size: 16px;
-  cursor: pointer;
-}
-.event-status {
-  display: inline-block;
-  border-radius: 5px;
-  padding-left: 10px;
-  background: #0a568c;
-  margin-top: 10px;
-}
-.scheduled {
-  width: 80px;
-  background: orange;
-}
-.done {
-  width: 80px;
-  background: green;
-}
 .display-block {
-  display: block;
+  display: block !important;
 }
 .display-none {
   display: none;
+}
+.user-info{
+  background: #e6e6e6;
+  hr{
+    height: 1px;
+    background: black;
+  }
+  span{
+    font-size: 0.7em;
+  }
+  .date-diff-block{
+    background: #cccccc;
+    text-align: center;
+  }
+}
+.event-status-item{
+  width: 12%;
+  font-size: 1.05em;
+}
+
+.event-visible-item{
+  background: #e6e6e6;
+  cursor: pointer;
+}
+
+.event-full-data-item{
+  span{
+    font-size: 0.7em;
+  }
+}
+
+.event-description-text{
+  font-size: 1.3em;
+}
+
+.border-width-2{
+  border-width:2px !important;
+}
+
+.day-month-event{
+  padding-top: 22px;
+}
+
+.first-last-user-name{
+  font-size: 2em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: block;
+  overflow: hidden
+}
+
+.project-info{
+  padding-top: 35px;
+}
+
+.event-unique-year{
+  font-weight: bold;
+  font-size: 2.5em;
+}
+
+.m-top5{
+  margin-top: 5px;
 }
