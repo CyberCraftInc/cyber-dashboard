@@ -30,4 +30,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        event:
+          attributes:
+            finish_date:
+              bad_finish_date: "can't be less than start date"

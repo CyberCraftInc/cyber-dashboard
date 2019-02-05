@@ -1,13 +1,13 @@
 <template>
   <div>
     <label :for="labelForAndInputId">{{ labelName }}</label>
-    <input 
+    <input
       :class="inputClass"
       :type="inputType"
       :value="inputValue"
       :name="inputName"
       :id="labelForAndInputId"
-    />
+    >
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
     inputType: { type: String },
     inputValue: { type: String },
     inputName: { type: String },
-    inputClass: { type: String },
+    inputClass: { type: String }
   }
-}
+};
 </script>

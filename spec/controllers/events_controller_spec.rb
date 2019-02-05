@@ -9,7 +9,11 @@ RSpec.describe EventsController, type: :controller do
     end
 
     it 'send email when create event' do
-      params = { event: { description: 'some description', finish_date: Time.current, user_id: admin.id } }
+      params = { event: {
+        description: 'some description',
+        start_date: Time.current - 1.day,
+        finish_date: Time.current, user_id: admin.id
+      } }
 
       expect { post :create, params: params, format: :json }.to change { ActionMailer::Base.deliveries.count }.by(1)
       expect(Event.where(description: 'some description')).to exist

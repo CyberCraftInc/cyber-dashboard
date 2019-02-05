@@ -1,0 +1,27 @@
+#popUpModal {
+  .error {
+    color: red;
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
+
+  .field-error {
+    border: 1px solid red !important;
+  }
+
+  .warning {
+    color: yellow;
+  }
+  #modal-targets {
+    button {
+      &:hover {
+        background: #ebebeb !important;
+        border: 1px solid #f8f9fa;
+      }
+    }
+    #targets > div:nth-last-child(1) {
+      margin-bottom: 20px !important;
+    }
+  }
+}

@@ -9,7 +9,7 @@ class EventsController < ApplicationController
         send_email_create_event
         format.json { render json: { status: :created } }
       else
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.json { render json: @event.errors, errors: @event.errors.full_messages }
       end
     end
   end
@@ -18,9 +18,9 @@ class EventsController < ApplicationController
     authorize @event
     respond_to do |format|
       if @event.update(event_params)
-        format.json { render json: { status: true } }
+        format.json { render json: { status: :updated } }
       else
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.json { render json: @event.errors, errors: @event.errors.full_messages }
       end
     end
   end
