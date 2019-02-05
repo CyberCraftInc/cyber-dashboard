@@ -37,7 +37,7 @@
               data-toggle="modal"
               data-target="#popUpModal"
               @click='onClickButton(event)'
-            ><i class="fas fa-edit fa-lg"></i></div>
+            ><i class="fas fa-edit fa-lg" v-bind:id="'edit-event'+event.id"></i></div>
             <div
               class="col-8 event-description-text"
               v-if="addTagDelToEventDescription(event.status)"
