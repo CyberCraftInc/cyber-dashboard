@@ -1,7 +1,7 @@
 <template>
   <div class="user-events">
     <div class="row" v-for="(event, index) in events">
-      <div class="col-12">
+      <div class="col-12 event-finish-date">
         <span v-if="index > 0">
           <h3 v-show="dateYear(index)">{{ dateYear(index) }}</h3>
         </span>
@@ -19,7 +19,7 @@
       <div class="col-10">
         <div class="d-flex flex-wrap align-items-center">
           <div class="col-10 d-flex align-items-center justify-content-between flex-row pl-2 event-visible-item bg-dark text-light  border border-secondary rounded" @click="changeActiveEvent(event.id)">
-            <div class="p-2">{{ event.description }}</div>
+            <span class="p-2">{{ event.description }}</span>
             <div data-toggle="" href="" class="dropdown-toggle"></div>
           </div>
           <div class="col-2 d-flex justify-content-center p-0">

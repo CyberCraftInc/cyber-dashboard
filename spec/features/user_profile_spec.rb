@@ -26,7 +26,10 @@ RSpec.feature 'User profile', type: :feature, js: true do
       expected_events = [first_event.finish_date.iso8601,
                          second_event.finish_date.iso8601,
                          third_event.finish_date.iso8601].sort!.reverse
-      page_events = page.all('.event-finish-date').map(&:text)
+      expected_events.map! { |event| event.scan(/^\d*/).first }
+      expected_events.uniq!
+
+      page_events = page.all('.event-finish-date').map(&:text).reject(&:empty?)
 
       expect(page).to have_content first_event.description
       expect(page).to have_content second_event.description
