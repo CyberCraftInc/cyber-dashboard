@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   has_many :targets, dependent: :destroy
   belongs_to :user
-  enum status: %i[scheduled done]
+  enum status: %i[scheduled done canceled]
   validates :description, :user, :finish_date, presence: true
   accepts_nested_attributes_for :targets, allow_destroy: true
   scope :sort_reverse_by_finish_date, -> { order(finish_date: :desc) }

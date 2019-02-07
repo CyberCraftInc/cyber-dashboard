@@ -6,6 +6,7 @@ import UserInfo from '../components/users/UserInfo.vue'
 import UserEvents from '../components/users/UserEvents'
 import axios from 'axios'
 
+window.moment = require('moment');
 require('../../assets/javascripts/mask');
 require('imask');
 
