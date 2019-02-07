@@ -24,8 +24,8 @@ RSpec.describe User, type: :model do
 
     context 'when parameter is associative project' do
       it 'returns filtered users by this project' do
-        expected_user_ids = [foo.id, bar.id]
-        expect(User.filter(first_project.id).map(&:id)).to eq(expected_user_ids)
+        expected_user_ids = [foo.id, bar.id].sort
+        expect(User.filter(first_project.id).map(&:id).sort).to eq(expected_user_ids)
       end
     end
   end
