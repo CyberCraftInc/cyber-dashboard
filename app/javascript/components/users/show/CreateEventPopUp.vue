@@ -125,6 +125,7 @@
               </div>
               <div>
                 <button
+                  id="create-target"
                   class="btn btn-light text-success m-0 ml-2"
                   @click="createTargetInput"
                 >&#10010;</button>
