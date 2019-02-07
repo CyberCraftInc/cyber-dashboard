@@ -35,7 +35,12 @@
 }
 
 .event-description-text{
-  font-size: 1.3em;
+  font-size: 1.4em;
+  padding-left: 10px;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: block;
+  overflow: hidden
 }
 
 .border-width-2{
@@ -66,4 +71,36 @@
 
 .m-top5{
   margin-top: 5px;
+}
+
+.angle-up-down{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.checkbox{
+  padding: 0;
+  top: 3px;
+  position: relative;
+}
+
+.edit-event-icon{
+  font-size: 1.6em;
+  -webkit-text-stroke: #e6e6e6;
+  -webkit-text-stroke-width: 2px;
+}
+
+.angle-up-down{
+  padding-left: 11px;
+  padding-right: 11px;
+  -webkit-text-stroke: #e6e6e6;
+  -webkit-text-stroke-width: 2px;
+}
+
+.pad-bot12{
+  padding-bottom: 12px;
+}
+
+.pad-bot25{
+  padding-bottom: 25px;
 }
