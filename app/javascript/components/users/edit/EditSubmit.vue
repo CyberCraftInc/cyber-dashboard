@@ -27,7 +27,8 @@ export default {
             first_name: userFirstName.value,
             last_name: userLastName.value,
             phone: document.querySelector("input#userPhone").value,
-            current_phone: userPhone.value
+            current_phone: userPhone.value,
+            birthday: userBirthday.value
           }
         })
         .then(response => this.showNotice(response.data))

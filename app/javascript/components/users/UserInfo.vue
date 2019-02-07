@@ -78,7 +78,7 @@ export default {
       return new Date(date).toLocaleDateString("en-US", { year: 'numeric', month: 'short', day: 'numeric' })
     },
     datediff (date) {
-      let mdate = moment(date);
+      let mdate = moment(new Date(date).toISOString());
       let today = moment(Date.now());
       let years = today.diff(mdate, 'year');
       mdate.add(years, 'years');

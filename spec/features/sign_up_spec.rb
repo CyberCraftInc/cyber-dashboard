@@ -9,7 +9,10 @@ describe 'Sign up', type: :feature do
       first_name: 'test',
       phone: '380000000000',
       password: 'secret',
-      project: project.name
+      project: project.name,
+      position: 'position',
+      birthday: Time.zone.today,
+      start_in_company: Time.zone.today
     }
   end
 
@@ -42,6 +45,7 @@ describe 'Sign up', type: :feature do
     fill_in 'Email', with: options[:email]
     fill_in 'Password', with: options[:password]
     fill_in 'Password confirmation', with: options[:password]
+    fill_in 'Birthday', with: options[:birthday]
     select options[:project], from: 'Project'
   end
 end
