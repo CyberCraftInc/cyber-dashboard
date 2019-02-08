@@ -6,7 +6,7 @@
       label-for-and-input-id="userFirstName"
       label-name="First name"
       input-type="text"
-      :input-value="userFirstName"
+      :input-value="user.first_name"
     ></edit-input>
 
     <edit-input
@@ -14,7 +14,7 @@
       label-for-and-input-id="userLastName"
       label-name="Last name"
       input-type="text"
-      :input-value="userLastName"
+      :input-value="user.last_name"
     ></edit-input>
 
     <edit-input
@@ -22,9 +22,21 @@
       label-for-and-input-id="userPhone"
       label-name="Phone"
       input-type="text"
-      :input-value="userPhone"
+      :input-value="user.phone"
     ></edit-input>
+
+    <edit-input
+      input-class="form-control"
+      label-for-and-input-id="userBirthday"
+      label-name="Birthday"
+      input-type="date"
+      :input-value="user.birthday"
+    ></edit-input>
+
     <br>
+    <form v-bind:action="editPasswordPath">
+      <input type="submit" class="btn" value="Edit password" />
+    </form>
     <edit-submit :update-path="updatePath"></edit-submit>
     <span id="notice"></span>
   </div>
@@ -42,14 +54,14 @@ export default {
   },
   data () {
     return {
-      title: "Profile information"
+      title: "Profile information",
+      user: JSON.parse(this.userForEdit)
     };
   },
   props: {
-    userFirstName: { type: String },
-    userLastName: { type: String },
-    userPhone: { type: String },
-    updatePath: { type: String }
+    userForEdit: { type: String },
+    updatePath: { type: String },
+    editPasswordPath: {type: String},
   },
   mounted: function () {
     let firstName = document.querySelector("input#userFirstName");

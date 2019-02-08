@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Edit user', type: :feature do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, password: 'oldpass') }
   let(:user_edited) { build(:user) }
 
   before(:each) do
@@ -36,6 +36,34 @@ RSpec.feature 'Edit user', type: :feature do
   scenario 'Error edit user when empty last name' do
     fill_empty_field_and_submit 'userLastName'
     error_messages
+  end
+
+  scenario 'Success edit password' do
+    click_button 'Edit password'
+    fill_in 'Password', with: 'newpass'
+    fill_in 'Password confirmation', with: 'newpass'
+    fill_in 'Current password', with: 'oldpass'
+    click_button 'Update'
+
+    expect(page).to_not have_content('Current password is invalid')
+
+    open_dropdown_and_click_on 'Logout'
+    visit new_user_session_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: 'newpass'
+    click_button 'Log in'
+
+    expect(page).to have_content('List of users')
+  end
+
+  scenario 'Failed edit password' do
+    click_button 'Edit password'
+    fill_in 'Password', with: 'newpass'
+    fill_in 'Password confirmation', with: 'newpass'
+    fill_in 'Current password', with: 'notoldpass'
+    click_button 'Update'
+
+    expect(page).to have_content('Current password is invalid')
   end
 
   private

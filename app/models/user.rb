@@ -28,7 +28,7 @@ class User < ApplicationRecord
       phone: phone,
       birthday: birthday,
       position: position,
-      start_in_company: start_in_company,
+      start_in_company: start_in_company.presence || created_at.strftime('%m/%d/%Y'),
       project: {
         id: project.id,
         name: project.name,

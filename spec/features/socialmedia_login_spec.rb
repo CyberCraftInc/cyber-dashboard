@@ -65,6 +65,7 @@ RSpec.feature 'Socialmedia login via Google', type: :feature do
     select(project.name, from: 'Project')
     fill_in 'Password', with: '123123'
     fill_in 'Password confirmation', with: '123123'
+    fill_in 'Birthday', with: Time.zone.now
     click_button 'Sign up'
   end
 

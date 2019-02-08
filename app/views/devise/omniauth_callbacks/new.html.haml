@@ -13,6 +13,10 @@
       = f.telephone_field :phone, class: 'form-control phone-input', autofocus: true, placeholder: '+38(xxx)-xxx-xx-xx', autocomplete: "phone", required: true
 
       .field
+        = f.label :birthday
+        = f.date_field :birthday, class: 'form-control'
+
+      .field
         = f.label :email
         = f.email_field :email, class: 'form-control', autocomplete: "email"
 

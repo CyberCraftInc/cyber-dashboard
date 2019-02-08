@@ -17,6 +17,10 @@
         = f.email_field :email, class: 'form-control', autocomplete: "email"
 
       .field
+        = f.label :birthday
+        = f.date_field :birthday, class: 'form-control'
+
+      .field
         = f.label :password
         - if @minimum_password_length
           %em
