@@ -1,5 +1,6 @@
 <template>
   <div class="user-events">
+    <div v-bind:if="!canEditEvent" class="mt-2" style="height: 50px"></div>
     <h3
       v-if="events.length>0"
       class="text-muted"
@@ -33,11 +34,11 @@
           >
             <div
               v-bind:class="showButtonForCanEditEvent()"
-              class="pl-2 "
+              class="pl-3"
               data-toggle="modal"
               data-target="#popUpModal"
               @click='onClickButton(event)'
-            ><i class="fas fa-edit fa-lg" v-bind:id="'edit-event'+event.id"></i></div>
+            ><i class="fas fa-edit edit-event-icon" v-bind:id="'edit-event'+event.id"></i></div>
             <div
               class="col-8 event-description-text"
               v-if="addTagDelToEventDescription(event.status)"
@@ -53,7 +54,7 @@
               class="text-white text-uppercase event-status-item mx-4 mt-1 py-1"
               :class="eventBadgesStyle[event.status]"
             >{{event.status}}</div>
-            <div class="col-1 mt-1"><i
+            <div class="col-1 mt-1 angle-up-down"><i
                 v-bind:id="'open-event'+event.id"
                 class="fas fa-angle-down fa-2x"
               ></i></div>
@@ -61,27 +62,27 @@
         </div>
         <div
           v-bind:id="'event'+event.id"
-          class="display-none event-full-data-item px-3 py-1 mt-0 border border-top-0 border-width-2"
+          class="display-none event-full-data-item px-3 pt-1 pad-bot12 mt-0 border border-top-0 border-width-2"
         >
           <span
             class="text-muted"
             v-if="isFieldNotEmpty(event.start_date)"
           >START DATE</span>
-          <div v-if="isFieldNotEmpty(event.start_date)">{{getYearMonthAndDate(event.start_date)}}</div>
+          <div v-if="isFieldNotEmpty(event.start_date)" class="mb-2">{{getYearMonthAndDate(event.start_date)}}</div>
           <span class="text-muted">FINISH DATE</span>
-          <div>{{getYearMonthAndDate(event.finish_date)}}</div>
+          <div class="mb-2">{{getYearMonthAndDate(event.finish_date)}}</div>
           <span class="text-muted">EVENT DESCRIPTION</span>
-          <div>{{event.description}}</div>
+          <div class="mb-2">{{event.description}}</div>
           <span
             class="text-muted"
             v-if="isFieldNotEmpty(event.comments)"
           >COMMENT</span>
-          <div v-if="isFieldNotEmpty(event.comments)">{{event.comments}}</div>
+          <div class="mb-2" v-if="isFieldNotEmpty(event.comments)">{{event.comments}}</div>
           <span
             v-if="isFieldNotEmpty(event.summary)"
             class="text-muted"
           >SUMMARY</span>
-          <div v-if="isFieldNotEmpty(event.summary)">{{event.summary}}</div>
+          <div class="mb-2" v-if="isFieldNotEmpty(event.summary)">{{event.summary}}</div>
           <span
             class="text-muted"
             v-if="event.targets.length!==0"
@@ -97,7 +98,7 @@
             >{{ axiosFlashNotice }}</div>
             <div class="d-inline">
               <input
-                class="pt-1"
+                class="pt-1 checkbox"
                 v-bind:id="'target'+target.id"
                 type="checkbox"
                 v-bind:checked="target.achieved"
@@ -106,7 +107,7 @@
               />
             </div>
             <label
-              class='ml-3 d-inline'
+              class='ml-2 d-inline'
               v-bind:for="'target'+target.id"
             >{{ target.description }}</label>
           </div>
