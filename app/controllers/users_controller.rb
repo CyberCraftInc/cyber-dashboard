@@ -17,7 +17,8 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update_with_password(user_params)
+        bypass_sign_in(@user)
         format.json { render json:  { success: @user } }
       else
         format.json { render json:  { errors: @user.errors.full_messages } }
@@ -34,6 +35,7 @@ class UsersController < ApplicationController
   protected
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :phone, :birthday)
+    params.require(:user).permit(:first_name, :last_name, :phone, :birthday,
+                                 :password, :password_confirmation, :current_password)
   end
 end

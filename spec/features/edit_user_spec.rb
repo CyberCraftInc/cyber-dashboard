@@ -39,9 +39,8 @@ RSpec.feature 'Edit user', type: :feature do
   end
 
   scenario 'Success edit password' do
-    click_button 'Edit password'
-    fill_in 'Password', with: 'newpass'
-    fill_in 'Password confirmation', with: 'newpass'
+    fill_in 'New password', with: 'newpass'
+    fill_in 'Confirm new password', with: 'newpass'
     fill_in 'Current password', with: 'oldpass'
     click_button 'Update'
 
@@ -57,9 +56,8 @@ RSpec.feature 'Edit user', type: :feature do
   end
 
   scenario 'Failed edit password' do
-    click_button 'Edit password'
-    fill_in 'Password', with: 'newpass'
-    fill_in 'Password confirmation', with: 'newpass'
+    fill_in 'New password', with: 'newpass'
+    fill_in 'Confirm new password', with: 'newpass'
     fill_in 'Current password', with: 'notoldpass'
     click_button 'Update'
 
@@ -74,6 +72,7 @@ RSpec.feature 'Edit user', type: :feature do
   end
 
   def when_fill_and_submit_form
+    fill_in 'Current password', with: user.password
     fill_in 'userFirstName', with: user_edited.first_name
     fill_in 'userLastName', with: user_edited.last_name
     fill_in 'userPhone', with: ''

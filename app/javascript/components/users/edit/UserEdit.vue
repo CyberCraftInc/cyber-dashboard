@@ -3,6 +3,13 @@
     <h2>{{ title }}</h2>
     <edit-input
       input-class="form-control"
+      label-for-and-input-id="currentPassword"
+      label-name="Current password (must be for edit data)"
+      input-type="password"
+    ></edit-input>
+
+    <edit-input
+      input-class="form-control"
       label-for-and-input-id="userFirstName"
       label-name="First name"
       input-type="text"
@@ -33,10 +40,21 @@
       :input-value="user.birthday"
     ></edit-input>
 
+    <edit-input
+      input-class="form-control"
+      label-for-and-input-id="newPassword"
+      label-name="New password"
+      input-type="password"
+    ></edit-input>
+
+    <edit-input
+      input-class="form-control"
+      label-for-and-input-id="confirmNewPassword"
+      label-name="Confirm new password"
+      input-type="password"
+    ></edit-input>
+
     <br>
-    <form v-bind:action="editPasswordPath">
-      <input type="submit" class="btn" value="Edit password" />
-    </form>
     <edit-submit :update-path="updatePath"></edit-submit>
     <span id="notice"></span>
   </div>

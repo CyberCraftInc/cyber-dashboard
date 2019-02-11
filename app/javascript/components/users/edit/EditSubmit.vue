@@ -28,7 +28,10 @@ export default {
             last_name: userLastName.value,
             phone: document.querySelector("input#userPhone").value,
             current_phone: userPhone.value,
-            birthday: userBirthday.value
+            birthday: userBirthday.value,
+            password: newPassword.value,
+            password_confirmation: confirmNewPassword.value,
+            current_password: currentPassword.value
           }
         })
         .then(response => this.showNotice(response.data))
