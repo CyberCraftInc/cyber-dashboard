@@ -34,7 +34,8 @@ RSpec.describe UsersController, type: :controller do
         user: {
           first_name: 'Jonatan',
           last_name: 'Edison',
-          phone: '380631231231'
+          phone: '380631231231',
+          current_password: user.password
         }
       }
     end
