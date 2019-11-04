@@ -5,7 +5,7 @@ FactoryBot.define do
     sequence(:email)      { |n| "user#{n}@example.org" }
     sequence(:phone)      { |n| (380_000_000_000 + n).to_s }
     password              { 'secret' }
-    birthday              { Time.current - (20 * 30 * 60 * 60 * 24) }
+    birthday              { '01 Jan 1990' }
     password_confirmation { password }
     association :project, factory: :project
     role { 'employee' }
