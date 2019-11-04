@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'devise', '4.5.0'
+gem 'devise', '4.7.1'
 gem 'foreman', '0.64.0'
 gem 'jbuilder', '~> 2.5'
 gem 'omniauth-google-oauth2'
