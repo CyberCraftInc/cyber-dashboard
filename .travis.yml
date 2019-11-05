@@ -9,7 +9,7 @@ before_install:
   - sudo apt-get install -y -qq yarn
   - sudo apt-get -y install libpq-dev
 
-  cache:
+cache:
   yarn: true
 
 install:
