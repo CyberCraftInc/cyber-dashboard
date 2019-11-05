@@ -31,7 +31,8 @@ install:
 before_script:
   - psql -c 'create database cyberdashboard_test;' -U postgres
 
-script: 
+script:
+  - yarn lint
   - export MOZ_HEADLESS=1
   - rspec spec
 
