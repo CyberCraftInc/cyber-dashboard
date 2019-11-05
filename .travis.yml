@@ -5,7 +5,6 @@ rvm:
 
 services:
   - postgresql
-  - xvfb
 
 addons:
   firefox: "latest-esr"
@@ -32,7 +31,9 @@ install:
 before_script:
   - psql -c 'create database cyberdashboard_test;' -U postgres
 
-script: xvfb-run rspec spec
+script: 
+  - export MOZ_HEADLESS=1
+  - rspec spec
 
 env:
   secure: AWVMDd2za//4OZuUMI5nvoBVBU0G0IE5y1jlrVMlFTa27G4hghS84/JBf9evNCNXBHBCls6xCwes1pIohdxToxt2xezuBEFPnVSg5x/o0y9MDhA7tuS9ifXGKMlBe7BM6O9GMjnGD1iqQg16YViLF/3qm3CMqg/7CpRryBcvzUCzDOSezu97Jw10E7571EUtg92En4Phi19h9Ss2QBjz+EGO+CeCF3+f0BNAF7cMQVnUUjoZrf0M//DjrgkjeBxH0UWpC1SRBTDHfAoQo3eSbp3RJerdqnLdb359T2FoXHvgtwgkQ/ErUin8KCvl8N9kpIADM10PfMJff5c9Sd4wV92KHKYm99VtyPta8dVNdUYd+yTVVkbId5ZkqVPcZeJRRdNxkQNAD7E9OBAqdgjCezwn84k7e8XHSReqrIqd4RCc1D3rt+uCx4/j+yrWvtUjAbIDTtF+CKLTJhhBQU5Vesbk3wxVR9vfb0AemQxCjfPbvaGuvG+jdhcmgnQmZ+xgcxLEF5JGEDDO44B4BO9tjDm2IbwNk7W/qrgff8O94jJftXNe3OKoE51JjP3h9puaIa4rtRbY8ThGO3JV6MQv7Ga72bX4a+uZ5LXpk4rECAYb2cuAzO3i44gMpQkj6tFq9fJBY1is1wuF1ukTrp2sXKeNSNYM4mDoNidy+8QkebI=
