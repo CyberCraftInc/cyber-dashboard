@@ -38,3 +38,4 @@ end
 gem 'haml', '5.0.4'
 gem 'haml-rails', '1.0.0'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'travis'
