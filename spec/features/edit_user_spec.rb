@@ -26,6 +26,8 @@ RSpec.feature 'Edit user', type: :feature do
     expect(find('input#userLastName').value).to eq(user_edited.last_name)
     expect(find('input#userPhone').value).to eq(user_edited.phone)
     expect(page).to have_content 'Profile updated'
+    sleep(3)
+    expect(page).to have_current_path(root_path)
   end
 
   scenario 'Error edit user when empty first name' do
@@ -69,6 +71,7 @@ RSpec.feature 'Edit user', type: :feature do
   def error_messages
     error = find('span#notice').value
     expect(page).to have_content error
+    expect(page).to_not have_current_path(root_path)
   end
 
   def when_fill_and_submit_form
