@@ -2,6 +2,9 @@ language: ruby
 rvm:
   - 2.5.1
 
+services:
+  - postgresql
+
 before_install:
   - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
   - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
@@ -17,6 +20,9 @@ install:
   - yarn
   - gem install bundler -v '1.17.3'
   - bundle install
+
+before_script:
+  - psql -c 'create database cyberdashboard_test;' -U postgres
 
 script: rspec spec
 
