@@ -42,8 +42,11 @@ export default {
 
       const message = () => {
         if (response.success) {
+          window.setTimeout(function () {
+            location.href = "/";
+          }, 3000);
           notice.style.color = "green";
-          return "Profile updated";
+          return "Profile updated. You will be redirected in 3 seconds";
         } else if (response.errors != 0) {
           notice.style.color = "red";
           return response.errors;
