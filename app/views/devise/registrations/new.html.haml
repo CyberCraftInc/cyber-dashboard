@@ -21,6 +21,14 @@
         = f.date_field :birthday, class: 'form-control'
 
       .field
+        = f.label :start_in_company
+        = f.date_field :start_in_company, class: 'form-control', value: Time.current.strftime('%Y-%m-%d')
+
+      .field
+        = f.label :position
+        = f.text_field :position, class: 'form-control'
+
+      .field
         = f.label :password
         - if @minimum_password_length
           %em
