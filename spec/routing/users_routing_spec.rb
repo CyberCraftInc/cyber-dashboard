@@ -9,10 +9,6 @@ RSpec.describe 'routes for Users', type: :routing do
     expect_route(:get, '/users', 'users#index')
   end
 
-  it 'routes to #show profile for authenticated user' do
-    expect_route(:get, 'profile', 'users#show')
-  end
-
   it 'routes to #show an account for any user' do
     expect_route(:get, 'users/1', 'users#show', id: '1')
   end

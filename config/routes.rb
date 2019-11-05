@@ -6,9 +6,6 @@ Rails.application.routes.draw do
   root to: 'users#index'
   resources :users, only: %i[edit update show index]
   resources :events, only: %i[create update]
-
-  get 'profile', action: :show, controller: 'users'
-
   resources :targets, only: [] do
     put 'toggle_achieved', on: :member
   end
