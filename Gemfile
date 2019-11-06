@@ -24,7 +24,7 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3.8'
   gem 'rspec-rails', '3.8.1'
   gem 'rubocop', '~> 0.61.1', require: false
-  gem 'simplecov', '0.16.1', require: false
+  gem 'simplecov', '0.17.1', require: false
 end
 
 group :test do
@@ -38,3 +38,4 @@ end
 gem 'haml', '5.0.4'
 gem 'haml-rails', '1.0.0'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'travis'
