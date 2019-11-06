@@ -9,7 +9,7 @@
     "moment": "2.24.0",
     "jquery": "^3.4.1",
     "popper.js": "^1.16.0",
-    "resolve-url-loader": "3.0.0",
+    "resolve-url-loader": "3.1.0",
     "vue": "2.6.10",
     "vue-axios": "2.1.5",
     "vue-loader": "14.2.2",
