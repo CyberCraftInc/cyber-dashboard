@@ -21,7 +21,7 @@
           .header_text
             CyberCraft Dashboard
         - if current_user
-          %header-dropdown{ "edit-user-link": edit_user_path(current_user), "profile-link": profile_path, "log-out-link": destroy_user_session_path, "user-name": current_user.first_name }
+          %header-dropdown{ "edit-user-link": edit_user_path(current_user), "profile-link": user_path(current_user), "log-out-link": destroy_user_session_path, "user-name": current_user.first_name }
       .container.pad-bot25
         =yield
       %footer.footer
