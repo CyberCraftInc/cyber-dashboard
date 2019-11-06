@@ -27,7 +27,7 @@ describe 'Sign up', type: :feature do
     fill_in_sign_up_form
     click_button 'Sign up'
 
-    expect(page).to have_content 'List of users'
+    expect(page).to have_content 'Number of employees'
   end
 
   it 'with incorrect phone number format' do
@@ -43,7 +43,7 @@ describe 'Sign up', type: :feature do
     click_button 'Sign up'
 
     expect(page).to have_content 'Email can\'t be blank'
-    expect(page).not_to have_content 'List of users'
+    expect(page).not_to have_content 'Number of employees'
   end
 
   it 'sends the confirmation email' do

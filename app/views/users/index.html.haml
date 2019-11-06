@@ -1,2 +1,2 @@
 .users_component
-  %users-component{ "list-users-all": @users.to_json, "id": "users", "list-projects-all": @projects, "users-path": users_path }
+  = react_component('Users', users: @users, projects: JSON.parse(@projects), usersPath: users_path)
