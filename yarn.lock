@@ -3064,10 +3064,10 @@ ignore-walk@^3.0.1:
   dependencies:
     minimatch "^3.0.4"
 
-imask@4.1.4:
-  version "4.1.4"
-  resolved "https://registry.yarnpkg.com/imask/-/imask-4.1.4.tgz#bd1932dac1e830aaf7397a6833c8d5ed19cf517c"
-  integrity sha512-36qj+o7s82xxbiEg1vDFxGPYjr+HH3HTovvpIHLSNRfxNTwTfnSOqHgK6/CpV2Xfprd3QDBpYhnd08HoOhoJ5w==
+imask@5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/imask/-/imask-5.2.1.tgz#1576ca468ee32b2983618f5fbfd8d93d0351e826"
+  integrity sha512-MiYUC6zP3sHldoXovnbpYc9UXjL8t4GuiZGGgillFljzJaN/osq8AeCuS1DUwzwRydMLi8F9ZK3xHkOrXjuNcw==
 
 import-cwd@^2.0.0:
   version "2.1.0"
