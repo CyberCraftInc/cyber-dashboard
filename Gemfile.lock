@@ -145,7 +145,7 @@ GEM
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     iniparse (1.4.4)
-    jaro_winkler (1.5.1)
+    jaro_winkler (1.5.4)
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
