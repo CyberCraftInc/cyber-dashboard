@@ -2,13 +2,10 @@ dist: xenial
 language: ruby
 rvm:
   - 2.5.1
-
 services:
   - postgresql
-
 addons:
-  firefox: "latest-esr"
-
+  firefox: latest-esr
 before_install:
   - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
   - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
@@ -18,22 +15,23 @@ before_install:
   - wget https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz
   - tar -xzf geckodriver-v0.26.0-linux64.tar.gz
   - sudo cp geckodriver /usr/bin
-
 cache:
   yarn: true
   bundler: true
-
 install:
   - yarn
   - gem install bundler -v '1.17.3'
   - bundle install
-
 before_script:
   - psql -c 'create database cyberdashboard_test;' -U postgres
-
-script: 
+script:
   - export MOZ_HEADLESS=1
   - rspec spec
-
+  - yarn lint
+  - bundle exec rubocop
 env:
   secure: AWVMDd2za//4OZuUMI5nvoBVBU0G0IE5y1jlrVMlFTa27G4hghS84/JBf9evNCNXBHBCls6xCwes1pIohdxToxt2xezuBEFPnVSg5x/o0y9MDhA7tuS9ifXGKMlBe7BM6O9GMjnGD1iqQg16YViLF/3qm3CMqg/7CpRryBcvzUCzDOSezu97Jw10E7571EUtg92En4Phi19h9Ss2QBjz+EGO+CeCF3+f0BNAF7cMQVnUUjoZrf0M//DjrgkjeBxH0UWpC1SRBTDHfAoQo3eSbp3RJerdqnLdb359T2FoXHvgtwgkQ/ErUin8KCvl8N9kpIADM10PfMJff5c9Sd4wV92KHKYm99VtyPta8dVNdUYd+yTVVkbId5ZkqVPcZeJRRdNxkQNAD7E9OBAqdgjCezwn84k7e8XHSReqrIqd4RCc1D3rt+uCx4/j+yrWvtUjAbIDTtF+CKLTJhhBQU5Vesbk3wxVR9vfb0AemQxCjfPbvaGuvG+jdhcmgnQmZ+xgcxLEF5JGEDDO44B4BO9tjDm2IbwNk7W/qrgff8O94jJftXNe3OKoE51JjP3h9puaIa4rtRbY8ThGO3JV6MQv7Ga72bX4a+uZ5LXpk4rECAYb2cuAzO3i44gMpQkj6tFq9fJBY1is1wuF1ukTrp2sXKeNSNYM4mDoNidy+8QkebI=
+deploy:
+  provider: heroku
+  api_key:
+    secure: tpCVdWcmMoAss1cwV1cGX85WQ/Ip8kqE5KHzV0GTF8+cy8zYYs8jgrKB3+MF+3lToe9RQmnheW666mbfXQowYFbQpmjqRw1h4dsoKoG9KkkthaSiBXjszOlgjdYqpsrPI/2XtkMEPkO2jpSBEPDrO33WplQY3KYcsOkC8MS3LCQha0TWgh1aEnVM2n1gYL9OD3rqs0+IqsMm4MF6nBp8NI7abYzArks1RosdGx+5lXyNiOtza3A/NKYHqFp1+BiAf7Q4nNrj4SSxowZi9mgEZi0fnNLTPqIzmSxhX5lmYXHK/I7jMoZt4iMI3bxelhAGNRBE9OxgT8gVEMiM9L2nglhzoexIWHiOrK+eDfLb0xnd/ofw6qgsxBoEO3ZU3m/Pyc2hHyXrUyeartMcprQD68lc555bTiaxWyhqMutzgizlamwC7AxeK9zHvXVEQ/gHz/aLbLBcPE5CSbpFSLEfPPLGTyhtEXQbk/iEWbdwwahYiwS73myzm1y4Km382zxZTqpMxP63sLM7mrt+mhYV7ePc/5hppIwoH4TLFMwXyZ8qGVnEOtBm1XhzRfKazYcbf2xaE6JUE446RIYlohZWeCc98KhVg6SRNuBOuZqst3pTyBiEU1cnVmfLdlF7z0r86TL5OHYqirEK+rHJEL2WOwCfTfhJ+bdIZZJZlySFeqo=
