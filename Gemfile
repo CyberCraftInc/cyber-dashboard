@@ -23,7 +23,7 @@ group :development, :test do
   gem 'overcommit', '~> 0.46.0'
   gem 'pry-rails', '~> 0.3.8'
   gem 'rspec-rails', '3.8.1'
-  gem 'rubocop', '~> 0.61.1', require: false
+  gem 'rubocop', '~> 0.76.0', require: false
   gem 'simplecov', '0.17.1', require: false
 end
 
