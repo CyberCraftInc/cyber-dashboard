@@ -32,7 +32,7 @@ group :test do
   gem 'database_cleaner'
   gem 'guard-rspec', '4.7.3'
   gem 'launchy', '2.4.3'
-  gem 'selenium-webdriver', '3.141.0'
+  gem 'selenium-webdriver', '3.142.6'
 end
 
 gem 'haml', '5.0.4'
