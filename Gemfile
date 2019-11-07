@@ -7,11 +7,11 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise', '4.7.1'
 gem 'foreman', '0.64.0'
 gem 'jbuilder', '~> 2.9'
-gem 'omniauth-google-oauth2'
+gem 'omniauth-google-oauth2', '0.8.0'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'pundit', '2.0.1'
-gem 'rails', '~> 5.2.2'
+gem 'rails', '~> 5.2.3'
 gem 'rails_admin', '1.4.2'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -23,7 +23,7 @@ group :development, :test do
   gem 'overcommit', '~> 0.46.0'
   gem 'pry-rails', '~> 0.3.8'
   gem 'rspec-rails', '3.8.1'
-  gem 'rubocop', '~> 0.61.1', require: false
+  gem 'rubocop', '~> 0.76.0', require: false
   gem 'simplecov', '0.17.1', require: false
 end
 
@@ -32,7 +32,7 @@ group :test do
   gem 'database_cleaner'
   gem 'guard-rspec', '4.7.3'
   gem 'launchy', '2.4.3'
-  gem 'selenium-webdriver', '3.141.0'
+  gem 'selenium-webdriver', '3.142.6'
 end
 
 gem 'haml', '5.0.4'
