@@ -22,7 +22,7 @@ group :development, :test do
   gem 'letter_opener', '1.7.0'
   gem 'overcommit', '~> 0.46.0'
   gem 'pry-rails', '~> 0.3.8'
-  gem 'rspec-rails', '3.8.1'
+  gem 'rspec-rails', '3.9.0'
   gem 'rubocop', '~> 0.76.0', require: false
   gem 'simplecov', '0.17.1', require: false
 end
