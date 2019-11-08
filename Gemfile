@@ -13,7 +13,7 @@ gem 'puma', '~> 3.11'
 gem 'pundit', '2.0.1'
 gem 'rails', '~> 5.2.3'
 gem 'rails_admin', '1.4.2'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.1'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '4.0'
 
@@ -22,7 +22,7 @@ group :development, :test do
   gem 'letter_opener', '1.7.0'
   gem 'overcommit', '~> 0.46.0'
   gem 'pry-rails', '~> 0.3.8'
-  gem 'rspec-rails', '3.8.1'
+  gem 'rspec-rails', '3.9.0'
   gem 'rubocop', '~> 0.76.0', require: false
   gem 'rubocop-rails', '~> 2.3.2', require: false
   gem 'simplecov', '0.17.1', require: false
@@ -36,7 +36,7 @@ group :test do
   gem 'selenium-webdriver', '3.142.6'
 end
 
-gem 'haml', '5.0.4'
+gem 'haml', '5.1.2'
 gem 'haml-rails', '1.0.0'
 gem 'travis'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
