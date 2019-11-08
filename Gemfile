@@ -29,7 +29,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara', '3.12.0'
+  gem 'capybara', '3.29.0'
   gem 'database_cleaner'
   gem 'guard-rspec', '4.7.3'
   gem 'launchy', '2.4.3'
