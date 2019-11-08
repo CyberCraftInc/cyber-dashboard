@@ -45,7 +45,7 @@
         = f.select :project_id, @projects.collect { |p| [ p.name, p.id ] }, {} , class: 'form-control'
 
       .actions
-        = f.submit "Sign up", class: 'btn', onclick: 'unmaskPhone()'
+        = f.submit "Sign up", class: 'btn'
         - if devise_mapping.omniauthable?
           - resource_class.omniauth_providers.each do |provider|
             = link_to link_to image_tag("/images/google+.png", height: 50, width: 50, border: 0), omniauth_authorize_path(resource_name, provider)

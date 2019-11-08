@@ -1,5 +1,5 @@
 AllCops:
-  Excludes:
+  Exclude:
     - db/schema.rb
     - node_modules/node-sass/src/libsass/contrib/libsass.spec
     - node_modules/node-sass/src/libsass/extconf.rb

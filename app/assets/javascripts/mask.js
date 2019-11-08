@@ -4,6 +4,11 @@ window.onload = function () {
             mask: '+{38}(000)000-00-00',
             lazy: false,
         });
+        window.addEventListener('click', function (event) {
+            if (event.target.form && event.target.type == 'submit' && event.target.form.id === element.form.id) {
+                unmaskPhone()
+            }
+          })
     });
 };
 
