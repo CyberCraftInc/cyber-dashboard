@@ -1,2 +1,2 @@
 .users_component
-  %users-edit-component{ "user-for-edit": current_user.data.to_json, "update-path": user_path(current_user), "edit-password-path": edit_user_registration_path }
+  = react_component("EditUser", user: JSON.parse(current_user.data.to_json), updatePath: user_path(current_user) )

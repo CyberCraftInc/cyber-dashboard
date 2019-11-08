@@ -15,16 +15,15 @@ import App from "../components/App";
 
 window.moment = require("moment");
 
-/// React component
-const Hello = props => <div>Hello {props.name}!</div>;
-Hello.defaultProps = {
-  name: "David"
-};
+/// React components
+const components = {};
+const context = require.context("../components", false, /\.js$/);
 
-Hello.propTypes = {
-  name: PropTypes.string
-};
-/// React component end
+for (const key of context.keys()) {
+  const componentName = key.match(/([^/.]+)\.js/)[1];
+  components[componentName] = context(key).default;
+}
+/// React components end
 
 require("../../assets/javascripts/mask");
 require("imask");
@@ -33,7 +32,7 @@ Vue.prototype.$axios = axios;
 
 document.addEventListener("DOMContentLoaded", () => {
   const app = new Vue({
-    el: '[data-behavior="vue"]',
+    el: "[data-behavior=\"vue\"]",
     components: {
       "users-component": UsersList,
       "users-edit-component": UserEdit,
@@ -43,10 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  if (document.querySelector('meta[name="csrf-token"]')) {
+  if (document.querySelector("meta[name=\"csrf-token\"]")) {
     axios.defaults.headers.common = {
       "X-CSRF-Token": document
-        .querySelector('meta[name="csrf-token"]')
+        .querySelector("meta[name=\"csrf-token\"]")
         .getAttribute("content"),
       Accept: "application/json"
     };
@@ -54,9 +53,18 @@ document.addEventListener("DOMContentLoaded", () => {
     axios.defaults.headers.common["Accept"] = "application/json";
   }
 
-  // React.js
-  ReactDOM.render(
-    <App />,
-    document.body.appendChild(document.createElement("div"))
-  );
+  // Mounting elements by selector
+
+  const mountingElements = document.querySelectorAll("[data-react-component]");
+  for (const element of mountingElements) {
+    const { name, props } = JSON.parse(
+      element.getAttribute("data-react-component")
+    );
+    const component = components[name];
+    if (!component) {
+      console.log(`Component ${name} not found`);
+      continue
+    }
+    ReactDOM.render(React.createElement(component, props || {}), element);
+  }
 });
