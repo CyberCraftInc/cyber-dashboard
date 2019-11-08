@@ -9,8 +9,12 @@
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all' # delete if unnecessary
     = javascript_include_tag 'application'            # delete if unnecessary
+
     = stylesheet_pack_tag 'stylesheet', media: 'all'
+    = javascript_pack_tag 'stylesheet'
+    = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
+
     = favicon_link_tag("/images/favicon.ico")
     %link{:crossorigin => "anonymous", :href => "https://use.fontawesome.com/releases/v5.7.1/css/all.css", :integrity => "sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr", :rel => "stylesheet"}/
   %body

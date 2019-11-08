@@ -15,7 +15,7 @@ gem 'rails', '~> 5.2.3'
 gem 'rails_admin', '1.4.2'
 gem 'sass-rails', '~> 5.1'
 gem 'uglifier', '>= 1.3.0'
-gem 'webpacker', '3.5.5'
+gem 'webpacker', '4.0'
 
 group :development, :test do
   gem 'factory_bot_rails', '5.1.1'
@@ -24,11 +24,12 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3.8'
   gem 'rspec-rails', '3.9.0'
   gem 'rubocop', '~> 0.76.0', require: false
+  gem 'rubocop-rails', '~> 2.3.2', require: false
   gem 'simplecov', '0.17.1', require: false
 end
 
 group :test do
-  gem 'capybara', '3.12.0'
+  gem 'capybara', '3.29.0'
   gem 'database_cleaner'
   gem 'guard-rspec', '4.7.3'
   gem 'launchy', '2.4.3'
