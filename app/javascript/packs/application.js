@@ -30,7 +30,8 @@ require("imask");
 
 Vue.prototype.$axios = axios;
 
-document.addEventListener("DOMContentLoaded", () => {
+
+window.addEventListener("load", () => {
   const app = new Vue({
     el: "[data-behavior=\"vue\"]",
     components: {

@@ -23,6 +23,9 @@
         <li>
           <a :href="editUserLink">{{ editUser }}</a>
         </li>
+        <li v-if="isAdmin">
+          <a :href="adminLink">{{ admin }}</a>
+        </li>
         <li>
           <a
             rel="nofollow"
@@ -53,14 +56,17 @@ export default {
       logOut: "Logout",
       methodLogOut: "delete",
       profile: "Profile",
-      user: this.userName
+      user: this.userName,
+      admin: "Admin"
     };
   },
   props: {
     editUserLink: { type: String },
     logOutLink: { type: String },
     userName: { type: String },
-    profileLink: { type: String }
+    profileLink: { type: String },
+    adminLink: { type: String },
+    isAdmin: { type: Boolean }
   }
 };
 </script>

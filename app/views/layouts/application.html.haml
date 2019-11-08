@@ -9,8 +9,12 @@
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all' # delete if unnecessary
     = javascript_include_tag 'application'            # delete if unnecessary
+
     = stylesheet_pack_tag 'stylesheet', media: 'all'
+    = javascript_pack_tag 'stylesheet'
+    = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
+
     = favicon_link_tag("/images/favicon.ico")
     %link{:crossorigin => "anonymous", :href => "https://use.fontawesome.com/releases/v5.7.1/css/all.css", :integrity => "sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr", :rel => "stylesheet"}/
   %body
@@ -21,9 +25,9 @@
           .header_text
             CyberCraft Dashboard
         - if current_user
-          %header-dropdown{ "edit-user-link": edit_user_path(current_user), "profile-link": user_path(current_user), "log-out-link": destroy_user_session_path, "user-name": current_user.first_name }
+          %header-dropdown{ "edit-user-link": edit_user_path(current_user), "profile-link": user_path(current_user), "admin-link": rails_admin_path, "log-out-link": destroy_user_session_path, "user-name": current_user.first_name, "is-admin": current_user.admin? }
       .container.pad-bot25
-        =yield
+        = yield
       %footer.footer
         .container
           %span &copy; CyberCraftInc 2019
