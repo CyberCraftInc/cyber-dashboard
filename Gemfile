@@ -35,7 +35,7 @@ group :test do
   gem 'selenium-webdriver', '3.142.6'
 end
 
-gem 'haml', '5.0.4'
+gem 'haml', '5.1.2'
 gem 'haml-rails', '1.0.0'
 gem 'travis'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
