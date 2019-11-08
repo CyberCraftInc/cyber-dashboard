@@ -1,5 +1,6 @@
 import * as React from "react";
 import axios from "axios";
+import Imask from 'imask'
 
 class EditUser extends React.Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class EditUser extends React.Component {
 
   render() {
     return (<div id="edit-user">
-      <h2>Profile Information</h2>
+      <h2>Profile information</h2>{console.log(document.getElementsByClassName("form-control"))}
       <div>
         <label htmlFor="currentPassword"> Current password (must be for edit data) </label>
         <input
@@ -83,7 +84,7 @@ class EditUser extends React.Component {
       <div>
         <label htmlFor="userPhone"> Phone </label>
         <input
-          className="form-control"
+          className="form-control phone-input"
           type="text"
           id="userPhone"
           defaultValue={this.props.user.phone}
@@ -101,7 +102,7 @@ class EditUser extends React.Component {
         />
       </div>
       <div>
-        <label htmlFor="newPassword"> New Password </label>
+        <label htmlFor="newPassword"> New password </label>
         <input
           className="form-control"
           type="password"
@@ -119,7 +120,7 @@ class EditUser extends React.Component {
         />
       </div>
       <div>
-        <button onClick={() => this.submitForm()} className="btn btn-warning">Update</button>
+        <button id="button-edit" onClick={() => this.submitForm()} className="btn btn-warning">Update</button>
       </div>
       <span id="notice" style={{color: this.state.isSuccessNotice ? "green" : "red"}}>{this.state.notice}</span>
 

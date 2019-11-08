@@ -79,7 +79,7 @@ RSpec.feature 'Edit user', type: :feature do
     fill_in 'userFirstName', with: user_edited.first_name
     fill_in 'userLastName', with: user_edited.last_name
     fill_in 'userPhone', with: ''
-    fill_in 'userPhone', with: phone_without_ukraine_code(user_edited.phone)
+    fill_in 'userPhone', with: user_edited.phone
     find('button#button-edit').click
   end
 
