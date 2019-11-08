@@ -10,27 +10,24 @@ import "bootstrap";
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import App from "../components/App";
 /// React import end
 
 window.moment = require("moment");
 
-/// React component
-const Hello = props => <div>Hello {props.name}!</div>;
-Hello.defaultProps = {
-  name: "David"
-};
+/// React components
+const components = {};
 
-Hello.propTypes = {
-  name: PropTypes.string
-};
-/// React component end
+const context = require.context("../components", false, /\.js$/);
+for (const key of context.keys()) {
+  const componentName = key.match(/([^/.]+)\.js/)[1];
+  components[componentName] = context(key).default;
+}
+/// React components end
 
 require("../../assets/javascripts/mask");
 require("imask");
 
 Vue.prototype.$axios = axios;
-
 
 window.addEventListener("load", () => {
   const app = new Vue({
@@ -55,9 +52,20 @@ window.addEventListener("load", () => {
     axios.defaults.headers.common["Accept"] = "application/json";
   }
 
-  // React.js
-  ReactDOM.render(
-    <App />,
-    document.body.appendChild(document.createElement("div"))
-  );
+  // Mounting elements by selector
+  const mountingElements = document.querySelectorAll("[data-react-component]");
+
+  for (const element of mountingElements) {
+    const { name, props } = JSON.parse(
+      element.getAttribute("data-react-component")
+    );
+
+    const component = components[name];
+    if (!component) {
+      console.log(`Component ${name} not found`);
+      continue;
+    }
+
+    ReactDOM.render(React.createElement(component, props || {}), element);
+  }
 });
