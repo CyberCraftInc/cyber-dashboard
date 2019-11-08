@@ -9,14 +9,15 @@ import "bootstrap";
 /// React import
 import React from "react";
 import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
 /// React import end
 
 window.moment = require("moment");
 
 /// React components
 const components = {};
-const context = require.context("../components", false, /\.js$/);
 
+const context = require.context("../components", false, /\.js$/);
 for (const key of context.keys()) {
   const componentName = key.match(/([^/.]+)\.js/)[1];
   components[componentName] = context(key).default;
@@ -28,10 +29,9 @@ require("imask");
 
 Vue.prototype.$axios = axios;
 
-
 window.addEventListener("load", () => {
   const app = new Vue({
-    el: "[data-behavior=\"vue\"]",
+    el: '[data-behavior="vue"]',
     components: {
       "users-component": UsersList,
       "users-edit-component": UserEdit,
@@ -41,10 +41,10 @@ window.addEventListener("load", () => {
     }
   });
 
-  if (document.querySelector("meta[name=\"csrf-token\"]")) {
+  if (document.querySelector('meta[name="csrf-token"]')) {
     axios.defaults.headers.common = {
       "X-CSRF-Token": document
-        .querySelector("meta[name=\"csrf-token\"]")
+        .querySelector('meta[name="csrf-token"]')
         .getAttribute("content"),
       Accept: "application/json"
     };
@@ -53,17 +53,19 @@ window.addEventListener("load", () => {
   }
 
   // Mounting elements by selector
-
   const mountingElements = document.querySelectorAll("[data-react-component]");
+
   for (const element of mountingElements) {
     const { name, props } = JSON.parse(
       element.getAttribute("data-react-component")
     );
+
     const component = components[name];
     if (!component) {
       console.log(`Component ${name} not found`);
-      continue
+      continue;
     }
+
     ReactDOM.render(React.createElement(component, props || {}), element);
   }
 });
