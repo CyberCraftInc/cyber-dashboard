@@ -1,6 +1,7 @@
 import * as React from "react";
 import axios from "axios";
-import InputMask from 'react-input-mask'
+import InputMask from "react-input-mask";
+import PropTypes from "prop-types";
 
 class EditUser extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class EditUser extends React.Component {
         user: {
           first_name: this.inputFirstName.current.value,
           last_name: this.inputLastName.current.value,
-          phone: this.state.inputPhone.replace(/[()+ ]/g, ''),
+          phone: this.state.inputPhone.replace(/[()+ ]/g, ""),
           birthday: this.inputBirthday.current.value,
           password: this.inputNewPassword.current.value,
           password_confirmation: this.inputConfirmPassword.current.value,
@@ -133,5 +134,10 @@ class EditUser extends React.Component {
     </div>);
   }
 }
+
+EditUser.propTypes = {
+  updatePath: PropTypes.string,
+  user: PropTypes.object
+};
 
 export default EditUser;
