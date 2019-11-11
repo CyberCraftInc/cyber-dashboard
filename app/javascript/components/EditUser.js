@@ -1,6 +1,6 @@
 import * as React from "react";
 import axios from "axios";
-import Imask from 'imask'
+import InputMask from 'react-input-mask'
 
 class EditUser extends React.Component {
   constructor(props) {
@@ -8,11 +8,10 @@ class EditUser extends React.Component {
     this.inputFirstName = React.createRef();
     this.inputCurrentPassword = React.createRef();
     this.inputLastName = React.createRef();
-    this.inputPhone = React.createRef();
     this.inputBirthday = React.createRef();
     this.inputNewPassword = React.createRef();
     this.inputConfirmPassword = React.createRef();
-    this.state = {notice: "", isSuccessNotice: false};
+    this.state = {notice: "", isSuccessNotice: false, inputPhone: this.props.user.phone};
   }
 
   submitForm() {
@@ -21,8 +20,7 @@ class EditUser extends React.Component {
         user: {
           first_name: this.inputFirstName.current.value,
           last_name: this.inputLastName.current.value,
-          phone: this.inputPhone.current.value,
-          current_phone: this.inputPhone.current.value,
+          phone: this.state.inputPhone.replace(/[()+ ]/g, ''),
           birthday: this.inputBirthday.current.value,
           password: this.inputNewPassword.current.value,
           password_confirmation: this.inputConfirmPassword.current.value,
@@ -49,9 +47,15 @@ class EditUser extends React.Component {
     this.setState({notice: message()});
   }
 
+  onChangeInputPhone = (event) => {
+    this.setState({
+      inputPhone: event.target.value
+    });
+  };
+
   render() {
     return (<div id="edit-user">
-      <h2>Profile information</h2>{console.log(document.getElementsByClassName("form-control"))}
+      <h2>Profile information</h2>
       <div>
         <label htmlFor="currentPassword"> Current password (must be for edit data) </label>
         <input
@@ -83,12 +87,14 @@ class EditUser extends React.Component {
       </div>
       <div>
         <label htmlFor="userPhone"> Phone </label>
-        <input
-          className="form-control phone-input"
-          type="text"
+        <InputMask
+          className="form-control"
           id="userPhone"
-          defaultValue={this.props.user.phone}
-          ref={this.inputPhone}
+          value={this.state.inputPhone}
+          alwaysShowMask={true}
+          mask="+38 (999) 999 99 99"
+          maskChar="_"
+          onChange={this.onChangeInputPhone}
         />
       </div>
       <div>
