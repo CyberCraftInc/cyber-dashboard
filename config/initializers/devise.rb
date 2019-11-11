@@ -3,7 +3,7 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'cybercraftdashboard@gmail.com'
   require 'devise/orm/active_record'
   config.case_insensitive_keys = [:email]
   config.strip_whitespace_keys = [:email]
@@ -18,4 +18,5 @@ Devise.setup do |config|
   client_id = Rails.application.credentials.google[:client_id]
   secret_access_key = Rails.application.credentials.google[:secret_access_key]
   config.omniauth :google_oauth2, client_id, secret_access_key, {}
+  config.allow_unconfirmed_access_for = 1.day
 end
