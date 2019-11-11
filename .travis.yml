@@ -18,6 +18,9 @@ before_install:
 cache:
   yarn: true
   bundler: true
+  directories:
+    - /home/travis/.rvm/
+    - /home/travis/firefox-latest-esr/
 install:
   - yarn
   - gem install bundler -v '1.17.3'
