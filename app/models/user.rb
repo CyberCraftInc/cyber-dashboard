@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :phone, length: { is: 12 }
 
   scope :users_joins_project, -> { includes(:project) }
-  enum role: %i[admin employee]
+  enum role: { admin: 0, employee: 1 }
 
   def self.filter(id)
     @users = id.to_i.zero? ? User.users_joins_project : Project.find(id.to_i).users.users_joins_project
