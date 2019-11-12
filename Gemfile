@@ -15,7 +15,7 @@ gem 'rails', '~> 5.2.3'
 gem 'rails_admin', '2.0.0'
 gem 'sass-rails', '~> 5.1'
 gem 'uglifier', '>= 1.3.0'
-gem 'webpacker', '4.1.0'
+gem 'webpacker', '4.2.0'
 
 group :development, :test do
   gem 'factory_bot_rails', '5.1.1'
