@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Sign in', type: :feature do
   let(:user) { FactoryBot.create(:user) }
 
-  before(:each) do
+  before do
     visit new_user_session_path
   end
 

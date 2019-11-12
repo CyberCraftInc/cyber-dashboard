@@ -1,28 +1,28 @@
 require 'rails_helper'
 
-RSpec.feature 'Search users', type: :feature do
+RSpec.describe 'Search users', type: :feature do
   let(:users) { create_list(:user, 5) }
 
-  background do
+  before do
     given_page_list_of_users_with_logged_user
   end
 
-  scenario 'Fill search by first name' do
+  it 'Fill search by first name' do
     when_i_fill_search_field_with('Joh')
     then_i_expect_to_see_list_of_users_by('first_name', search_text)
   end
 
-  scenario 'Fill search by last name' do
+  it 'Fill search by last name' do
     when_i_fill_search_field_with('D')
     then_i_expect_to_see_list_of_users_by('last_name', search_text)
   end
 
-  scenario 'Fill search by email' do
+  it 'Fill search by email' do
     when_i_fill_search_field_with('examp@')
     then_i_expect_to_see_list_of_users_by('email', search_text)
   end
 
-  scenario 'Fill search by phone' do
+  it 'Fill search by phone' do
     when_i_fill_search_field_with('+380')
     then_i_expect_to_see_list_of_users_by('phone', search_text)
   end

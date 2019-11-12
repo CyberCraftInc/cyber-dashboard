@@ -1,25 +1,25 @@
 require 'rails_helper'
 
-RSpec.feature 'Edit user', type: :feature do
+RSpec.describe 'Edit user', type: :feature do
   let(:user) { create(:user, password: 'oldpass') }
   let(:user_edited) { build(:user) }
 
-  before(:each) do
+  before do
     sign_in(user)
     visit_edit_page
   end
 
-  scenario 'show edit page' do
+  it 'show edit page' do
     open_dropdown_and_click_on('Edit profile')
     expect(page).to have_content 'Profile information'
   end
 
-  scenario 'show root after logout' do
+  it 'show root after logout' do
     open_dropdown_and_click_on('Logout')
-    expect(page).to_not have_content user.first_name
+    expect(page).not_to have_content user.first_name
   end
 
-  scenario 'Success edit user' do
+  it 'Success edit user' do
     when_fill_and_submit_form
     expect(find('input#userFirstName').value).to eq(user_edited.first_name)
     expect(find('input#userLastName').value).to eq(user_edited.last_name)
@@ -29,23 +29,23 @@ RSpec.feature 'Edit user', type: :feature do
     expect(page).to have_current_path(root_path)
   end
 
-  scenario 'Error edit user when empty first name' do
+  it 'Error edit user when empty first name' do
     fill_empty_field_and_submit 'userFirstName'
     error_messages
   end
 
-  scenario 'Error edit user when empty last name' do
+  it 'Error edit user when empty last name' do
     fill_empty_field_and_submit 'userLastName'
     error_messages
   end
 
-  scenario 'Success edit password' do
+  it 'Success edit password' do
     fill_in 'New password', with: 'newpass'
     fill_in 'Confirm new password', with: 'newpass'
     fill_in 'Current password', with: 'oldpass'
     click_button 'Update'
 
-    expect(page).to_not have_content('Current password is invalid')
+    expect(page).not_to have_content('Current password is invalid')
 
     open_dropdown_and_click_on 'Logout'
     visit new_user_session_path
@@ -56,7 +56,7 @@ RSpec.feature 'Edit user', type: :feature do
     expect(page).to have_content('List of users')
   end
 
-  scenario 'Failed edit password' do
+  it 'Failed edit password' do
     fill_in 'New password', with: 'newpass'
     fill_in 'Confirm new password', with: 'newpass'
     fill_in 'Current password', with: 'notoldpass'
@@ -70,7 +70,7 @@ RSpec.feature 'Edit user', type: :feature do
   def error_messages
     error = find('span#notice').value
     expect(page).to have_content error
-    expect(page).to_not have_current_path(root_path)
+    expect(page).not_to have_current_path(root_path)
   end
 
   def when_fill_and_submit_form

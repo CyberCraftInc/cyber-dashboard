@@ -3,24 +3,28 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   describe 'GET #index' do
     context 'without login' do
-      before(:each) do
+      before do
         get :index
       end
+
       it 'returns current user as a nil and status 302' do
-        expect(response).to have_http_status(302)
+        expect(response).to have_http_status(:found)
         expect(subject.current_user).to be_nil
       end
+
       it 'redirects to login page' do
         expect(response).to redirect_to new_user_session_path
       end
     end
-    context 'for login' do
+
+    context 'when user is logged in' do
       let(:user) { FactoryBot.create(:user) }
+
       it 'returns valid current_user and status 200' do
         login_user(user)
         get :index
-        expect(response).to have_http_status(200)
-        expect(subject.current_user).to_not be_nil
+        expect(response).to have_http_status(:ok)
+        expect(subject.current_user).not_to be_nil
       end
     end
   end
@@ -49,7 +53,7 @@ RSpec.describe UsersController, type: :controller do
         put :update, params: params
 
         user.reload
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
         expect(user.first_name).to eq('Jonatan')
         expect(user.last_name).to eq('Edison')
         expect(user.phone).to eq('380631231231')
@@ -62,11 +66,11 @@ RSpec.describe UsersController, type: :controller do
         put :update, params: params
 
         user.reload
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
         expect(user.first_name).not_to be_empty
-        expect(user.first_name).to_not eq('Jonatan')
-        expect(user.last_name).to_not eq('Edison')
-        expect(user.phone).to_not eq('380631231231')
+        expect(user.first_name).not_to eq('Jonatan')
+        expect(user.last_name).not_to eq('Edison')
+        expect(user.phone).not_to eq('380631231231')
       end
     end
   end

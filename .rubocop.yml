@@ -1,5 +1,6 @@
 require:
   - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   Exclude:
@@ -10,10 +11,10 @@ AllCops:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
-Metrics/LineLength:
-  Max: 120
 Style/Documentation:
   Enabled: false
+Metrics/LineLength:
+  Max: 120
 Metrics/MethodLength:
   Max: 30
 Metrics/AbcSize:
@@ -23,3 +24,13 @@ Metrics/BlockLength:
     - "**/*_spec.rb"
     - "db/schema.rb"
     - "config/initializers/rails_admin.rb"
+RSpec/ExampleLength:
+  Max: 30
+RSpec/MultipleExpectations:
+  Max: 10
+RSpec/DescribedClass:
+  Enabled: false
+RSpec/LetSetup:
+  Enabled: false
+RSpec/NamedSubject:
+  Enabled: false

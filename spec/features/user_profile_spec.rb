@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature 'User profile', type: :feature, js: true do
-  context 'simple user' do
+RSpec.describe 'User profile', type: :feature, js: true do
+  context 'when simple user' do
     let!(:user) { FactoryBot.create(:user) }
     let!(:first_event) { FactoryBot.create(:event, user: user, finish_date: '31/12/2018', start_date: '30/12/2018') }
     let!(:second_event) { FactoryBot.create(:event, user: user, finish_date: '01/01/2019', start_date: '28/12/2018') }
@@ -9,7 +9,7 @@ RSpec.feature 'User profile', type: :feature, js: true do
     let!(:target_to_first_event) { FactoryBot.create(:target, event: first_event) }
     let!(:target_to_second_event) { FactoryBot.create(:target, event: second_event) }
 
-    before(:each) do
+    before do
       sign_in(user)
       visit user_path(id: user.id)
     end
@@ -37,9 +37,9 @@ RSpec.feature 'User profile', type: :feature, js: true do
       expect(page).to have_content first_event.finish_date.year
       expect(page).to have_content second_event.finish_date.year
 
-      expect(page).to_not have_content first_event.start_date
-      expect(page).to_not have_content first_event.comments
-      expect(page).to_not have_content first_event.summary
+      expect(page).not_to have_content first_event.start_date
+      expect(page).not_to have_content first_event.comments
+      expect(page).not_to have_content first_event.summary
 
       expect(expected_events).to eq(page_events)
     end
@@ -50,8 +50,8 @@ RSpec.feature 'User profile', type: :feature, js: true do
       expect(page).to have_content first_event.comments
       expect(page).to have_content first_event.summary
 
-      expect(page).to_not have_content second_event.comments
-      expect(page).to_not have_content second_event.summary
+      expect(page).not_to have_content second_event.comments
+      expect(page).not_to have_content second_event.summary
     end
 
     it 'do not mark target as achieved' do
@@ -60,16 +60,16 @@ RSpec.feature 'User profile', type: :feature, js: true do
       page.evaluate_script 'window.location.reload()'
 
       click_on_event_header(first_event)
-      expect(page).to_not have_field('target' + target_to_first_event.id.to_s, checked: true)
+      expect(page).not_to have_field('target' + target_to_first_event.id.to_s, checked: true)
     end
   end
 
-  context 'admin' do
+  context 'when user is admin' do
     let!(:admin) { FactoryBot.create(:admin) }
     let!(:first_event) { FactoryBot.create(:event, user: admin, finish_date: '31/12/2018', start_date: '30/12/2018') }
     let!(:target_to_first_event) { FactoryBot.create(:target, event: first_event) }
 
-    before(:each) do
+    before do
       sign_in(admin)
       visit user_path(id: admin.id)
     end
@@ -84,7 +84,7 @@ RSpec.feature 'User profile', type: :feature, js: true do
     end
   end
 
-  context 'user/admin display other profile' do
+  context 'when user/admin display other profile' do
     let!(:admin) { FactoryBot.create(:admin) }
     let!(:user) { FactoryBot.create(:user) }
     let!(:admin_event) { FactoryBot.create(:event, user: admin, finish_date: '31/12/2018', start_date: '30/12/2018') }
@@ -103,9 +103,9 @@ RSpec.feature 'User profile', type: :feature, js: true do
       sign_in(user)
       visit user_path(id: admin.id)
 
-      expect(page).to_not have_content admin_event.description
-      expect(page).to_not have_content admin_event.status.upcase
-      expect(page).to_not have_content admin_event.finish_date.year
+      expect(page).not_to have_content admin_event.description
+      expect(page).not_to have_content admin_event.status.upcase
+      expect(page).not_to have_content admin_event.finish_date.year
     end
   end
 
