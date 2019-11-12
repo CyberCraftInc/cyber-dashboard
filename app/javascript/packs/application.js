@@ -17,7 +17,7 @@ window.moment = require("moment");
 /// React components
 const components = {};
 
-const context = require.context("../components", false, /\.js$/);
+const context = require.context("../components/", true, /\.js$/);
 for (const key of context.keys()) {
   const componentName = key.match(/([^/.]+)\.js/)[1];
   components[componentName] = context(key).default;
