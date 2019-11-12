@@ -21,6 +21,7 @@ cache:
   bundler: true
   directories:
     - node_modules/
+    - /home/travis/.rvm/
 install:
   - nvm install
   - yarn
