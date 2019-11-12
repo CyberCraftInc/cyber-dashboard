@@ -5,7 +5,7 @@ class Event < ApplicationRecord
   validates :description, :user, :start_date, :finish_date, presence: true
   validate :date_validation
 
-  enum status: %i[scheduled done canceled]
+  enum status: { scheduled: 0, done: 1, canceled: 2 }
   accepts_nested_attributes_for :targets, allow_destroy: true
   scope :sort_reverse_by_finish_date, -> { order(finish_date: :desc) }
 
