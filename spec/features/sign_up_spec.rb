@@ -16,7 +16,7 @@ describe 'Sign up', type: :feature do
     }
   end
 
-  before(:each) do
+  before do
     visit new_user_registration_path
   end
 
@@ -34,7 +34,7 @@ describe 'Sign up', type: :feature do
     fill_in_sign_up_form(email: nil)
     click_button 'Sign up'
 
-    expect(page).to_not have_content 'List of users'
+    expect(page).not_to have_content 'List of users'
     expect(page).to have_content '1 error prohibited this user from being saved:'
   end
 

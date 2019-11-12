@@ -1,19 +1,19 @@
 require 'rails_helper'
 
-RSpec.feature 'Header dropdown list', type: :feature do
+RSpec.describe 'Header dropdown list', type: :feature do
   let(:user) { create(:user) }
 
-  before(:each) do
+  before do
     sign_in(user)
   end
 
-  scenario 'profile text absent' do
-    expect(page).to_not have_content 'Profile'
-    expect(page).to_not have_content 'Edit profile'
-    expect(page).to_not have_content 'Logout'
+  it 'profile text absent' do
+    expect(page).not_to have_content 'Profile'
+    expect(page).not_to have_content 'Edit profile'
+    expect(page).not_to have_content 'Logout'
   end
 
-  scenario 'profile dropdown links list' do
+  it 'profile dropdown links list' do
     find('span', text: user.first_name).click
 
     expect(page).to have_content 'Profile'
@@ -21,7 +21,7 @@ RSpec.feature 'Header dropdown list', type: :feature do
     expect(page).to have_content 'Logout'
   end
 
-  scenario 'visit own page from dropdown link' do
+  it 'visit own page from dropdown link' do
     find('span', text: user.first_name).click
     find('a', text: 'Profile').click
 

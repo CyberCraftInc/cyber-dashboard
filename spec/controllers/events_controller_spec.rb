@@ -4,7 +4,7 @@ RSpec.describe EventsController, type: :controller do
   let(:admin) { create(:admin) }
   let(:user) { create(:user) }
 
-  before(:each) do
+  before do
     login_user admin
   end
 
@@ -102,7 +102,7 @@ RSpec.describe EventsController, type: :controller do
       expect(response_json['status']).to eq('updated')
     end
 
-    it 'should create new target' do
+    it 'create new target' do
       expect do
         put(
           :update,
@@ -123,7 +123,7 @@ RSpec.describe EventsController, type: :controller do
       expect(event.targets.map(&:description)).to include('Test data 1', 'Test data 2', 'Test data 3')
     end
 
-    it 'should delete existing target' do
+    it 'delete existing target' do
       expect do
         put(
           :update,
