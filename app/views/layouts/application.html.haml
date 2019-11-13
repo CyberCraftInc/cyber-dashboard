@@ -18,7 +18,7 @@
     = favicon_link_tag("/images/favicon.ico")
     %link{:crossorigin => "anonymous", :href => "https://use.fontawesome.com/releases/v5.7.1/css/all.css", :integrity => "sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr", :rel => "stylesheet"}/
   %body
-    .div{ 'data-react-component': hash_to_react_props({ name: 'TopHeader', props: { username: 'anonymous' } }) }
+    .div{ 'data-react-component': hash_to_react_props({ name: 'TopHeader', props: react_header_props(current_user) }) }
     .div{ 'data-behavior': 'vue' }
       %nav.navbar.navbar-dark.bg-dark
         %a.navbar-brand{:href => root_path}
