@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
 
+const dropdownHeaderClassName = (isOpen) => {
+  let result = 'dropdown__header'
+  if (isOpen) { result = result + ' ' + 'is-active' }
+  return result
+};
+
+const menuItemComponent = (menuItemObject, index) => {
+  return <li key={index}>
+    <a href={menuItemObject.url} data-method={menuItemObject.dataMethod}>{menuItemObject.title}</a>
+  </li>
+};
+
 class TopHeaderDropdownMenu extends Component {
   constructor() {
     super()
@@ -18,30 +30,24 @@ class TopHeaderDropdownMenu extends Component {
       { title: 'Admin', url: adminLink, },
       { title: 'Logout', url: logoutLink, dataMethod: 'delete', },
     ]
-    let menuItemComponent = (menuItemObject) => {
-      return <li>
-        <a href={menuItemObject.url} data-method={menuItemObject.dataMethod}>{menuItemObject.title}</a>
-      </li>
-    }
 
-    return <div class="dropdown">
+    return <div className='dropdown'>
         <div
-          className={"dropdown__header" + (this.state.isOpen ? ' is-active' : '')}
+          className={dropdownHeaderClassName(this.state.isOpen)}
           onClick={() => this.toggleDropdownMenu()}
         >
           <span>{username}</span>
           <span
-            class="dropdown-toggle"
+            className='dropdown-toggle'
             data-toggle
-            href
           ></span>
         </div>
 
         <div
-          className={"dropdown__content" + (this.state.isOpen ? ' is-active' : '')}
+          className='dropdown__content'
           onMouseLeave={() => this.toggleDropdownMenu()}
         >
-          <ul class="nav navbar-nav">
+          <ul className='nav navbar-nav'>
             {menuItems.map(menuItemComponent)}
           </ul>
         </div>
