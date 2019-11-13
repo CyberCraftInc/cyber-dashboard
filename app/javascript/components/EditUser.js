@@ -10,9 +10,10 @@ class EditUser extends React.Component {
     this.inputCurrentPassword = React.createRef();
     this.inputLastName = React.createRef();
     this.inputBirthday = React.createRef();
+    this.inputPhone = React.createRef();
     this.inputNewPassword = React.createRef();
     this.inputConfirmPassword = React.createRef();
-    this.state = {notice: "", isSuccessNotice: false, inputPhone: this.props.user.phone};
+    this.state = {notice: "", isSuccessNotice: false};
   }
 
   submitForm() {
@@ -21,7 +22,7 @@ class EditUser extends React.Component {
         user: {
           first_name: this.inputFirstName.current.value,
           last_name: this.inputLastName.current.value,
-          phone: this.state.inputPhone.replace(/[()+ ]/g, ""),
+          phone: this.inputPhone.current.value.replace(/[()+ ]/g, ""),
           birthday: this.inputBirthday.current.value,
           password: this.inputNewPassword.current.value,
           password_confirmation: this.inputConfirmPassword.current.value,
@@ -47,12 +48,6 @@ class EditUser extends React.Component {
     };
     this.setState({notice: message()});
   }
-
-  onChangeInputPhone = (event) => {
-    this.setState({
-      inputPhone: event.target.value
-    });
-  };
 
   render() {
     return (<div id="edit-user">
@@ -91,11 +86,11 @@ class EditUser extends React.Component {
         <InputMask
           className="form-control"
           id="userPhone"
-          value={this.state.inputPhone}
           alwaysShowMask={true}
           mask="+38 (999) 999 99 99"
           maskChar="_"
-          onChange={this.onChangeInputPhone}
+          ref={this.inputPhone}
+          defaultValue={this.props.user.phone}
         />
       </div>
       <div>
