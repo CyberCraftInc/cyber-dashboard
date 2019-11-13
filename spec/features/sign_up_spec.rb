@@ -21,8 +21,8 @@ describe 'Sign up', type: :feature do
   end
 
   it 'with correct filled form', js: true do
-    expect(find_field('Start in company').value).to eq Time.current.strftime('%Y-%m-%d')
     expect(find_field('Position').value).to eq 'Engineer'
+    expect(find_field('Start in company').value).to eq Time.current.strftime('%Y-%m-%d')
 
     fill_in_sign_up_form
     click_button 'Sign up'
