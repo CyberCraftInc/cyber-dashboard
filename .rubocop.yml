@@ -1,3 +1,7 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
 AllCops:
   Exclude:
     - db/schema.rb
@@ -5,14 +9,12 @@ AllCops:
     - node_modules/node-sass/src/libsass/extconf.rb
     - bin/yarn
 
-Rails:
-  Enabled: true
 Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/Documentation:
   Enabled: false
 Metrics/LineLength:
   Max: 120
-Style/Documentation:
-  Enabled: false
 Metrics/MethodLength:
   Max: 30
 Metrics/AbcSize:
@@ -22,3 +24,13 @@ Metrics/BlockLength:
     - "**/*_spec.rb"
     - "db/schema.rb"
     - "config/initializers/rails_admin.rb"
+RSpec/ExampleLength:
+  Max: 30
+RSpec/MultipleExpectations:
+  Max: 10
+RSpec/DescribedClass:
+  Enabled: false
+RSpec/LetSetup:
+  Enabled: false
+RSpec/NamedSubject:
+  Enabled: false

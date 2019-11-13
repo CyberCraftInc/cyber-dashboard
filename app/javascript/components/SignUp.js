@@ -49,7 +49,7 @@ class SignUp extends React.Component {
       { Object.keys(this.state.errors).length !== 0 && <div id="error_explanation">
         <ul>
           {
-            Object.keys(this.state.errors).map((field) => this.state.errors[field].map((error)=>(<li>
+            Object.keys(this.state.errors).map((field) => this.state.errors[field].map((error)=>(<li key={field + error}>
             <span className='text-capitalize'>{field.replace("_", " ")}</span>
             <span>{` ${error}`}</span>
             </li>)))

@@ -2,6 +2,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'Valid?' do
     let(:user) { build(:user) }
+
     it 'valid with valid attributes' do
       expect(user).to be_valid
     end
@@ -58,7 +59,7 @@ RSpec.describe User, type: :model do
       it 'is retrieve existent user if user exist in data base' do
         email = user.email
 
-        expect(user_sso).to_not be_a_new(User)
+        expect(user_sso).not_to be_a_new(User)
         expect(user_sso.email).to eq email
       end
 

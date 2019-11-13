@@ -16,7 +16,7 @@ describe 'Sign up', type: :feature do
     }
   end
 
-  before(:each) do
+  before do
     visit new_user_registration_path
   end
 
@@ -34,7 +34,7 @@ describe 'Sign up', type: :feature do
     click_button 'Sign up'
 
     expect(page).to have_content 'Email can\'t be blank'
-    expect(page).to_not have_content 'List of users'
+    expect(page).not_to have_content 'List of users'
   end
 
   private

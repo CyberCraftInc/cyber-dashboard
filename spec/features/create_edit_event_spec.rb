@@ -1,26 +1,26 @@
 require 'rails_helper'
 
-RSpec.feature 'Create & edit event', type: :feature, js: true do
-  context 'simple user' do
+RSpec.describe 'Create & edit event', type: :feature, js: true do
+  context 'when user is simple user' do
     let!(:user) { FactoryBot.create(:user) }
     let!(:event) { FactoryBot.create(:event, user: user) }
 
-    before(:each) do
+    before do
       sign_in(user)
       visit user_path(id: user.id)
     end
 
     it 'not display create event button' do
-      expect(page).to_not have_content 'Create event'
+      expect(page).not_to have_content 'Create event'
     end
   end
 
-  context 'admin' do
+  context 'when user is admin' do
     let!(:admin) { FactoryBot.create(:admin) }
     let!(:user) { FactoryBot.create(:user) }
     let!(:event) { FactoryBot.create(:event, user: user) }
 
-    before(:each) do
+    before do
       sign_in(admin)
       visit user_path(id: user.id)
     end
@@ -73,7 +73,7 @@ RSpec.feature 'Create & edit event', type: :feature, js: true do
       fill_in 'Description', with: 'New description'
       click_button 'Submit'
 
-      expect(page).to_not have_content event.description
+      expect(page).not_to have_content event.description
       expect(page).to have_content 'New description'
     end
   end

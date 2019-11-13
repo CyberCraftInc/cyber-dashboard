@@ -5,7 +5,7 @@ describe 'Sort users', type: :feature do
   let!(:second_user) { FactoryBot.create(:user, last_name: 'ccc', first_name: 'aa') }
   let!(:third_user) { FactoryBot.create(:user, last_name: 'aaa', first_name: 'bb') }
 
-  before(:each) do
+  before do
     sign_in(first_user)
   end
 

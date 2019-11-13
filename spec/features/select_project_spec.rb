@@ -9,7 +9,7 @@ describe 'Select Project', type: :feature do
   let!(:second_user) { FactoryBot.create(:user, project: project_with_2_users) }
   let!(:third_user) { FactoryBot.create(:user, project: project_with_user) }
 
-  before(:each) do
+  before do
     sign_in(first_user)
   end
 
@@ -27,14 +27,14 @@ describe 'Select Project', type: :feature do
 
     expect(page).to have_content first_user.email
     expect(page).to have_content second_user.email
-    expect(page).to_not have_content third_user.email
+    expect(page).not_to have_content third_user.email
   end
 
   it 'returns empty select if project is provided but project does not have users', js: true do
     select project_without_user.name
 
-    expect(page).to_not have_content first_user.email
-    expect(page).to_not have_content second_user.email
-    expect(page).to_not have_content third_user.email
+    expect(page).not_to have_content first_user.email
+    expect(page).not_to have_content second_user.email
+    expect(page).not_to have_content third_user.email
   end
 end
