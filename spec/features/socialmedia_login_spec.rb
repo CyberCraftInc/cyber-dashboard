@@ -1,45 +1,45 @@
 require 'rails_helper'
 
-RSpec.feature 'Socialmedia login via Google', type: :feature do
+RSpec.describe 'Socialmedia login via Google', type: :feature do
   setup do
     google_oauth2_mock
   end
 
-  context 'Sign in Google' do
+  context 'when sign in Google' do
     let!(:user) { create(:user, email: 'fakeemail@gmail-fake.com') }
 
-    scenario 'show the logged user' do
+    it 'show the logged user' do
       given_a_login_page
       expect(page).to have_content user.email
     end
   end
 
-  context 'Sign up Google' do
+  context 'when Sign up Google' do
     let!(:project) { create(:project) }
 
-    before(:each) do
+    before do
       given_a_login_page
     end
 
-    scenario 'Sign up Google without errors' do
+    it 'Sign up Google without errors' do
       when_i_successfully_sign_up
       then_i_expect_list_of_users
     end
 
-    scenario 'Sign up get errors' do
+    it 'Sign up get errors' do
       when_i_forgot_to_fill_some_fields
       then_i_expect_error
     end
 
-    scenario 'Sign up after errors' do
+    it 'Sign up after errors' do
       when_i_forgot_to_fill_some_fields
       fill_empty_fields
       then_i_expect_list_of_users
     end
   end
 
-  context 'Check errors' do
-    scenario 'no errors when use google sso' do
+  context 'when checking errors' do
+    it 'no errors when use google sso' do
       google_oauth2_mock
       given_a_login_page
 
@@ -47,7 +47,7 @@ RSpec.feature 'Socialmedia login via Google', type: :feature do
       expect(page).not_to have_content('Csrf detected')
     end
 
-    scenario 'get error when use google sso with invalid credentials' do
+    it 'get error when use google sso with invalid credentials' do
       google_oauth2_invalid_mock
       given_a_login_page
       expect(page).to have_content 'Could not authenticate you from GoogleOauth2'
