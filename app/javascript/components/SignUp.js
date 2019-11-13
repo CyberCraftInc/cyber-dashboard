@@ -45,6 +45,7 @@ class SignUp extends React.Component {
   };
 
   render() {
+    const {user, projects, minimumPasswordLength} = this.props;
     return (<div>
       { Object.keys(this.state.errors).length !== 0 && <div id="error_explanation">
         <ul>
@@ -66,6 +67,7 @@ class SignUp extends React.Component {
               type="text"
               id="firstName"
               ref={this.inputFirstName}
+              defaultValue={user.first_name}
             />
           </div>
           <div>
@@ -75,6 +77,7 @@ class SignUp extends React.Component {
               type="text"
               id="lastName"
               ref={this.inputLastName}
+              defaultValue={user.last_name}
             />
           </div>
           <div>
@@ -95,6 +98,7 @@ class SignUp extends React.Component {
               type="email"
               id="email"
               ref={this.inputEmail}
+              defaultValue={user.email}
             />
           </div>
           <div>
@@ -104,6 +108,7 @@ class SignUp extends React.Component {
               type="date"
               id="birthday"
               ref={this.inputBirthday}
+              defaultValue={user.birthday}
             />
           </div>
           <div>
@@ -123,10 +128,11 @@ class SignUp extends React.Component {
               type="text"
               id="position"
               ref={this.inputPosition}
+              defaultValue={user.position}
             />
           </div>
           <div>
-            <label htmlFor="password"> Password <em>{this.props.minimumPasswordLength} characters minimum</em></label>
+            <label htmlFor="password"> Password <em>{minimumPasswordLength || 6} characters minimum</em></label>
             <input
               className="form-control"
               type="password"
@@ -146,7 +152,7 @@ class SignUp extends React.Component {
           <div>
             <label htmlFor="selectProject"> Project </label>
             <SelectProject
-              options={this.props.projects}
+              options={projects}
               handleChange={value => this.setState({chooseProjectID: value})}
             />
           </div>
@@ -163,6 +169,7 @@ SignUp.propTypes = {
   minimumPasswordLength: PropTypes.number,
   projects: PropTypes.array,
   signUpURL: PropTypes.string,
+  user: PropTypes.object
 };
 
 export default SignUp;
