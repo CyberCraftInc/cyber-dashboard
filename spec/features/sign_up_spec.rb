@@ -21,7 +21,6 @@ describe 'Sign up', type: :feature do
   end
 
   it 'with correct filled form', js: true do
-    expect(find_field('Position').value).to eq 'Engineer'
     expect(find_field('Start in company').value).to eq Time.current.strftime('%Y-%m-%d')
 
     fill_in_sign_up_form
@@ -34,8 +33,8 @@ describe 'Sign up', type: :feature do
     fill_in_sign_up_form(email: nil)
     click_button 'Sign up'
 
+    expect(page).to have_content 'Email can\'t be blank'
     expect(page).to_not have_content 'List of users'
-    expect(page).to have_content '1 error prohibited this user from being saved:'
   end
 
   private
@@ -47,8 +46,8 @@ describe 'Sign up', type: :feature do
     fill_in 'Phone', with: phone_without_ukraine_code(options[:phone])
     fill_in 'Email', with: options[:email]
     fill_in 'Password', with: options[:password]
-    fill_in 'Password confirmation', with: options[:password]
+    fill_in 'Confirm password', with: options[:password]
     fill_in 'Birthday', with: options[:birthday]
-    select options[:project], from: 'Project'
+    find('select option:first-of-type').select_option
   end
 end
