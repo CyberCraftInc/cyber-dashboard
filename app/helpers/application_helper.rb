@@ -12,8 +12,4 @@ module ApplicationHelper
     user_attributes = user_attributes.map { |_key, value| value.nil? || value.to_s.empty? || value.blank? }
     user_attributes.include?(true)
   end
-
-  def hash_to_react_props(hash_object)
-    hash_object.deep_stringify_keys.to_s.gsub('=>',':')
-  end
 end
