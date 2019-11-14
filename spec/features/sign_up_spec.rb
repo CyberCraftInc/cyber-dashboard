@@ -30,6 +30,14 @@ describe 'Sign up', type: :feature do
     expect(page).to have_content 'List of users'
   end
 
+  it 'with incorrect phone number format' do
+    fill_in_sign_up_form(phone: '1234567')
+    click_button 'Sign up'
+
+    expect(page).to have_content 'Phone should be in +380XXXXXXXXX format'
+    expect(page).not_to have_content 'List of users'
+  end
+
   it 'with missed email field', js: true do
     fill_in_sign_up_form(email: nil)
     click_button 'Sign up'
@@ -68,7 +76,7 @@ describe 'Sign up', type: :feature do
     options = sign_in_params.merge(default_options)
     fill_in 'First name', with: options[:first_name]
     fill_in 'Last name', with: options[:last_name]
-    fill_in 'Phone', with: phone_without_ukraine_code(options[:phone])
+    fill_in 'Phone', with: options[:phone]
     fill_in 'Email', with: options[:email]
     fill_in 'Password', with: options[:password]
     fill_in 'Confirm password', with: options[:password]
