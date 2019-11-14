@@ -28,7 +28,7 @@ RSpec.describe 'Socialmedia login via Google', type: :feature do
 
     it 'Sign up get errors' do
       when_i_forgot_to_fill_some_fields
-      then_i_expect_error
+      then_i_expect_error_empty_password
     end
 
     it 'Sign up after errors' do
@@ -62,9 +62,9 @@ RSpec.describe 'Socialmedia login via Google', type: :feature do
 
   def when_i_successfully_sign_up
     fill_in 'Phone', with: '+365481524500'
-    select(project.name, from: 'Project')
+    find('select option:first-of-type').select_option
     fill_in 'Password', with: '123123'
-    fill_in 'Password confirmation', with: '123123'
+    fill_in 'Confirm password', with: '123123'
     fill_in 'Birthday', with: Time.zone.now
     click_button 'Sign up'
   end
@@ -76,7 +76,7 @@ RSpec.describe 'Socialmedia login via Google', type: :feature do
 
   def fill_empty_fields
     fill_in 'Password', with: '123123'
-    fill_in 'Password confirmation', with: '123123'
+    fill_in 'Confirm password', with: '123123'
     click_button 'Sign up'
   end
 
@@ -84,7 +84,7 @@ RSpec.describe 'Socialmedia login via Google', type: :feature do
     expect(page).to have_content 'List of users'
   end
 
-  def then_i_expect_error
-    expect(page).to have_content 'error prohibited this user from being saved'
+  def then_i_expect_error_empty_password
+    expect(page).to have_content 'Password can\'t be blank'
   end
 end
