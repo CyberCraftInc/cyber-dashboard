@@ -44,19 +44,25 @@ class SignUp extends React.Component {
     });
   };
 
+  errorSection() {
+    return (
+      Object.keys(this.state.errors).length !== 0 && <div id="error_explanation">
+        <ul>
+          {
+            Object.keys(this.state.errors).map((field) => this.state.errors[field].map((error) => (
+              <li key={field + error}>
+                <span className='text-capitalize'>{field.replace("_", " ")}</span>
+                <span>{` ${error}`}</span>
+              </li>)))
+          }
+        </ul>
+      </div>);
+  }
+
   render() {
     const {user, projects, minimumPasswordLength} = this.props;
     return (<div>
-      { Object.keys(this.state.errors).length !== 0 && <div id="error_explanation">
-        <ul>
-          {
-            Object.keys(this.state.errors).map((field) => this.state.errors[field].map((error)=>(<li key={field + error}>
-            <span className='text-capitalize'>{field.replace("_", " ")}</span>
-            <span>{` ${error}`}</span>
-            </li>)))
-          }
-        </ul>
-      </div>}
+      {this.errorSection()}
       <h3>Sign Up</h3>
       <div className="row">
         <div className="col-md-6">
