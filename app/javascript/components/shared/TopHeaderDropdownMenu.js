@@ -26,7 +26,7 @@ class TopHeaderDropdownMenu extends Component {
     const { username, profileLink, editUserLink, adminLink, logoutLink } = this.props;
     const menuItems = [
       { title: 'Profile', url: profileLink, },
-      { title: 'Edit user', url: editUserLink, },
+      { title: 'Edit profile', url: editUserLink, },
       { title: 'Admin', url: adminLink, },
       { title: 'Logout', url: logoutLink, dataMethod: 'delete', },
     ];
