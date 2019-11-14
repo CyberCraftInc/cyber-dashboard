@@ -12,7 +12,7 @@ module ReactHelper
       editUserLink: edit_user_path(current_user),
       profileLink: user_path(current_user),
       adminLink: rails_admin_path,
-      logoutLink: destroy_user_session_path,
+      logoutLink: destroy_user_session_path
     }
   end
 end
