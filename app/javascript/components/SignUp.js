@@ -15,7 +15,8 @@ class SignUp extends React.Component {
     this.inputStartInCompany = React.createRef();
     this.inputPosition = React.createRef();
     this.inputConfirmPassword = React.createRef();
-    this.state = {inputPhone: "", chooseProjectID: this.props.projects[0].id, errors: {}};
+    this.inputPhone = React.createRef();
+    this.state = {chooseProjectID: this.props.projects[0].id, errors: {}};
   }
 
   submitForm() {
@@ -24,7 +25,7 @@ class SignUp extends React.Component {
         user: {
           first_name: this.inputFirstName.current.value,
           last_name: this.inputLastName.current.value,
-          phone: this.state.inputPhone.replace(/[()+ ]/g, ""),
+          phone: this.inputPhone.current.value.replace(/[()+ ]/g, ""),
           birthday: this.inputBirthday.current.value,
           email: this.inputEmail.current.value,
           start_in_company: this.inputStartInCompany.current.value,
@@ -37,12 +38,6 @@ class SignUp extends React.Component {
       .then(() => location.href = this.props.signUpURL)
       .catch(error => this.setState({errors: error.response.data.errors}));
   }
-
-  onChangeInputPhone = (event) => {
-    this.setState({
-      inputPhone: event.target.value
-    });
-  };
 
   renderErrorSection() {
     return (
@@ -94,7 +89,8 @@ class SignUp extends React.Component {
               alwaysShowMask={true}
               mask="+38 (999) 999 99 99"
               maskChar="_"
-              onChange={this.onChangeInputPhone}
+              ref={this.inputPhone}
+              defaultValue={this.props.user.phone}
             />
           </div>
           <div>
