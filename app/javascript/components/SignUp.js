@@ -44,7 +44,7 @@ class SignUp extends React.Component {
     });
   };
 
-  errorSection() {
+  renderErrorSection() {
     return (
       Object.keys(this.state.errors).length !== 0 && <div id="error_explanation">
         <ul>
@@ -62,7 +62,7 @@ class SignUp extends React.Component {
   render() {
     const {user, projects, minimumPasswordLength} = this.props;
     return (<div>
-      {this.errorSection()}
+      {this.renderErrorSection()}
       <h3>Sign Up</h3>
       <div className="row">
         <div className="col-md-6">
