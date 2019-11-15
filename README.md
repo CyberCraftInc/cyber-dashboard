@@ -14,16 +14,43 @@ Cyber-dashboard is a web app for workers review. Everyone knows about each. You 
 
 #### How to setup and run
 To run this project you need
-1. install Ruby version 2.5.1 and Rails version 5.2.2
-2. install Node.JS version 6+
-3. install PostgreSQL [official site](https://www.postgresql.org/download/)
 
-4. install all gems `bundle install`
-5. install yarn version 1.12.3
-6. install all yarn packages `yarn`
-7. migrate database `rake db:create db:migrate` for set default projects from [db/seed.rb](https://github.com/CyberCraftInc/cyber-dashboard/blob/master/db/seeds.rb/) add `db:seed` to previous command
- *instead of 4-7 you can run bin/setup* [bin/setup](https://github.com/CyberCraftInc/cyber-dashboard/blob/master/bin/setup) *! bin/setup not run seed.rb*
-8. run project `foreman start`
+##### Install ruby
+Required version of Ruby version 2.5.1.
+You can use rvm for that https://rvm.io/rvm/install. Than install needed version and use ti for that folder:
+
+    rvm install ruby-2.5.1
+    rvm use ruby-2.5.1
+
+##### Install Node.JS
+Install Node.JS version 10. It is set in `.nvmrc` file. You can install it using nvm (https://github.com/nvm-sh/nvm#installation-and-update):
+
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+    bash --login
+    nvm install v10.17.0
+    nvm install v10.17.0
+
+##### Install PostgreSQL
+[official site](https://www.postgresql.org/download/). You need to create database and user:
+
+    sudo -u postgres createdb cyberdashboard_development
+    sudo -u postgres createdb cyberdashboard_test
+    sudo -u postgres createuser --interactive
+
+
+##### Install dependencies
+1. install all gems `bundle install`
+2. install yarn version 1.12.3
+3. install all yarn packages `yarn`
+4. migrate database `rake db:create db:migrate`
+
+Or you can run bin/setup [bin/setup](https://github.com/CyberCraftInc/cyber-dashboard/blob/master/bin/setup)
+
+To set default projects from [db/seed.rb](https://github.com/CyberCraftInc/cyber-dashboard/blob/master/db/seeds.rb/) run `rake db:seed`
+
+
+##### Run project
+Use `foreman start`
 
 #### How to run tests
 This app using RSpec and Capybara. `bundle` install needed gems, but for working feature test you must install **geckodriver** for your browser. After this run all test `rake spec`
