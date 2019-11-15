@@ -38,6 +38,30 @@ describe 'Sign up', type: :feature do
     expect(page).not_to have_content 'List of users'
   end
 
+  it 'sends the confirmation email' do
+    expect do
+      fill_in_sign_up_form(email: 'uniqemail@g.com')
+      click_button 'Sign up'
+    end.to change { ActionMailer::Base.deliveries.count }.by(1)
+
+    confirmation_email = Devise.mailer.deliveries.last
+
+    expect(confirmation_email.to[0]).to eq 'uniqemail@g.com'
+    expect(confirmation_email.body.encoded).to include 'You can confirm your account email through the link below:'
+  end
+
+  it 'confirms email by link' do
+    include ActionView::Helpers
+    fill_in_sign_up_form(email: 'uniqemail@g.com')
+    click_button 'Sign up'
+
+    user = User.find_by(email: 'uniqemail@g.com')
+
+    expect do
+      visit user_confirmation_path(confirmation_token: user.confirmation_token)
+    end.to change { user.reload.confirmed? }.from(false).to(true)
+  end
+
   private
 
   def fill_in_sign_up_form(default_options = {})

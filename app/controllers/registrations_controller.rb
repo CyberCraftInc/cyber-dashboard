@@ -1,4 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
+  # rubocop:disable Rails/LexicallyScopedActionFilter
+  skip_before_action :verify_authenticity_token, only: :create
+  # rubocop:enable Rails/LexicallyScopedActionFilter
   before_action :projects, only: %i[new create], if: -> { :projects }
   protected
 

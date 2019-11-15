@@ -18,14 +18,8 @@
     = favicon_link_tag("/images/favicon.ico")
     %link{:crossorigin => "anonymous", :href => "https://use.fontawesome.com/releases/v5.7.1/css/all.css", :integrity => "sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr", :rel => "stylesheet"}/
   %body
+    = react_component('TopHeader', react_header_props)
     .div{ 'data-behavior': 'vue' }
-      %nav.navbar.navbar-dark.bg-dark
-        %a.navbar-brand{:href => root_path}
-          %img.d-inline-block.align-top{:alt => "", :width => "90", :height => "35", :src => "/images/logo.png"}/
-          .header_text
-            CyberCraft Dashboard
-        - if current_user
-          %header-dropdown{ "edit-user-link": edit_user_path(current_user), "profile-link": user_path(current_user), "admin-link": rails_admin_path, "log-out-link": destroy_user_session_path, "user-name": current_user.first_name, "is-admin": current_user.admin? }
       .container.pad-bot25
         = yield
       %footer.footer
