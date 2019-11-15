@@ -30,7 +30,7 @@ Install Node.JS version 10. It is set in `.nvmrc` file. You can install it using
     nvm install v10.17.0
     nvm install v10.17.0
 
-###### Install PostgreSQL
+##### Install PostgreSQL
 [official site](https://www.postgresql.org/download/). You need to create database and user:
 
     sudo -u postgres createdb cyberdashboard_development
@@ -38,7 +38,7 @@ Install Node.JS version 10. It is set in `.nvmrc` file. You can install it using
     sudo -u postgres createuser --interactive
 
 
-###### Install dependencies
+##### Install dependencies
 1. install all gems `bundle install`
 2. install yarn version 1.12.3
 3. install all yarn packages `yarn`
@@ -49,7 +49,7 @@ Or you can run bin/setup [bin/setup](https://github.com/CyberCraftInc/cyber-dash
 To set default projects from [db/seed.rb](https://github.com/CyberCraftInc/cyber-dashboard/blob/master/db/seeds.rb/) run `rake db:seed`
 
 
-###### Run project
+##### Run project
 Use `foreman start`
 
 #### How to run tests
