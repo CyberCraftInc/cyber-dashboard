@@ -32,6 +32,20 @@ class UsersController < ApplicationController
     @statuses = Event.statuses.keys
   end
 
+  def ics_export
+    @events = Event.where(user_id: params[:user_id])
+    respond_to do |format|
+      format.ics do
+        cal = Icalendar::Calendar.new
+        @events.each do |event|
+          cal.add_event(event.to_ics)
+          cal.publish
+        end
+        render plain: cal.to_ical
+      end
+    end
+  end
+
   protected
 
   def user_params
