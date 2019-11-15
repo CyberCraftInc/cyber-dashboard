@@ -11,9 +11,9 @@ gem 'omniauth-google-oauth2', '0.8.0'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3'
 gem 'pundit', '2.1.0'
-gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 6.0.1'
 gem 'rails_admin', '2.0.0'
-gem 'sass-rails', '~> 5.1'
+gem 'sass-rails', '~> 6.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '4.2.0'
 
@@ -22,7 +22,7 @@ group :development, :test do
   gem 'letter_opener', '1.7.0'
   gem 'overcommit', '~> 0.51.0'
   gem 'pry-rails', '~> 0.3.8'
-  gem 'rspec-rails', '3.9.0'
+  gem 'rspec-rails', '4.0.0.beta3'
   gem 'rubocop', '~> 0.76.0', require: false
   gem 'rubocop-rails', '~> 2.3.2', require: false
   gem 'rubocop-rspec', '~> 1.36.0', require: false
