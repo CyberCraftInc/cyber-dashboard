@@ -39,11 +39,15 @@ div[data-behavior="vue"] {
   color: #f39600;
 }
 
-.footer a {
-  color: #f39600;
-  margin: 0 5px;
-  &:hover {
-    color: inherit;
+.footer {
+  z-index: 3;
+  a {
+    z-index: 4;
+    color: #f39600;
+    margin: 0 5px;
+    &:hover {
+      color: inherit;
+    }
   }
 }
 

@@ -1,12 +1,14 @@
 import React from "react";
 import moment from "moment";
+import axios from "axios";
 
 class UserEvents extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      events: {}
+      events: {},
+      targets: []
     };
   }
 
@@ -57,7 +59,7 @@ class UserEvents extends React.Component {
   }
 
   changeTargetAchieved(target) {
-    this.$axios
+    axios
       .put(target.toggle_achieved_path, {
         params: {
           id: target.id
@@ -73,7 +75,6 @@ class UserEvents extends React.Component {
 
   toggleEvent(index) {
     const val = this.state.events[index];
-
     this.setState({
       events: {
         [index]: !val
@@ -86,16 +87,16 @@ class UserEvents extends React.Component {
 
     for (const [index, event] of events.entries()) {
       let className = "cont left " + event.status;
-      let statusIcon = "fa ";
+      let statusIcon = "";
       switch (event.status) {
         case "canceled":
-          statusIcon += "fa-ban";
+          statusIcon += "fa fa-ban";
           break;
         case "scheduled":
-          statusIcon += "fa-clock";
+          statusIcon += "fas fa-clock";
           break;
         case "done":
-          statusIcon += "fa-check-circle";
+          statusIcon += "fas fa-check-circle";
           break;
       }
 
@@ -148,18 +149,20 @@ class UserEvents extends React.Component {
                         <h6 className="mb-1">
                           <b>TARGETS</b>
                         </h6>
-                        {/* <div className="round">{this.targetList(targets)}</div> */}
+                        <div className="round">
+                          {this.targetList(event.targets)}
+                        </div>
                       </div>
                       <div className="col-3 ml-4">
                         <div className="row">
                           <div className="dates ml-3">
                             <ul className="list-unstyled">
                               <li>
-                                <i className="fa fa-calendar"></i>
+                                <i className="fas fa-calendar"></i>
                                 Start Date:
                               </li>
                               <li>
-                                <i className="fa fa-calendar"></i>
+                                <i className="fas fa-calendar"></i>
                                 End Date:
                               </li>
                             </ul>
@@ -193,20 +196,57 @@ class UserEvents extends React.Component {
     return children;
   }
 
-  render() {
-    const { events } = this.props;
+  targetList(targets) {
+    let children = [];
 
-    return (
-      <div className="user-events pt-3">
-        <div className="mt-2"></div>
-        <h4>
-          <b>Events Timeline</b>
-        </h4>
-        <div className="row">
-          <div className="timeline mt-3 mx-5">{this.eventList(events)}</div>
+    for (const [index, target] of targets.entries()) {
+      children.push(
+        <>
+          <div className="d-inline">
+            <input
+              className="pt-1 checkbox"
+              id={"target" + target.id}
+              type="checkbox"
+              checked={target.achieved}
+              onChange={this.changeTargetAchieved.bind(this, target)}
+              disabled={!this.props.canEditEvent}
+            />
+          </div>
+          <label className="ml-2 d-inline" htmlFor="'target'+target.id">
+            {target.description}
+          </label>
+
+          <div className="row pt-1">{target.name}</div>
+        </>
+      );
+    }
+
+    return children;
+  }
+
+  render() {
+    const { events, noImage } = this.props;
+
+    if (events.length == 0) {
+      return (
+        <div className="user-events pt-3 no-events">
+          <h2>There are no available events</h2>
+          <img src={noImage} />
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="user-events pt-3">
+          <div className="mt-2"></div>
+          <h4>
+            <b>Events Timeline</b>
+          </h4>
+          <div className="row">
+            <div className="timeline mt-3 mx-5">{this.eventList(events)}</div>
+          </div>
+        </div>
+      );
+    }
   }
 }
 

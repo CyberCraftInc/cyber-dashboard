@@ -3,11 +3,12 @@ import React from "react";
 class UserHeader extends React.Component {
   render() {
     const { user, project, image_path, project_path } = this.props;
+    const gravatar = require("gravatar");
 
     return (
       <div className="container row pt-3 px-4">
         <div className="py-2">
-          <img className="user-avatar" src={image_path} />
+          <img className="user-avatar" src={gravatar.url(user.email)} />
         </div>
         <div className="col-9 px-4">
           <div className="row bordered">
@@ -19,7 +20,7 @@ class UserHeader extends React.Component {
                 <span>{user.position}</span>
                 <div className="company">
                   <a href={project_path}>
-                    <i className="fa fa-building short"></i>
+                    <i className="fas fa-building short"></i>
                     {project.name}
                   </a>
                 </div>

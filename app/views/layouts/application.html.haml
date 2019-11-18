@@ -15,8 +15,9 @@
     = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
 
+    %link{rel:"stylesheet", href:"https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"}
+
     = favicon_link_tag("/images/favicon.ico")
-    %link{:crossorigin => "anonymous", :href => "https://use.fontawesome.com/releases/v5.7.1/css/all.css", :integrity => "sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr", :rel => "stylesheet"}/
   %body
     = react_component('TopHeader', react_header_props)
     .div{ 'data-behavior': 'vue' }
@@ -24,4 +25,21 @@
         = yield
       %footer.footer
         .container
-          %span &copy; CyberCraftInc 2019
+          .row
+            .col-lg-6
+              &copy; CyberCraftInc 2012-2020. All Rights Reserved.
+            .col-lg-6
+              %a{href: "https://www.facebook.com/CyberCraft.Lviv/", target: "_blank"}
+                Facebook
+              |
+              %a{href: "https://www.linkedin.com/company/cybercraft-inc-", target: "_blank"}
+                Linkedin
+              |
+              %a{href: "https://twitter.com/CyberCraft_Inc", target: "_blank"}
+                Twitter
+              |
+              %a{href: "https://cybercraftinc.com/"}
+                Visit our website
+              |
+              %a{href: "https://jobs.dou.ua/companies/cybercraft/reviews/"}
+                Feedback

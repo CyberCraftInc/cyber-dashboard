@@ -39,6 +39,19 @@
   }
 }
 
+.no-events {
+  h2 {
+    text-align: center;
+    margin: 4rem 0 2rem 0;
+  }
+  img {
+    opacity: 0.1;
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+  }
+}
+
 .users_component {
   margin: 35px 0 20px 0;
   .container {
@@ -167,7 +180,7 @@
       top: 10px;
       bottom: 10px;
       left: 12%;
-      margin-left: -8px;
+      margin-left: -10px;
     }
   }
 
