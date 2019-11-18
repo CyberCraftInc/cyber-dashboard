@@ -19,6 +19,10 @@ class User < ApplicationRecord
     @users = id.to_i.zero? ? User.users_joins_project : Project.find(id.to_i).users.users_joins_project
   end
 
+  def genHash
+    OpenSSL::HMAC.hexdigest('sha256', created_at.to_s,id.to_s)
+  end
+
   def data
     {
       id: id,

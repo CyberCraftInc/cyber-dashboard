@@ -21,6 +21,7 @@ group :development, :test do
   gem 'factory_bot_rails', '5.1.1'
   gem 'icalendar', '2.5.3'
   gem 'letter_opener', '1.7.0'
+  gem 'openssl', '2.1.0'
   gem 'overcommit', '~> 0.51.0'
   gem 'pry-rails', '~> 0.3.8'
   gem 'rspec-rails', '4.0.0.beta3'
