@@ -1,0 +1,213 @@
+import React from "react";
+import moment from "moment";
+
+class UserEvents extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      events: {}
+    };
+  }
+
+  showButtonForCanEditEvent() {
+    return this.$parent.showButtonForCanEditEvent();
+  }
+
+  isFieldNotEmpty(field) {
+    return field === null || field === "" ? false : true;
+  }
+
+  dateYear(index) {
+    let date = this.props.events[index].finish_date;
+    return moment(date).format("ll");
+  }
+
+  addTagDelToEventDescription(eventStatus) {
+    return ["canceled"].includes(eventStatus);
+  }
+
+  getMonthAndDate(date) {
+    return new Date(date)
+      .toLocaleDateString("en-US", { month: "short", day: "numeric" })
+      .toLocaleLowerCase();
+  }
+
+  getYearMonthAndDate(date) {
+    return new Date(date).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric"
+    });
+  }
+
+  changeActiveEvent(eventId) {
+    document
+      .getElementById("event" + eventId)
+      .classList.toggle("display-block");
+    document
+      .getElementById("open-event" + eventId)
+      .classList.toggle("fa-angle-up");
+  }
+
+  openedEventData(eventId) {
+    return document
+      .getElementById("event" + eventId)
+      .classList.contains("display-block");
+  }
+
+  changeTargetAchieved(target) {
+    this.$axios
+      .put(target.toggle_achieved_path, {
+        params: {
+          id: target.id
+        }
+      })
+      .then(() => (this.axiosFlashNotice = false))
+      .catch(() => (this.axiosFlashNotice = "Failed change checkbox "));
+  }
+
+  onClickButton(event) {
+    this.$emit("eventProps", event);
+  }
+
+  toggleEvent(index) {
+    const val = this.state.events[index];
+
+    this.setState({
+      events: {
+        [index]: !val
+      }
+    });
+  }
+
+  eventList(events) {
+    let children = [];
+
+    for (const [index, event] of events.entries()) {
+      let className = "cont left " + event.status;
+      let statusIcon = "fa ";
+      switch (event.status) {
+        case "canceled":
+          statusIcon += "fa-ban";
+          break;
+        case "scheduled":
+          statusIcon += "fa-clock";
+          break;
+        case "done":
+          statusIcon += "fa-check-circle";
+          break;
+      }
+
+      children.push(
+        <div className="row pt-1">
+          <div className={className}>
+            <div className="pt-2">
+              <h6>{this.dateYear(index)}</h6>
+            </div>
+            <i className={statusIcon}></i>
+          </div>
+          <div className="cont right">
+            <div className="col-12 pl-0 ml-4">
+              <div className="d-flex flex-wrap">
+                {this.state.events[index] !== true && (
+                  <div className="triangle"></div>
+                )}
+                <div
+                  onClick={this.toggleEvent.bind(this, index)}
+                  className="col-12 py-1 d-flex align-items-center flex-row pl-2 event-visible-item"
+                >
+                  <div className="col-11 py-1">
+                    <div className="row">
+                      <div className="px-3">
+                        <span>{event.description}</span>
+                      </div>
+                      <div data-toggle="modal" data-target="#popUpModal">
+                        <i className="fas fa-edit edit-event-icon"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-1 angle-up-down">
+                    <i className="fas fa-angle-down fa-2x"></i>
+                  </div>
+                </div>
+              </div>
+              {this.state.events[index] === true && (
+                <div className="event-full-data-item px-3 pt-1 pad-bot12 mt-0 border border-top-0 border-width-2">
+                  <div className="py-3">
+                    <div className="row">
+                      <div className="col-8 br">
+                        <h6 className="mb-1">
+                          <b>COMMENTS</b>
+                        </h6>
+                        <div className="mb-3">{event.comments}</div>
+                        <h6 className="mb-1">
+                          <b>SUMMARY</b>
+                        </h6>
+                        <div className="mb-3">{event.summary}</div>
+                        <h6 className="mb-1">
+                          <b>TARGETS</b>
+                        </h6>
+                        {/* <div className="round">{this.targetList(targets)}</div> */}
+                      </div>
+                      <div className="col-3 ml-4">
+                        <div className="row">
+                          <div className="dates ml-3">
+                            <ul className="list-unstyled">
+                              <li>
+                                <i className="fa fa-calendar"></i>
+                                Start Date:
+                              </li>
+                              <li>
+                                <i className="fa fa-calendar"></i>
+                                End Date:
+                              </li>
+                            </ul>
+                          </div>
+                          <div>
+                            <ul className="list-unstyled">
+                              <li className="text-muted">
+                                {this.getYearMonthAndDate(event.start_date)}
+                              </li>
+                              <li className="text-muted">
+                                {this.getYearMonthAndDate(event.finish_date)}
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className={"status-badge " + event.status}>
+                          <i className={statusIcon}></i>
+                          {event.status}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return children;
+  }
+
+  render() {
+    const { events } = this.props;
+
+    return (
+      <div className="user-events pt-3">
+        <div className="mt-2"></div>
+        <h4>
+          <b>Events Timeline</b>
+        </h4>
+        <div className="row">
+          <div className="timeline mt-3 mx-5">{this.eventList(events)}</div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default UserEvents;

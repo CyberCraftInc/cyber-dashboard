@@ -6,7 +6,7 @@ import UserEvents from "../components/users/UserEvents";
 import axios from "axios";
 import "bootstrap";
 /// React import
-import React from "react";
+import * as React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 /// React import end

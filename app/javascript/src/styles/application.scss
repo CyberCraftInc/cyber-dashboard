@@ -1,27 +1,27 @@
-@import 'abstracts/variables';
-@import 'vendors/bootstrap';
-@import 'base/typography';
+@import "abstracts/variables";
+@import "vendors/bootstrap";
+@import "base/typography";
 
-@import 'layout/header';
-@import 'layout/footer';
-@import 'layout/forms';
-@import 'layout/devise_errors';
+@import "layout/header";
+@import "layout/footer";
+@import "layout/forms";
+@import "layout/devise_errors";
 
-@import 'modules/buttons';
+@import "modules/buttons";
 
-@import 'pages/home';
-@import 'pages/login';
-@import 'pages/edit';
-@import 'pages/user';
+@import "pages/home";
+@import "pages/login";
+@import "pages/edit";
+@import "pages/user";
 
-@import 'themes/theme';
-@import 'themes/admin';
+@import "themes/theme";
+@import "themes/admin";
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: "Titillium Web", sans-serif;
 }
 
-div[data-behavior='vue'] {
+div[data-behavior="vue"] {
   padding-bottom: 60px;
 }
 .alert {
@@ -30,4 +30,26 @@ div[data-behavior='vue'] {
 
 .notice {
   color: rgb(48, 233, 116);
+}
+
+.primary-color {
+  color: #383f45;
+}
+.secondary-color {
+  color: #f39600;
+}
+
+.footer a {
+  color: #f39600;
+  margin: 0 5px;
+  &:hover {
+    color: inherit;
+  }
+}
+
+i {
+  margin-right: 10px;
+  &.short {
+    margin-right: 5px;
+  }
 }
