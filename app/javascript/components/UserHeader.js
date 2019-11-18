@@ -36,6 +36,13 @@ class UserHeader extends React.Component {
                 >
                   <i className="fas fa-envelope"></i>
                 </a>
+                <a
+                  className="btn btn-info mail"
+                  href={generateICSURL}
+                  title="Generate ics file"
+                >
+                  <i className="fas fa-calendar"></i>
+                </a>
               </div>
             </div>
             <div className="py-3">

@@ -19,9 +19,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_with_password(user_params)
         bypass_sign_in(@user)
-        format.json { render json:  { success: @user } }
+        format.json { render json: { success: @user } }
       else
-        format.json { render json:  { errors: @user.errors.full_messages } }
+        format.json { render json: { errors: @user.errors.full_messages } }
       end
     end
   end
@@ -33,16 +33,21 @@ class UsersController < ApplicationController
   end
 
   def ics_export
-    @events = Event.where(user_id: params[:user_id])
-    respond_to do |format|
-      format.ics do
-        cal = Icalendar::Calendar.new
-        @events.each do |event|
-          cal.add_event(event.to_ics)
-          cal.publish
+    @user = User.find(params[:user_id])
+    if params[:signature] == @user.signature_hash
+      @events = Event.where(user: @user)
+      respond_to do |format|
+        format.ics do
+          cal = Icalendar::Calendar.new
+          @events.each do |event|
+            cal.add_event(event.to_ics)
+            cal.publish
+          end
+          render plain: cal.to_ical
         end
-        render plain: cal.to_ical
       end
+    else
+      render json: { error: 'not-found' }.to_json, status: 404
     end
   end
 
