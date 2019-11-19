@@ -1,10 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class UserHeader extends React.Component {
   render() {
-    const { user, project, image_path, project_path, generateICSURL } = this.props;
+    const { user, project, project_path, generateICSURL } = this.props;
     const gravatar = require("gravatar");
-
     return (
       <div className="container row pt-3 px-4">
         <div className="py-2">
@@ -80,5 +80,13 @@ class UserHeader extends React.Component {
     );
   }
 }
+
+UserHeader.propTypes = {
+  user: PropTypes.object,
+  project: PropTypes.object,
+  image_path: PropTypes.string,
+  project_path: PropTypes.string,
+  generateICSURL: PropTypes.string
+};
 
 export default UserHeader;

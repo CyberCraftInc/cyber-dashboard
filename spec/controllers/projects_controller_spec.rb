@@ -7,7 +7,7 @@ RSpec.describe ProjectsController, type: :controller do
   describe 'GET #show' do
     context 'without login' do
       it 'returns current user as a nil and status 302' do
-        get :show, params: {id: project.id}
+        get :show, params: { id: project.id }
         expect(response).to have_http_status(:found)
         expect(subject.current_user).to be_nil
         expect(response).to redirect_to new_user_session_path
@@ -17,7 +17,7 @@ RSpec.describe ProjectsController, type: :controller do
     context 'when user is logged in' do
       it 'returns valid current_user and status 200' do
         login_user(user)
-        get :show, params: {id: project.id}
+        get :show, params: { id: project.id }
         expect(response).to have_http_status(:ok)
         expect(subject.current_user).not_to be_nil
       end

@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 class UserEvents extends React.Component {
   constructor(props) {
@@ -101,7 +102,7 @@ class UserEvents extends React.Component {
       }
 
       children.push(
-        <div className="row pt-1">
+        <div className="row pt-1" key={event.id}>
           <div className={className}>
             <div className="pt-2">
               <h6>{this.dateYear(index)}</h6>
@@ -198,10 +199,9 @@ class UserEvents extends React.Component {
 
   targetList(targets) {
     let children = [];
-
-    for (const [index, target] of targets.entries()) {
+    targets.forEach(target => (
       children.push(
-        <>
+        <div key={target.id}>
           <div className="d-inline">
             <input
               className="pt-1 checkbox"
@@ -212,14 +212,14 @@ class UserEvents extends React.Component {
               disabled={!this.props.canEditEvent}
             />
           </div>
-          <label className="ml-2 d-inline" htmlFor="'target'+target.id">
+          <label className="ml-2 d-inline" htmlFor={"target" + target.id}>
             {target.description}
           </label>
 
           <div className="row pt-1">{target.name}</div>
-        </>
-      );
-    }
+        </div>
+      )
+  ));
 
     return children;
   }
@@ -249,5 +249,11 @@ class UserEvents extends React.Component {
     }
   }
 }
+
+UserEvents.propTypes = {
+  events: PropTypes.array,
+  noImage: PropTypes.string,
+  canEditEvent: PropTypes.bool
+};
 
 export default UserEvents;

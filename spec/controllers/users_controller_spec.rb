@@ -33,14 +33,14 @@ RSpec.describe UsersController, type: :controller do
     let(:user) { create(:user) }
     let(:params) do
       {
-          format: 'json',
-          id: user.id,
-          user: {
-              first_name: 'Jonatan',
-              last_name: 'Edison',
-              phone: '380631231231',
-              current_password: user.password
-          }
+        format: 'json',
+        id: user.id,
+        user: {
+          first_name: 'Jonatan',
+          last_name: 'Edison',
+          phone: '380631231231',
+          current_password: user.password
+        }
       }
     end
 
@@ -83,12 +83,12 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'returns text/calendar and status 200' do
-      get :ics_export, params: {user_id: user.id, signature: user.signature_hash}
+      get :ics_export, params: { user_id: user.id, signature: user.signature_hash }
       expect(response.content_type).to eq 'text/calendar'
     end
 
     it 'return 404 when signature is invalid' do
-      get :ics_export, params: {user_id: user.id, signature: 'invalid signature'}
+      get :ics_export, params: { user_id: user.id, signature: 'invalid signature' }
       expect(response).to have_http_status(:not_found)
       expect(response.content_type).to eq 'application/json'
       expect(JSON.parse(response.body)['error']).to eq 'not-found'
