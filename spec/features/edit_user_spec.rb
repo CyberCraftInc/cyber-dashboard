@@ -23,7 +23,7 @@ RSpec.describe 'Edit user', type: :feature do
     when_fill_and_submit_form
     expect(find('input#userFirstName').value).to eq(user_edited.first_name)
     expect(find('input#userLastName').value).to eq(user_edited.last_name)
-    expect(find('input#userPhone').value.gsub(/[()+ ]/, '')).to eq(user_edited.phone)
+    expect(find('input#userPhone').value.gsub(/[() ]/, '')).to eq(user_edited.phone)
     expect(page).to have_content 'Profile updated'
     sleep(3)
     expect(page).to have_current_path(root_path)
@@ -77,7 +77,6 @@ RSpec.describe 'Edit user', type: :feature do
     fill_in 'Current password', with: user.password
     fill_in 'userFirstName', with: user_edited.first_name
     fill_in 'userLastName', with: user_edited.last_name
-    fill_in 'userPhone', with: ''
     fill_in 'userPhone', with: phone_without_ukraine_code(user_edited.phone)
     find('button#button-edit').click
   end

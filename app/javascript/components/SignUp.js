@@ -25,7 +25,7 @@ class SignUp extends React.Component {
         user: {
           first_name: this.inputFirstName.current.value,
           last_name: this.inputLastName.current.value,
-          phone: this.inputPhone.current.value.replace(/[()+ ]/g, ""),
+          phone: this.inputPhone.current.value.replace(/[() ]/g, ""),
           birthday: this.inputBirthday.current.value,
           email: this.inputEmail.current.value,
           start_in_company: this.inputStartInCompany.current.value,
@@ -87,7 +87,7 @@ class SignUp extends React.Component {
               className="form-control"
               id="phone"
               alwaysShowMask={true}
-              mask="+38 (999) 999 99 99"
+              mask="+38 (099) 999 99 99"
               maskChar="_"
               ref={this.inputPhone}
               defaultValue={this.props.user.phone}

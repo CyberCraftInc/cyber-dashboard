@@ -10,7 +10,8 @@ class User < ApplicationRecord
 
   validates :phone, :email, uniqueness: true
   validates :first_name, :last_name, :phone, :project, presence: true
-  validates :phone, length: { is: 12 }
+  validates :phone, format: { with: /\A\+380\d{9}\Z/,
+                              message: "should be in +380XXXXXXXXX format\n" }
 
   scope :users_joins_project, -> { includes(:project) }
   enum role: { admin: 0, employee: 1 }
