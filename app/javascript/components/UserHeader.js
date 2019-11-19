@@ -2,7 +2,7 @@ import React from "react";
 
 class UserHeader extends React.Component {
   render() {
-    const { user, project, image_path, project_path } = this.props;
+    const { user, project, image_path, project_path, generateICSURL } = this.props;
     const gravatar = require("gravatar");
 
     return (
