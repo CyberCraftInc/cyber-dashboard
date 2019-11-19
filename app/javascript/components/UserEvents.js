@@ -35,7 +35,7 @@ class UserEvents extends React.Component {
   }
 
   isFieldNotEmpty(field) {
-    return field === null || field === "" ? false : true;
+    return !(field === null || field === "");
   }
 
   dateYear(index) {
@@ -235,7 +235,7 @@ class UserEvents extends React.Component {
   render() {
     const { events, noImage } = this.props;
 
-    if (events.length == 0) {
+    if (events.length === 0) {
       return (
         <div className="user-events pt-3 no-events">
           <h2>There are no available events</h2>
@@ -245,7 +245,7 @@ class UserEvents extends React.Component {
     } else {
       return (
         <div className="user-events pt-3">
-          <div className="mt-2"></div>
+          <div className="mt-2"/>
           <h4>
             <b>Events Timeline</b>
           </h4>
