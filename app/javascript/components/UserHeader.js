@@ -31,13 +31,7 @@ class UserHeader extends React.Component {
                   <span>Create Event</span>
                 </a>
                 <a
-                  className="mail btn btn-primary"
-                  href="mailto:`${user.email}`"
-                >
-                  <i className="fas fa-envelope"></i>
-                </a>
-                <a
-                  className="btn btn-info mail"
+                  className="btn btn-primary mail"
                   href={generateICSURL}
                   title="Generate ics file"
                 >
