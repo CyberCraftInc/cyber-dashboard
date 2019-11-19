@@ -24,12 +24,12 @@ class Event < ApplicationRecord
 
   def to_ics
     event = Icalendar::Event.new
-    event.dtstart = self.start_date.strftime("%Y%m%dT%H%M%S")
-    event.dtend = self.finish_date.strftime("%Y%m%dT%H%M%S")
-    event.summary = self.description
-    event.created = self.created_at
-    event.last_modified = self.updated_at
-    event.comment = self.comments
+    event.dtstart = start_date.strftime('%Y%m%dT%H%M%S')
+    event.dtend = finish_date.strftime('%Y%m%dT%H%M%S')
+    event.summary = description
+    event.created = created_at
+    event.last_modified = updated_at
+    event.comment = comments
     event
   end
 
