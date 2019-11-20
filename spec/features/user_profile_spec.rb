@@ -58,25 +58,25 @@ RSpec.describe 'User profile', type: :feature, js: true do
     end
   end
 
-  # context 'when user is admin' do
-  #   let!(:admin) { FactoryBot.create(:admin) }
-  #   let!(:first_event) { FactoryBot.create(:event, user: admin, finish_date: '31/12/2018', start_date: '30/12/2018') }
-  #   let!(:target_to_first_event) { FactoryBot.create(:target, event: first_event) }
-  #
-  #   before do
-  #     sign_in(admin)
-  #     visit user_path(id: admin.id)
-  #   end
-  #
-  #   it 'mark target as achieved' do
-  #     click_on_event_header(first_event)
-  #     click_on_target_checkbox(target_to_first_event)
-  #     page.evaluate_script 'window.location.reload()'
-  #
-  #     click_on_event_header(first_event)
-  #     expect(page).to have_field('target' + target_to_first_event.id.to_s, checked: true)
-  #   end
-  # end
+  context 'when user is admin' do
+    let!(:admin) { FactoryBot.create(:admin) }
+    let!(:first_event) { FactoryBot.create(:event, user: admin, finish_date: '31/12/2018', start_date: '30/12/2018') }
+    let!(:target_to_first_event) { FactoryBot.create(:target, event: first_event) }
+
+    before do
+      sign_in(admin)
+      visit user_path(id: admin.id)
+    end
+
+    it 'mark target as achieved' do
+      click_on_event_header(first_event)
+      click_on_target_checkbox(target_to_first_event)
+      page.evaluate_script 'window.location.reload()'
+
+      click_on_event_header(first_event)
+      expect(page).to have_field('target' + target_to_first_event.id.to_s, checked: true)
+    end
+  end
 
   context 'when user/admin display other profile' do
     let!(:admin) { FactoryBot.create(:admin) }
