@@ -1,6 +1,6 @@
 class ApplicationPolicy
   attr_reader :user, :record
-  ADMIN_ACTION = %i[dashboard index show new edit destroy export history show_in_app].freeze
+  ADMIN_ACTION = %i[dashboard index show new edit destroy export history show_in_app create update].freeze
 
   def initialize(user, record)
     @user = user
