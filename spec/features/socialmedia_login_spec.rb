@@ -81,7 +81,7 @@ RSpec.describe 'Socialmedia login via Google', type: :feature do
   end
 
   def then_i_expect_list_of_users
-    expect(page).to have_content 'List of users'
+    expect(page).to have_content 'Number of employees'
   end
 
   def then_i_expect_error_empty_password

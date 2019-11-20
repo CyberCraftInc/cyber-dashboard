@@ -15,7 +15,7 @@ describe 'Select Project', type: :feature do
 
   it 'returns all users if project is not provided', js: true do
     select project_with_user.name
-    select 'All Projects'
+    select 'All employees'
 
     expect(page).to have_content first_user.email
     expect(page).to have_content second_user.email
