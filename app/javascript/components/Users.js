@@ -163,14 +163,23 @@ class Users extends Component {
                   className="card-body d-flex align-items-center flex-column btn-outline-dark"
                   style={{ cursor: "pointer" }}
                 >
-                  <div>
-                    <img
-                      className="rounded-circle rounded img-thumbnail mb-2"
-                      src={profileImage}
-                      alt="Profile logo"
-                      width="120"
-                    />
-                  </div>
+                  <div
+                    className="mb-2 img-thumbnail"
+                    style={{
+                      borderRadius: "50%",
+                      width: "120px",
+                      height: "120px",
+                      overflow: "hidden",
+                      backgroundImage: `url(
+                        ${
+                          user.avatar && user.avatar != "null"
+                            ? user.avatar
+                            : profileImage
+                        }
+                      )`,
+                      backgroundSize: "cover"
+                    }}
+                  ></div>
                   <h5 className="card-title">
                     <strong>{this.checkBirthday(user.birthday)}</strong>
                     <strong>{user.first_name + " " + user.last_name}</strong>

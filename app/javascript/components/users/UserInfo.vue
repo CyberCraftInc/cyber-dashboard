@@ -2,6 +2,23 @@
   <div>
     <div class="row">
       <div class="col-4 user-info px-5 py-4">
+        <div
+          class="mb-2"
+          :style="{
+            width: '120px',
+            height: '120px',
+            borderRadius: '50%',
+            overflow: 'hidden',
+            backgroundImage: `url(
+              ${
+                user.avatar != 'null' && user.avatar
+                  ? user.avatar
+                  : profileImage
+              }
+            )`,
+            backgroundSize: 'cover'
+          }"
+        ></div>
         <h3 class="font-weight-bold pt-2 first-last-user-name">
           {{ user.first_name + " " + user.last_name }}
         </h3>
@@ -57,6 +74,7 @@
 import CreateEventButton from "./show/CreateEventButton.vue";
 import CreateEventPopUp from "./show/CreateEventPopUp.vue";
 import UserEvents from "../users/UserEvents";
+import profileImage from "../../images/user-no-logo.png";
 
 export default {
   components: {
@@ -74,7 +92,8 @@ export default {
       eventsPath: "",
       axiosRequestType: "",
       statusesEvent: JSON.parse(this.statuses),
-      formValue: {}
+      formValue: {},
+      profileImage: profileImage
     };
   },
   methods: {
