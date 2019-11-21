@@ -24,14 +24,13 @@ class TopHeaderDropdownMenu extends Component {
   }
   
   render() {
-    const { username, profileLink, editUserLink, adminLink, logoutLink } = this.props;
+    const { username, profileLink, editUserLink, adminLink, logoutLink, isAdmin } = this.props;
     const menuItems = [
       { title: "Profile", url: profileLink, },
       { title: "Edit profile", url: editUserLink, },
-      { title: "Admin", url: adminLink, },
       { title: "Logout", url: logoutLink, dataMethod: "delete", },
     ];
-
+    isAdmin && menuItems.splice(2, 0, { title: "Admin", url: adminLink, });
     return (
       <div className="dropdown">
         <div className={dropdownHeaderClassName(this.state.isOpen)} onClick={() => this.toggleDropdownMenu()}>
@@ -53,6 +52,7 @@ TopHeaderDropdownMenu.propTypes = {
   editUserLink: PropTypes.string,
   adminLink: PropTypes.string,
   logoutLink: PropTypes.string,
+  isAdmin: PropTypes.bool
 };
 
 export default TopHeaderDropdownMenu;

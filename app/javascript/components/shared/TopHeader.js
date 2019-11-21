@@ -32,7 +32,7 @@ class TopHeader extends React.Component {
 
 TopHeader.propTypes = {
   username: PropTypes.string,
-  isAdmin: PropTypes.boolean,
+  isAdmin: PropTypes.bool,
   profileLink: PropTypes.string,
   editUserLink: PropTypes.string,
   adminLink: PropTypes.string,

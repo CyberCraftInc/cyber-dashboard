@@ -53,7 +53,7 @@ RSpec.describe 'Edit user', type: :feature do
     fill_in 'Password', with: 'newpass'
     click_button 'Log in'
 
-    expect(page).to have_content('List of users')
+    expect(page).to have_content('All employees')
   end
 
   it 'Failed edit password' do

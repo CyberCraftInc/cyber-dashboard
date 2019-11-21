@@ -12,7 +12,7 @@ describe 'Sign in', type: :feature do
     fill_in 'Password', with: user.password
     click_button 'Log in'
 
-    expect(page).to have_content 'List of users'
+    expect(page).to have_content 'Number of employees'
   end
 
   it 'with incorrect credentials', js: true do
