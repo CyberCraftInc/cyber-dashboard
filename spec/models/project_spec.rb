@@ -12,4 +12,16 @@ RSpec.describe Project, type: :model do
       expect(project_without_name).not_to be_valid
     end
   end
+
+  describe 'data' do
+    let(:project) { build(:project) }
+
+    it 'returns an array of objects as json' do
+      as_json = project.data
+
+      expect(as_json[:name]).to eq(project.name)
+      expect(as_json[:desc]).to eq(project.desc)
+      expect(as_json[:users]).to eq(project.users.map(&:data))
+    end
+  end
 end

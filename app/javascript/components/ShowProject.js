@@ -20,7 +20,11 @@ class ShowProject extends React.Component {
           <h5>{`${user.first_name} ${user.last_name}`}</h5>
           <div>{user.position}</div>
         </div>
-        <div className="ml-auto my-auto"><button className="btn btn-info" onClick={()=> window.location.href=`/users/${user.id}`}>Open profile</button></div>
+        <div className="ml-auto my-auto">
+          <button id={`open-profile${user.id}`} className="btn btn-info"
+                  onClick={() => window.location.href = `/users/${user.id}`}>Open profile
+          </button>
+        </div>
       </div>
     );
   }
