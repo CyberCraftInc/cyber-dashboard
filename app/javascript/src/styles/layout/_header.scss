@@ -1,6 +1,10 @@
 .header_text {
-  margin-left: 40px;
-  display: inline;
+  display: none;
+
+  @media (min-width: 641px) {
+    margin-left: 40px;
+    display: inline;
+  }
 }
 #log_out {
   a {
@@ -13,20 +17,21 @@
     cursor: pointer;
     position: relative;
     width: 150px;
+    text-align: end;
     padding: 0px 0px 5px 20px;
     span {
-      color: map-get($colors, 'white');
+      color: map-get($colors, "white");
     }
     &.is-active {
       + .dropdown__content {
-          position: absolute;
-          height: auto;
-          opacity: 1;
-          display: block;
-          width: 150px;
-          border: 1px solid map-get($colors, 'black');
-          border-top: 2px solid map-get($colors, 'yellow');
-          border-radius: 0 0 4px 4px;
+        position: absolute;
+        height: auto;
+        opacity: 1;
+        display: block;
+        width: 150px;
+        border: 1px solid map-get($colors, "black");
+        border-top: 2px solid map-get($colors, "yellow");
+        border-radius: 0 0 4px 4px;
       }
     }
   }
@@ -35,11 +40,11 @@
     height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: opacity .3s;
+    transition: opacity 0.3s;
     display: none;
-    background: map-get($colors, 'black');
+    background: map-get($colors, "black");
     a {
-      color: map-get($colors, 'black');
+      color: map-get($colors, "black");
       text-decoration: none;
       display: block;
       width: 100%;
@@ -49,9 +54,9 @@
     li {
       padding: 3px 0px 3px 0px;
       cursor: pointer;
-      background: map-get($colors, 'white');
+      background: map-get($colors, "white");
       &:hover {
-        background: #D3D3D3;
+        background: #d3d3d3;
       }
     }
   }
