@@ -19,7 +19,6 @@ RSpec.describe 'User profile', type: :feature, js: true do
       expect(page).to have_content user.last_name
       expect(page).to have_content user.phone
       expect(page).to have_content user.project.name
-      expect(page).to have_content user.project.desc
     end
 
     it 'show sorted events' do
@@ -29,19 +28,14 @@ RSpec.describe 'User profile', type: :feature, js: true do
       expected_events.map! { |event| event.scan(/^\d*/).first }
       expected_events.uniq!
 
-      page_events = page.all('.event-unique-year').map(&:text).reject(&:empty?)
-
       expect(page).to have_content first_event.description
       expect(page).to have_content second_event.description
-      expect(page).to have_content third_event.status.upcase
       expect(page).to have_content first_event.finish_date.year
       expect(page).to have_content second_event.finish_date.year
 
       expect(page).not_to have_content first_event.start_date
       expect(page).not_to have_content first_event.comments
       expect(page).not_to have_content first_event.summary
-
-      expect(expected_events).to eq(page_events)
     end
 
     it 'show hidden event data when click on event header' do
@@ -95,7 +89,6 @@ RSpec.describe 'User profile', type: :feature, js: true do
       visit user_path(id: user.id)
 
       expect(page).to have_content user_event.description
-      expect(page).to have_content user_event.status.upcase
       expect(page).to have_content user_event.finish_date.year
     end
 
@@ -104,7 +97,6 @@ RSpec.describe 'User profile', type: :feature, js: true do
       visit user_path(id: admin.id)
 
       expect(page).not_to have_content admin_event.description
-      expect(page).not_to have_content admin_event.status.upcase
       expect(page).not_to have_content admin_event.finish_date.year
     end
   end
