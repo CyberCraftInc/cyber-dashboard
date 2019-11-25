@@ -1,27 +1,28 @@
-@import 'abstracts/variables';
-@import 'vendors/bootstrap';
-@import 'base/typography';
+@import "abstracts/variables";
+@import "vendors/bootstrap";
+@import "base/typography";
 
-@import 'layout/header';
-@import 'layout/footer';
-@import 'layout/forms';
-@import 'layout/devise_errors';
+@import "layout/header";
+@import "layout/footer";
+@import "layout/forms";
+@import "layout/devise_errors";
 
-@import 'modules/buttons';
+@import "modules/buttons";
 
-@import 'pages/home';
-@import 'pages/login';
-@import 'pages/edit';
-@import 'pages/user';
+@import "pages/home";
+@import "pages/login";
+@import "pages/edit";
+@import "pages/user";
 
-@import 'themes/theme';
-@import 'themes/admin';
+@import "themes/theme";
+@import "themes/admin";
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
+  padding-bottom: 88px;
 }
 
-div[data-behavior='vue'] {
+div[data-behavior="vue"] {
   padding-bottom: 60px;
 }
 .alert {
