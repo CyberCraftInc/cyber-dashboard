@@ -1,7 +1,6 @@
-import Vue from "vue/dist/vue.esm";
-import UserEdit from "../components/users/edit/UserEdit.vue";
-import UserInfo from "../components/users/UserInfo.vue";
-import UserEvents from "../components/users/UserEvents";
+import Vue from "vue";
+import * as instances from "../instances";
+
 import axios from "axios";
 import "bootstrap";
 /// React import
@@ -28,13 +27,18 @@ require("imask");
 Vue.prototype.$axios = axios;
 
 window.addEventListener("load", () => {
-  const app = new Vue({
-    el: '[data-behavior="vue"]',
-    components: {
-      "users-edit-component": UserEdit,
-      "user-info-component": UserInfo,
-      "user-events-component": UserEvents
-    }
+  Object.keys(instances).forEach(instanceName => {
+    const instance = instances[instanceName];
+    const elements = document.querySelectorAll(`.${instance.el}`);
+
+    elements.forEach(element => {
+      const props = JSON.parse(element.getAttribute("data-props"));
+
+      new Vue({
+        el: element,
+        render: h => h(instance.component, { props })
+      });
+    });
   });
 
   if (document.querySelector('meta[name="csrf-token"]')) {
