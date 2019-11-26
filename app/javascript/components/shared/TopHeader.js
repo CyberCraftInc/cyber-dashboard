@@ -1,10 +1,48 @@
 import React from "react";
-import PropTypes from "prop-types";
+import axios from "axios";
 import TopHeaderDropdownMenu from "./TopHeaderDropdownMenu";
 
 class TopHeader extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      username: "Guest",
+      isAdmin: false,
+      profileLink: "/", // change when profile page will be rewrited to react
+      editUserLink: "/edit",
+      adminLink: "/admin",
+      logoutLink: "/logout"
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get("/api/v1/header", {})
+      .then(response => {
+        response &&
+          this.setState({
+            username: response.data.username,
+            isAdmin: response.data.isAdmin,
+            profileLink: response.data.profileLink,
+            adminLink: response.data.adminLink,
+            logoutLink: response.data.logoutLink
+          });
+      })
+      .catch(error =>
+        this.setState({ errorFromAPI: error.response.data.error })
+      );
+  }
+
   render() {
-    const { username, isAdmin, profileLink, editUserLink, adminLink, logoutLink } = this.props;
+    const {
+      username,
+      isAdmin,
+      profileLink,
+      editUserLink,
+      adminLink,
+      logoutLink
+    } = this.state;
     const topHeaderDropdownMenuComponent = function() {
       return (
         <TopHeaderDropdownMenu
@@ -21,22 +59,19 @@ class TopHeader extends React.Component {
     return (
       <nav className="navbar navbar-dark bg-dark">
         <a className="navbar-brand" href="/">
-          <img className="d-inline-block align-top" alt="" width="90" height="35" src="/images/logo.png" />
+          <img
+            className="d-inline-block align-top"
+            alt=""
+            width="90"
+            height="35"
+            src="/images/logo.png"
+          />
           <div className="header_text">CyberCraft Dashboard</div>
         </a>
-        {(username && topHeaderDropdownMenuComponent())}
+        {username && topHeaderDropdownMenuComponent()}
       </nav>
     );
   }
 }
-
-TopHeader.propTypes = {
-  username: PropTypes.string,
-  isAdmin: PropTypes.bool,
-  profileLink: PropTypes.string,
-  editUserLink: PropTypes.string,
-  adminLink: PropTypes.string,
-  logoutLink: PropTypes.string,
-};
 
 export default TopHeader;

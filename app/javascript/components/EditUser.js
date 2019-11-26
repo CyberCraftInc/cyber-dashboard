@@ -1,11 +1,10 @@
 import * as React from "react";
 import axios from "axios";
 import InputMask from "react-input-mask";
-import PropTypes from "prop-types";
 
 class EditUser extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.inputFirstName = React.createRef();
     this.inputCurrentPassword = React.createRef();
     this.inputLastName = React.createRef();
@@ -13,7 +12,28 @@ class EditUser extends React.Component {
     this.inputPhone = React.createRef();
     this.inputNewPassword = React.createRef();
     this.inputConfirmPassword = React.createRef();
-    this.state = { notice: "", isSuccessNotice: false, inputAvatar: null };
+    this.state = {
+      notice: "",
+      isSuccessNotice: false,
+      inputAvatar: null,
+      updatePath: "/users",
+      user: {
+        first_name: "",
+        las_name: ""
+      }
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get("/api/v1/users/current/edit")
+      .then(response => {
+        this.setState({
+          user: response.data.user,
+          updatePath: response.data.updatePath
+        });
+      })
+      .catch(error => console.log(error.response.data));
   }
 
   setDataUrl = preview => {
@@ -54,7 +74,7 @@ class EditUser extends React.Component {
     data.append("user[avatar]", this.state.inputAvatar);
 
     axios
-      .put(this.props.updatePath, data)
+      .put(this.state.updatePath, data)
       .then(response => this.showNotice(response.data))
       .catch(error => console.log(error.response));
   }
@@ -62,8 +82,8 @@ class EditUser extends React.Component {
   showNotice(response) {
     const message = () => {
       if (response.success) {
-        window.setTimeout(() => {
-          location.href = this.props.rootPath;
+        window.setTimeout(function() {
+          location.href = "/";
         }, 3000);
         this.setState({ isSuccessNotice: true });
         return "Profile updated. You will be redirected in 3 seconds";
@@ -97,7 +117,7 @@ class EditUser extends React.Component {
             className="form-control"
             type="text"
             id="userFirstName"
-            defaultValue={this.props.user.first_name}
+            defaultValue={this.state.user.first_name}
             ref={this.inputFirstName}
           />
         </div>
@@ -107,7 +127,7 @@ class EditUser extends React.Component {
             className="form-control"
             type="text"
             id="userLastName"
-            defaultValue={this.props.user.last_name}
+            defaultValue={this.state.user.last_name}
             ref={this.inputLastName}
           />
         </div>
@@ -120,7 +140,7 @@ class EditUser extends React.Component {
             mask="+38 (099) 999 99 99"
             maskChar="_"
             ref={this.inputPhone}
-            defaultValue={this.props.user.phone}
+            defaultValue={this.state.user.phone}
           />
         </div>
         <div>
@@ -129,7 +149,7 @@ class EditUser extends React.Component {
             className="form-control"
             type="date"
             id="userBirthday"
-            defaultValue={this.props.user.birthday}
+            defaultValue={this.state.user.birthday}
             ref={this.inputBirthday}
           />
         </div>
@@ -180,11 +200,5 @@ class EditUser extends React.Component {
     );
   }
 }
-
-EditUser.propTypes = {
-  updatePath: PropTypes.string,
-  rootPath: PropTypes.string,
-  user: PropTypes.object
-};
 
 export default EditUser;

@@ -45,7 +45,8 @@ RSpec.describe TargetsController, type: :controller do
 
       it 'not mark as achieved if target is unachieved' do
         params = { id: target.id }
-        expect { put :toggle_achieved, params: params, format: :json }.to raise_error(ActionController::RoutingError)
+        put :toggle_achieved, params: params, format: :json
+        expect(response.body).to have_text "The page you were looking for doesn't exist"
       end
     end
   end
