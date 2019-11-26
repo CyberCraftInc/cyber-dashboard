@@ -11,7 +11,10 @@ class User < ApplicationRecord
   validates :phone, :email, uniqueness: true
   validates :first_name, :last_name, :phone, :project, presence: true
   validates :phone, format: { with: /\A\+380\d{9}\Z/,
-                              message: "should be in +380XXXXXXXXX format\n" }
+                              message: 'should be in +380XXXXXXXXX format. ' }
+  validates :avatar, format: { with: /\Adata:image|null/, message: 'Image ivalid type format. ' },
+                     length: { maximum: 40_000, message: 'has a big size. Try to use less than 30kB image. ' },
+                     allow_blank: true
 
   scope :users_joins_project, -> { includes(:project) }
   enum role: { admin: 0, employee: 1 }
@@ -30,6 +33,7 @@ class User < ApplicationRecord
       birthday: birthday,
       position: position,
       start_in_company: start_in_company.presence || created_at.strftime('%m/%d/%Y'),
+      avatar: avatar,
       project: {
         id: project.id,
         name: project.name,

@@ -12,6 +12,7 @@ describe 'Sign up', type: :feature do
       project: project.name,
       position: 'position',
       birthday: Time.zone.today,
+      avatar: false,
       start_in_company: Time.zone.today
     }
   end
@@ -35,7 +36,30 @@ describe 'Sign up', type: :feature do
     click_button 'Sign up'
 
     expect(page).to have_content 'Phone should be in +380XXXXXXXXX format'
-    expect(page).not_to have_content 'List of users'
+    expect(page).not_to have_content 'Number of employees'
+  end
+
+  it 'with correct avatar format' do
+    fill_in_sign_up_form(avatar: Rails.root.join('public', 'logo-test.png'))
+    click_button 'Sign up'
+
+    expect(page).to have_content 'Number of employees'
+  end
+
+  it 'with incorrect avatar big size' do
+    fill_in_sign_up_form(avatar: Rails.root.join('public', 'test.png'))
+    click_button 'Sign up'
+
+    expect(page).to have_content 'has a big size. Try to use less than 30kB image'
+    expect(page).not_to have_content 'Number of employees'
+  end
+
+  it 'with incorrect avatar image format' do
+    fill_in_sign_up_form(avatar: Rails.root.join('public', 'robots.txt'))
+    click_button 'Sign up'
+
+    expect(page).to have_content 'Image ivalid type format'
+    expect(page).not_to have_content 'Number of employees'
   end
 
   it 'with missed email field', js: true do
@@ -81,6 +105,7 @@ describe 'Sign up', type: :feature do
     fill_in 'Password', with: options[:password]
     fill_in 'Confirm password', with: options[:password]
     fill_in 'Birthday', with: options[:birthday]
+    attach_file 'file', options[:avatar] if options[:avatar]
     find('select option:first-of-type').select_option
   end
 end
