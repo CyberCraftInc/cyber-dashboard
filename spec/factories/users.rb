@@ -6,6 +6,7 @@ FactoryBot.define do
     sequence(:phone)      { |n| '+' + (380_000_000_000 + n).to_s }
     password              { 'secret' }
     birthday              { '01 Jan 1990' }
+    avatar                { 'null' }
     password_confirmation { password }
     confirmed_at { Time.zone.now }
     association :project, factory: :project

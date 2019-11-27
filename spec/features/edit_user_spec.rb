@@ -21,16 +21,46 @@ RSpec.describe 'Edit user', type: :feature do
 
   it 'Success edit user' do
     when_fill_and_submit_form
-    expect(find('input#userFirstName').value).to eq(user_edited.first_name)
-    expect(find('input#userLastName').value).to eq(user_edited.last_name)
-    expect(find('input#userPhone').value.gsub(/[() ]/, '')).to eq(user_edited.phone)
+    have_selector 'input#userFirstName', text: user_edited.first_name
+    have_selector 'input#userLastName', text: user_edited.last_name
+    have_selector 'input#userPhone', text: user_edited.phone
+    have_selector 'input#userAvatar', text: 'logo-test.png'
     expect(page).to have_content 'Profile updated'
-    sleep(3)
-    expect(page).to have_current_path(root_path)
+    sleep(5)
+    expect(page).to have_current_path root_path
   end
 
   it 'Error edit user when empty first name' do
     fill_empty_field_and_submit 'userFirstName'
+    error_messages
+  end
+
+  it 'Edit user when empty avatar' do
+    fill_in 'New password', with: 'newpass'
+    fill_in 'Confirm new password', with: 'newpass'
+    fill_in 'Current password', with: 'oldpass'
+    click_button 'Update'
+
+    error_messages
+  end
+
+  it 'Edit user with big image size for avatar' do
+    fill_in 'New password', with: 'newpass'
+    fill_in 'Confirm new password', with: 'newpass'
+    fill_in 'Current password', with: 'oldpass'
+    attach_file 'userAvatar', Rails.root.join('public', 'test.png')
+    click_button 'Update'
+
+    error_messages
+  end
+
+  it 'Edit user with invalid image type' do
+    fill_in 'New password', with: 'newpass'
+    fill_in 'Confirm new password', with: 'newpass'
+    fill_in 'Current password', with: 'oldpass'
+    attach_file 'userAvatar', Rails.root.join('public', 'robots.txt')
+    click_button 'Update'
+
     error_messages
   end
 
@@ -69,8 +99,8 @@ RSpec.describe 'Edit user', type: :feature do
 
   def error_messages
     error = find('span#notice').value
-    expect(page).to have_content error
-    expect(page).not_to have_current_path(root_path)
+    expect(page).to have_text error.to_s
+    expect(page).not_to have_current_path root_path
   end
 
   def when_fill_and_submit_form
@@ -78,6 +108,8 @@ RSpec.describe 'Edit user', type: :feature do
     fill_in 'userFirstName', with: user_edited.first_name
     fill_in 'userLastName', with: user_edited.last_name
     fill_in 'userPhone', with: phone_without_ukraine_code(user_edited.phone)
+    attach_file 'userAvatar', Rails.root.join('public', 'logo-test.png')
+
     find('button#button-edit').click
   end
 

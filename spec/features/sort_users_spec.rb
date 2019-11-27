@@ -47,6 +47,7 @@ describe 'Sort users', type: :feature do
   it 'sort by position value', js: true do
     default_users
 
+    expect(page).to have_button('position')
     click_button('position')
 
     using_wait_time 10 do
@@ -64,6 +65,7 @@ describe 'Sort users', type: :feature do
     default_users
     users_sorted = sort_by_birthday([first_user, second_user, third_user])
 
+    expect(page).to have_button('birthday')
     click_button('birthday')
 
     using_wait_time 10 do
@@ -80,6 +82,7 @@ describe 'Sort users', type: :feature do
   it 'sort by days in company value', js: true do
     default_users
 
+    expect(page).to have_button('days in company')
     click_button('days in company')
 
     using_wait_time 10 do
