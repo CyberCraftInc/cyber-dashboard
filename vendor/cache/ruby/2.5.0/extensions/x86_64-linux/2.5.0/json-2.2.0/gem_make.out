@@ -1,0 +1,13 @@
+current directory: /home/asaichuk/cyber-dashboard/vendor/cache/ruby/2.5.0/gems/json-2.2.0/ext/json
+/home/asaichuk/.rvm/rubies/ruby-2.5.1/bin/ruby -r ./siteconf20191126-27483-1ey55vv.rb extconf.rb
+creating Makefile
+
+current directory: /home/asaichuk/cyber-dashboard/vendor/cache/ruby/2.5.0/gems/json-2.2.0/ext/json
+make "DESTDIR=" clean
+
+current directory: /home/asaichuk/cyber-dashboard/vendor/cache/ruby/2.5.0/gems/json-2.2.0/ext/json
+make "DESTDIR="
+make: Nothing to be done for 'all'.
+
+current directory: /home/asaichuk/cyber-dashboard/vendor/cache/ruby/2.5.0/gems/json-2.2.0/ext/json
+make "DESTDIR=" install
