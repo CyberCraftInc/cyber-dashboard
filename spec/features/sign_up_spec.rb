@@ -40,14 +40,14 @@ describe 'Sign up', type: :feature do
   end
 
   it 'with correct avatar format' do
-    fill_in_sign_up_form(avatar: Rails.root.join('public', 'logo-test.png'))
+    fill_in_sign_up_form(avatar: Rails.root.join('public/logo-test.png'))
     click_button 'Sign up'
 
     expect(page).to have_content 'Number of employees'
   end
 
   it 'with incorrect avatar big size' do
-    fill_in_sign_up_form(avatar: Rails.root.join('public', 'test.png'))
+    fill_in_sign_up_form(avatar: Rails.root.join('public/test.png'))
     click_button 'Sign up'
 
     expect(page).to have_content 'has a big size. Try to use less than 30kB image'
@@ -55,7 +55,7 @@ describe 'Sign up', type: :feature do
   end
 
   it 'with incorrect avatar image format' do
-    fill_in_sign_up_form(avatar: Rails.root.join('public', 'robots.txt'))
+    fill_in_sign_up_form(avatar: Rails.root.join('public/robots.txt'))
     click_button 'Sign up'
 
     expect(page).to have_content 'Image ivalid type format'

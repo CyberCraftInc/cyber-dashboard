@@ -48,7 +48,7 @@ RSpec.describe 'Edit user', type: :feature do
     fill_in 'New password', with: 'newpass'
     fill_in 'Confirm new password', with: 'newpass'
     fill_in 'Current password', with: 'oldpass'
-    attach_file 'userAvatar', Rails.root.join('public', 'test.png')
+    attach_file 'userAvatar', Rails.root.join('public/test.png')
     click_button 'Update'
 
     error_messages
@@ -58,7 +58,7 @@ RSpec.describe 'Edit user', type: :feature do
     fill_in 'New password', with: 'newpass'
     fill_in 'Confirm new password', with: 'newpass'
     fill_in 'Current password', with: 'oldpass'
-    attach_file 'userAvatar', Rails.root.join('public', 'robots.txt')
+    attach_file 'userAvatar', Rails.root.join('public/robots.txt')
     click_button 'Update'
 
     error_messages
@@ -108,7 +108,7 @@ RSpec.describe 'Edit user', type: :feature do
     fill_in 'userFirstName', with: user_edited.first_name
     fill_in 'userLastName', with: user_edited.last_name
     fill_in 'userPhone', with: phone_without_ukraine_code(user_edited.phone)
-    attach_file 'userAvatar', Rails.root.join('public', 'logo-test.png')
+    attach_file 'userAvatar', Rails.root.join('public/logo-test.png')
 
     find('button#button-edit').click
   end
