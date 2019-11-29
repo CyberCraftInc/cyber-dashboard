@@ -329,7 +329,7 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
-    rubocop-rails (2.3.2)
+    rubocop-rails (2.4.0)
       rack (>= 1.1)
       rubocop (>= 0.72.0)
     rubocop-rspec (1.37.0)
@@ -425,7 +425,7 @@ DEPENDENCIES
   rails_admin (~> 2.0)!
   rspec-rails (= 4.0.0.beta3)
   rubocop (~> 0.77.0)
-  rubocop-rails (~> 2.3.2)
+  rubocop-rails (~> 2.4.0)
   rubocop-rspec (~> 1.37.0)
   sass-rails (~> 6.0)
   selenium-webdriver (= 3.142.6)
