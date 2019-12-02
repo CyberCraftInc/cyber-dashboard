@@ -7,7 +7,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user, event: :authentication
     else
       session['devise.google_data'] = request.env['omniauth.auth'].except(:extra)
-      return render 'new', locals: { user: @user, projects: @projects }
+      render 'new', locals: { user: @user, projects: @projects }
     end
   end
 end
