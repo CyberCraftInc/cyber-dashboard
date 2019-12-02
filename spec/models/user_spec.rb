@@ -18,8 +18,8 @@ RSpec.describe User, type: :model do
 
     context 'when parameter 0' do
       it 'gets all users' do
-        expected_all_user_ids = [foo.id, bar.id, john.id]
-        expect(User.filter(0).map(&:id)).to eq expected_all_user_ids
+        expected_all_user_ids = [foo.id, bar.id, john.id].sort
+        expect(User.filter(0).map(&:id).sort).to eq expected_all_user_ids
       end
     end
 
