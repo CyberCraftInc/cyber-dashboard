@@ -1,10 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class UserHeader extends React.Component {
   render() {
-    const { user, project, image_path, project_path } = this.props;
+    const { user, project, project_path, generateICSURL } = this.props;
     const gravatar = require("gravatar");
-
     return (
       <div className="container row pt-3 px-4">
         <div className="py-2">
@@ -31,10 +31,11 @@ class UserHeader extends React.Component {
                   <span>Create Event</span>
                 </a>
                 <a
-                  className="mail btn btn-primary"
-                  href="mailto:`${user.email}`"
+                  className="btn btn-primary mail"
+                  href={generateICSURL}
+                  title="Generate ics file"
                 >
-                  <i className="fas fa-envelope"></i>
+                  <i className="fas fa-calendar"></i>
                 </a>
               </div>
             </div>
@@ -79,5 +80,13 @@ class UserHeader extends React.Component {
     );
   }
 }
+
+UserHeader.propTypes = {
+  user: PropTypes.object,
+  project: PropTypes.object,
+  image_path: PropTypes.string,
+  project_path: PropTypes.string,
+  generateICSURL: PropTypes.string
+};
 
 export default UserHeader;

@@ -75,4 +75,24 @@ RSpec.describe UsersController, type: :controller do
       end
     end
   end
+
+  describe 'GET #ics_export' do
+    let(:user) { FactoryBot.create(:user) }
+
+    it 'returns without login' do
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'returns text/calendar and status 200' do
+      get :ics_export, params: { user_id: user.id, signature: user.signature_hash }
+      expect(response.content_type).to eq 'text/calendar'
+    end
+
+    it 'return 404 when signature is invalid' do
+      get :ics_export, params: { user_id: user.id, signature: 'invalid signature' }
+      expect(response).to have_http_status(:not_found)
+      expect(response.content_type).to eq 'application/json'
+      expect(JSON.parse(response.body)['error']).to eq 'not-found'
+    end
+  end
 end

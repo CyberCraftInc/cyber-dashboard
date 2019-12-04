@@ -22,6 +22,17 @@ class Event < ApplicationRecord
     }
   end
 
+  def to_ics
+    event = Icalendar::Event.new
+    event.dtstart = start_date.strftime('%Y%m%dT%H%M%S')
+    event.dtend = finish_date.strftime('%Y%m%dT%H%M%S')
+    event.summary = description
+    event.created = created_at
+    event.last_modified = updated_at
+    event.comment = comments
+    event
+  end
+
   private
 
   def date_validation
