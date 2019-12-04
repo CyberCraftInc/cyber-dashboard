@@ -41,3 +41,4 @@ gem 'haml', '5.1.2'
 gem 'haml-rails', '2.0.1'
 gem 'travis'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'font-awesome-sass'

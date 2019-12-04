@@ -18,7 +18,7 @@
 @import "themes/admin";
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Titillium Web", sans-serif;
   padding-bottom: 88px;
 }
 
@@ -31,4 +31,30 @@ div[data-behavior="vue"] {
 
 .notice {
   color: rgb(48, 233, 116);
+}
+
+.primary-color {
+  color: #383f45;
+}
+.secondary-color {
+  color: #f39600;
+}
+
+.footer {
+  z-index: 3;
+  a {
+    z-index: 4;
+    color: #f39600;
+    margin: 0 5px;
+    &:hover {
+      color: inherit;
+    }
+  }
+}
+
+i {
+  margin-right: 10px;
+  &.short {
+    margin-right: 5px;
+  }
 }

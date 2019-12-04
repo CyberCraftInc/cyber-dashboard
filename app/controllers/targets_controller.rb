@@ -1,5 +1,6 @@
 class TargetsController < ApplicationController
   before_action :set_target, only: %i[update destroy toggle_achieved]
+  skip_before_action :verify_authenticity_token
 
   def create
     @target = Target.new(target_params)

@@ -1,1 +1,3 @@
-.user-info{ "data-props": { userForProps: @user.data, "EventsPath": events_path, "eventsForProps": @events.map(&:data).to_json, "statuses": @statuses.to_json, "canEditEvent": policy(@events).update? }.to_json}
+.users_component
+  = react_component('UserHeader', user: @user.data, project: @user.project, project_path: project_path(@user.project.id))
+  = react_component('UserEvents', events: @events.map(&:data), noImage: image_path('no-events'), canEditEvent: policy(@events).update?)
