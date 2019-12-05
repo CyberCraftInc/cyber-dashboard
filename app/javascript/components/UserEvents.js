@@ -9,8 +9,25 @@ class UserEvents extends React.Component {
 
     this.state = {
       events: {},
-      targets: []
+      targets: new Map()
     };
+  }
+
+  changeTargetAchieved(target) {
+    const isChecked = target.checked;
+
+    axios
+      .put(target.toggle_achieved_path, {
+        params: {
+          id: target.id
+        }
+      })
+      .then(() =>
+        this.setState(prevState => ({
+          targets: prevState.targets.set(target.id, isChecked)
+        }))
+      )
+      .catch(() => (this.axiosFlashNotice = "Failed change checkbox "));
   }
 
   showButtonForCanEditEvent() {
@@ -57,17 +74,6 @@ class UserEvents extends React.Component {
     return document
       .getElementById("event" + eventId)
       .classList.contains("display-block");
-  }
-
-  changeTargetAchieved(target) {
-    axios
-      .put(target.toggle_achieved_path, {
-        params: {
-          id: target.id
-        }
-      })
-      .then(() => (this.axiosFlashNotice = false))
-      .catch(() => (this.axiosFlashNotice = "Failed change checkbox "));
   }
 
   onClickButton(event) {
@@ -199,7 +205,8 @@ class UserEvents extends React.Component {
 
   targetList(targets) {
     let children = [];
-    targets.forEach(target =>
+
+    targets.forEach(target => {
       children.push(
         <div key={target.id}>
           <div className="d-inline">
@@ -207,7 +214,8 @@ class UserEvents extends React.Component {
               className="pt-1 checkbox"
               id={"target" + target.id}
               type="checkbox"
-              checked={target.achieved}
+              defaultChecked={target.achieved}
+              checked={this.state.targets.get(target.id)}
               onChange={this.changeTargetAchieved.bind(this, target)}
               disabled={!this.props.canEditEvent}
             />
@@ -218,8 +226,8 @@ class UserEvents extends React.Component {
 
           <div className="row pt-1">{target.name}</div>
         </div>
-      )
-    );
+      );
+    });
 
     return children;
   }
