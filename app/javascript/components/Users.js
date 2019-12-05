@@ -81,17 +81,18 @@ class Users extends Component {
   };
 
   sortButtons = buttons => {
-    return buttons.map((type, index) => (
+    return Object.entries(buttons).map((type, index) => (
       <button
         key={index}
         type="button"
         onClick={e => {
           this.addActiveClass(e.target);
-          this.sortBy(type);
+          this.sortBy(type[0]);
         }}
-        className={"btn btn-outline-dark m-0 mb-2 mr-2"}
+        className={"btn btn btn-primary m-0 mb-2 mr-2"}
       >
-        {type}
+        <i className={"fas " + type[1]}></i>
+        {type[0]}
       </button>
     ));
   };
@@ -106,50 +107,64 @@ class Users extends Component {
 
     return (
       <div>
-        <div className="d-flex flex-wrap justify-content-between align-items-center">
-          <div className="col-sm-12 col-md-3 mb-1 mb-md-0">
-            <form id="search">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search"
-                onChange={e => {
-                  this.setState({
-                    usersList: this.filteredList(e.target.value, filteredUsers)
-                  });
-                }}
-                aria-label="Search users"
-                id="query"
-              />
-            </form>
-          </div>
+        <h3 className="pl-4">Employees ({users.length})</h3>
 
-          <div className="col-sm-12 col-md-3 mb-1 d-flex justify-content-center">
-            <CurrentTime />
-          </div>
-
-          <div className="col-sm-12 col-md-3 p-sm-0">
-            <SelectProject
-              options={projects}
-              handleChange={value => this.selectProject(usersPath, value)}
-              placeholder="All employees"
-            />
-          </div>
-        </div>
         <div className="d-flex flex-wrap justify-content-between mt-4">
           <div className="pl-4">
-            {this.sortButtons(["position", "birthday", "days in company"])}
+            {this.sortButtons({
+              position: "fa-user",
+              birthday: "fa-birthday-cake",
+              "days in company": "fa-calendar"
+            })}
           </div>
-          <span>
-            Number of employees <strong>{users.length}</strong>
-          </span>
+
+          <div className="d-flex flex-wrap justify-content-between align-items-right">
+            <div className="col-sm-12 col-md-6 mb-1 mb-md-0">
+              <form id="search">
+                <div className="input-group">
+                  <div className="input-group-prepend">
+                    <div className="input-group-text" id="btnGroupAddon">
+                      <i className="fas fa-search" />
+                    </div>
+                  </div>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search ..."
+                    onChange={e => {
+                      this.setState({
+                        usersList: this.filteredList(
+                          e.target.value,
+                          filteredUsers
+                        )
+                      });
+                    }}
+                    aria-label="Search users"
+                    id="query"
+                  />
+                </div>
+              </form>
+            </div>
+
+            <div className="col-sm-12 col-md-6 p-sm-0">
+              <div className="input-group">
+                <div className="input-group-prepend">
+                  <div className="input-group-text" id="btnGroupAddon">
+                    <i className="fas fa-filter" />
+                  </div>
+                </div>
+                <SelectProject
+                  options={projects}
+                  handleChange={value => this.selectProject(usersPath, value)}
+                  placeholder="All employees"
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div
-          className="d-flex bd-highlight users"
-          style={{ height: "65vh", overflowY: "scroll" }}
-        >
-          <div className="d-flex flex-wrap justify-content-center justify-content-md-start">
+        <div className="d-flex bd-highlight users">
+          <div className="d-flex flex-wrap justify-content-center justify-content-md-start user-list mt-2">
             {usersList.map(user => (
               <div
                 key={user.id}
@@ -160,40 +175,67 @@ class Users extends Component {
                 style={{ width: "18rem", height: "max-content" }}
               >
                 <div
-                  className="card-body d-flex align-items-center flex-column btn-outline-dark"
+                  className="card-body d-flex align-items-center flex-column"
                   style={{ cursor: "pointer" }}
                 >
-                  <div
-                    className="mb-2 img-thumbnail"
-                    style={{
-                      borderRadius: "50%",
-                      width: "120px",
-                      height: "120px",
-                      overflow: "hidden",
-                      backgroundImage: `url(
-                        ${
-                          user.avatar && user.avatar != "null"
-                            ? user.avatar
-                            : profileImage
-                        }
-                      )`,
-                      backgroundSize: "cover"
-                    }}
-                  ></div>
-                  <h5 className="card-title">
+                  {(() => {
+                    if (user.avatar && user.avatar != "null") {
+                      return (
+                        <div
+                          className="mb-2 img-thumbnail"
+                          style={{
+                            borderRadius: "50%",
+                            width: "140px",
+                            height: "140px",
+                            overflow: "hidden",
+                            backgroundImage: `url(${user.avatar})`,
+                            backgroundSize: "cover"
+                          }}
+                        ></div>
+                      );
+                    } else return <i className="fas fa-user-circle"></i>;
+                  })()}
+
+                  <h5 className="card-title mt-3">
                     <strong>{this.checkBirthday(user.birthday)}</strong>
                     <strong>{user.first_name + " " + user.last_name}</strong>
                   </h5>
-                  <h6 className="d-flex flex-wrap card-subtitle mb-2 justify-content-center">
-                    <span className="text-center">{user.position}</span>
+                  <h6 className="mb-2 justify-content-between user-position">
+                    <span className="text-center">
+                      <i>{user.position}</i>
+                    </span>
                   </h6>
 
-                  <address className="d-flex flex-column align-items-center">
-                    <a href={`mailto:${user.email}`} className="text-info">
-                      {user.email}
-                    </a>
-                    <h6>{new Date(user.birthday).toLocaleDateString()}</h6>
-                    <h6>{user.phone}</h6>
+                  <address className="row">
+                    <div className="col-1">
+                      <ul className="list-unstyled">
+                        <li>
+                          <i className="fa fa-envelope"></i>
+                        </li>
+                        <li>
+                          <i className="fa fa-phone"></i>
+                        </li>
+                        <li>
+                          <i className="fa fa-birthday-cake"></i>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="col-10">
+                      <ul className="list-unstyled">
+                        <li className="text-muted">
+                          <a
+                            href={`mailto:${user.email}`}
+                            className="text-info"
+                          >
+                            {user.email}
+                          </a>
+                        </li>
+                        <li className="text-muted">{user.phone}</li>
+                        <li className="text-muted">
+                          {new Date(user.birthday).toLocaleDateString()}
+                        </li>
+                      </ul>
+                    </div>
                   </address>
                 </div>
               </div>
