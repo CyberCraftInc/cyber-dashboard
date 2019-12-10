@@ -83,7 +83,7 @@ GEM
     bcrypt (3.1.13)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
-    builder (3.2.3)
+    builder (3.2.4)
     capybara (3.29.0)
       addressable
       mini_mime (>= 0.1.3)
