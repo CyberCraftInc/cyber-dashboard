@@ -30,7 +30,7 @@
     "sass-loader": "8.0.0",
     "vue": "2.6.10",
     "vue-axios": "2.1.5",
-    "vue-loader": "15.7.2",
+    "vue-loader": "15.8.1",
     "vue-template-compiler": "2.6.10",
     "webpack": "4.41",
     "webpack-cli": "3.3.10"
