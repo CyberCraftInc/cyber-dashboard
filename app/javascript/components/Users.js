@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import axios from "axios";
 import { daysInCompany, birthday, position } from "../utils/SortUsers";
 import SelectProject from "./SelectProject";
@@ -12,12 +11,29 @@ class Users extends Component {
 
     this.state = {
       filteredUsers: [],
-      usersList: []
+      usersList: [],
+      projects: [],
+      usersPath: "/users"
     };
   }
 
   componentDidMount() {
-    this.selectProject(this.props.usersPath);
+    this.selectProject(this.state.usersPath);
+
+    axios
+      .get(this.state.usersPath, {
+        params: {
+          id: 0
+        }
+      })
+      .then(response => {
+        this.setState({
+          usersList: response.data.users,
+          projects: JSON.parse(response.data.projects),
+          filteredUsers: response.data.users
+        });
+      })
+      .catch(error => console.log(error.response.data));
   }
 
   addActiveClass = element => {
@@ -59,7 +75,7 @@ class Users extends Component {
         break;
       default:
         this.setState({
-          usersList: this.props.users
+          usersList: this.state.usersList
         });
     }
   };
@@ -73,8 +89,8 @@ class Users extends Component {
       })
       .then(response => {
         this.setState({
-          usersList: response.data,
-          filteredUsers: response.data
+          usersList: response.data.users,
+          filteredUsers: response.data.users
         });
       })
       .catch(error => console.log(error.response.data));
@@ -101,11 +117,10 @@ class Users extends Component {
       new Date().toLocaleDateString().slice(0, 5) && "🎂 ";
 
   render() {
-    const { projects, usersPath, users } = this.props;
-    const { filteredUsers, usersList } = this.state;
+    const { projects, usersPath, filteredUsers, usersList } = this.state;
 
     return (
-      <div>
+      <div className="mt-3">
         <div className="d-flex flex-wrap justify-content-between align-items-center">
           <div className="col-sm-12 col-md-3 mb-1 mb-md-0">
             <form id="search">
@@ -141,7 +156,7 @@ class Users extends Component {
             {this.sortButtons(["position", "birthday", "days in company"])}
           </div>
           <span>
-            Number of employees <strong>{users.length}</strong>
+            Number of employees <strong>{usersList.length}</strong>
           </span>
         </div>
 
@@ -206,9 +221,3 @@ class Users extends Component {
 }
 
 export default Users;
-
-Users.propTypes = {
-  users: PropTypes.array,
-  projects: PropTypes.array,
-  usersPath: PropTypes.string
-};

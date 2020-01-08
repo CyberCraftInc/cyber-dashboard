@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'activerecord-session_store'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise', '4.7.1'
 gem 'foreman', '0.86.0'

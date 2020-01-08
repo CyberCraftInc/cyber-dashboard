@@ -55,7 +55,7 @@ RSpec.describe 'Socialmedia login via Google', type: :feature do
   end
 
   def given_a_login_page
-    visit new_user_session_path
+    visit '/login'
     expect(page).to have_text('Log in')
     find('a#oauth.btn').click
   end
