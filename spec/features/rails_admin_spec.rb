@@ -14,10 +14,7 @@ describe 'Rails Admin', type: :feature do
       find('span', text: user.first_name).click
       expect(page).not_to have_content('Admin')
       visit rails_admin_path
-      expect do
-        visit rails_admin_path
-        expect(page).to have_text 'Not found'
-      end.to raise_error(ActionController::RoutingError)
+      expect(page).to have_text 'PAGE NOT FOUND'
     end
   end
 

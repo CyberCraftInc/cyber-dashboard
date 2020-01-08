@@ -7,7 +7,9 @@ import "bootstrap";
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-/// React import end
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import App from "../components/App";
+/// end React import
 
 window.moment = require("moment");
 
@@ -19,7 +21,7 @@ for (const key of context.keys()) {
   const componentName = key.match(/([^/.]+)\.js/)[1];
   components[componentName] = context(key).default;
 }
-/// React components end
+/// end React components
 
 require("../../assets/javascripts/mask");
 require("imask");
@@ -68,4 +70,13 @@ window.addEventListener("load", () => {
 
     ReactDOM.render(React.createElement(component, props || {}), element);
   }
+  /// end Mounting elements by selector
+
+  const footer = document.getElementsByTagName("footer")[0];
+  ReactDOM.render(
+    <Router>
+      <Route path="/" component={App} />
+    </Router>,
+    document.body.insertBefore(document.createElement("main"), footer)
+  );
 });

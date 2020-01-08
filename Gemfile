@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'activerecord-session_store'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise', '4.7.1'
 gem 'foreman', '0.86.0'
@@ -25,7 +26,7 @@ group :development, :test do
   gem 'rspec-rails', '4.0.0.beta3'
   gem 'rubocop', '~> 0.79.0', require: false
   gem 'rubocop-rails', '~> 2.4.0', require: false
-  gem 'rubocop-rspec', '~> 1.37.0', require: false
+  gem 'rubocop-rspec', '~> 1.37.1', require: false
   gem 'simplecov', '0.17.1', require: false
 end
 

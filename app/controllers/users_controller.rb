@@ -4,26 +4,8 @@ class UsersController < ApplicationController
   def index
     @projects = Project.all.to_json
     @users = User.filter(params[:id]).map(&:data)
-    respond_to do |format|
-      format.html
-      format.json { render json: @users }
-    end
-  end
 
-  def edit
-    @user = current_user
-  end
-
-  def update
-    @user = current_user
-    respond_to do |format|
-      if @user.update_with_password(user_params)
-        bypass_sign_in(@user)
-        format.json { render json:  { success: @user } }
-      else
-        format.json { render json:  { errors: @user.errors.full_messages } }
-      end
-    end
+    json_response(users: @users, projects: @projects)
   end
 
   def show

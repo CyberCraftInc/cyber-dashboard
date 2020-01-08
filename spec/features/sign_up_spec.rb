@@ -18,7 +18,7 @@ describe 'Sign up', type: :feature do
   end
 
   before do
-    visit new_user_registration_path
+    visit '/sign_up'
   end
 
   it 'with correct filled form', js: true do
@@ -26,6 +26,7 @@ describe 'Sign up', type: :feature do
     expect(find_field('Start in company').value).to eq Time.current.strftime('%Y-%m-%d')
 
     fill_in_sign_up_form
+
     click_button 'Sign up'
 
     expect(page).to have_content 'Number of employees'
