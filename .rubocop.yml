@@ -5,9 +5,9 @@ require:
 AllCops:
   Exclude:
     - db/schema.rb
-    - node_modules/node-sass/src/libsass/contrib/libsass.spec
-    - node_modules/node-sass/src/libsass/extconf.rb
     - bin/yarn
+    - node_modules/**/*
+    - vendor/**/*
 
 Style/FrozenStringLiteralComment:
   Enabled: false
