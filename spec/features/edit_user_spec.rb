@@ -6,7 +6,7 @@ RSpec.describe 'Edit user', type: :feature do
 
   before do
     sign_in(user)
-    visit_edit_page
+    visit '/edit'
   end
 
   it 'show edit page' do
@@ -73,6 +73,7 @@ RSpec.describe 'Edit user', type: :feature do
     fill_in 'New password', with: 'newpass'
     fill_in 'Confirm new password', with: 'newpass'
     fill_in 'Current password', with: 'oldpass'
+    fill_in 'userPhone', with: phone_without_ukraine_code(user_edited.phone)
     click_button 'Update'
 
     expect(page).not_to have_content('Current password is invalid')

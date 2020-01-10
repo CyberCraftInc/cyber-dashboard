@@ -6,7 +6,7 @@ import GoogleImage from "../images/google+.png";
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {rememberMe: 0, errorFromAPI: ""};
+    this.state = { rememberMe: 0, errorFromAPI: "" };
     this.inputEmail = React.createRef();
     this.inputPassword = React.createRef();
   }
@@ -20,65 +20,97 @@ class SignIn extends React.Component {
           remember_me: this.state.rememberMe
         }
       })
-      .then(() => location.href = this.props.root)
-      .catch(error => this.setState({errorFromAPI: error.response.data.error}));
+      .then(() => (location.href = this.props.root))
+      .catch(error =>
+        this.setState({ errorFromAPI: error.response.data.error })
+      );
   }
 
   renderErrorSection(flash) {
-    return (flash.length > 0 ? flash.map(errorItem => (
-      <div key={errorItem[1]} className="alert alert-danger flash_notice"
-           role={errorItem[0]}>{errorItem[1]}</div>)) : this.state.errorFromAPI.length > 0 &&
-      <div className="alert alert-danger flash_notice">{this.state.errorFromAPI}</div>);
+    return flash.length > 0
+      ? flash.map(errorItem => (
+          <div
+            key={errorItem[1]}
+            className="alert alert-danger flash_notice"
+            role={errorItem[0]}
+          >
+            {errorItem[1]}
+          </div>
+        ))
+      : this.state.errorFromAPI.length > 0 && (
+          <div className="alert alert-danger flash_notice">
+            {this.state.errorFromAPI}
+          </div>
+        );
   }
 
   toggleRememberMe() {
-    this.setState({rememberMe: this.state.rememberMe ? 0 : 1});
+    this.setState({ rememberMe: this.state.rememberMe ? 0 : 1 });
   }
 
   render() {
-    const {flash, googleOauthPath, signUpPath, newPasswordPath} = this.props;
-    return (<div id="logging-box">
-      <div className="row">
-        <div className="offset-md-2.col-md-8">
-          <h4>Log in</h4>
-          {this.renderErrorSection(flash)}
-          <div>
-            <label htmlFor="email"> Email </label>
-            <input
-              className="form-control"
-              type="email"
-              id="email"
-              ref={this.inputEmail}
-            />
-          </div>
-          <div>
-            <label htmlFor="password"> Password </label>
-            <input
-              className="form-control"
-              type="password"
-              id="password"
-              ref={this.inputPassword}
-            />
-          </div>
-          <div>
-            <label htmlFor="rememberMe" className="form-check-label">Remember me</label>
-            <input
-              type="checkbox"
-              className="form-check-input ml-1 mt-1"
-              id="rememberMe"
-              onChange={() => this.toggleRememberMe()}
-            />
-          </div>
-          <div>
-            <button className="btn" onClick={() => this.signIn()}>Log in</button>
-            <a className="btn btn-primary ml-3" href={signUpPath}>Sign Up</a>
-            <a id="oauth" className="btn" href={googleOauthPath}><img alt="google+" src={GoogleImage} border="0" width="50"
-                                                           height="50"/></a>
-            <div><a href={newPasswordPath} title="New password">Forgot your password?</a></div>
+    const { flash, googleOauthPath, signUpPath, newPasswordPath } = this.props;
+    return (
+      <div id="logging-box">
+        <div className="row">
+          <div className="offset-md-2.col-md-8">
+            <h4>Log in</h4>
+            {this.renderErrorSection(flash)}
+            <div>
+              <label htmlFor="email"> Email </label>
+              <input
+                className="form-control"
+                type="email"
+                id="email"
+                ref={this.inputEmail}
+              />
+            </div>
+            <div>
+              <label htmlFor="password"> Password </label>
+              <input
+                className="form-control"
+                type="password"
+                id="password"
+                ref={this.inputPassword}
+              />
+            </div>
+            <div>
+              <label htmlFor="rememberMe" className="form-check-label">
+                Remember me
+              </label>
+              <input
+                type="checkbox"
+                className="form-check-input ml-1 mt-1"
+                id="rememberMe"
+                onChange={() => this.toggleRememberMe()}
+              />
+            </div>
+            <div>
+              <button className="btn" onClick={() => this.signIn()}>
+                Log in
+              </button>
+              <a className="btn btn-primary ml-3" href={signUpPath}>
+                Sign Up
+              </a>
+              <a id="oauth" className="btn" href={googleOauthPath}>
+                <img
+                  alt="google+"
+                  src={GoogleImage}
+                  border="0"
+                  width="50"
+                  height="50"
+                />
+              </a>
+              <div>
+                <a href={newPasswordPath} title="New password">
+                  Forgot your password?
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>);
+    );
   }
 }
 
@@ -89,7 +121,7 @@ SignIn.propTypes = {
   signUpPath: PropTypes.string,
   googleOauthPath: PropTypes.string,
   forgotPasswordPath: PropTypes.string,
-  newPasswordPath: PropTypes.string,
+  newPasswordPath: PropTypes.string
 };
 
 export default SignIn;
