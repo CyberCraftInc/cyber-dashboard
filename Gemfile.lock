@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/sferik/rails_admin.git
-  revision: 77571f28ef686e5b3fac853e5f29037ff4591a08
+  revision: 98ddea1260d018c0a2f0072445b6569328627586
   specs:
-    rails_admin (2.0.0)
+    rails_admin (2.0.1)
       activemodel-serializers-xml (>= 1.0)
       builder (~> 3.1)
       haml (>= 4.0, < 6)
@@ -303,7 +303,7 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     regexp_parser (1.6.0)
-    remotipart (1.4.3)
+    remotipart (1.4.4)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
