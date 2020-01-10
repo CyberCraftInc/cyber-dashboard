@@ -126,7 +126,7 @@ GEM
     faraday_middleware (0.13.1)
       faraday (>= 0.7.4, < 1.0)
     ffi (1.11.3)
-    foreman (0.86.0)
+    foreman (0.87.0)
     formatador (0.2.5)
     gh (0.15.1)
       addressable (~> 2.4.0)
@@ -415,7 +415,7 @@ DEPENDENCIES
   database_cleaner
   devise (= 4.7.1)
   factory_bot_rails (= 5.1.1)
-  foreman (= 0.86.0)
+  foreman (= 0.87.0)
   guard-rspec (= 4.7.3)
   haml (= 5.1.2)
   haml-rails (= 2.0.1)
