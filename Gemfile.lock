@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/sferik/rails_admin.git
-  revision: 98ddea1260d018c0a2f0072445b6569328627586
+  revision: 692ae9910be9c9d80045735265c62b514ae2927d
   specs:
     rails_admin (2.0.1)
       activemodel-serializers-xml (>= 1.0)
