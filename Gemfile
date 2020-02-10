@@ -7,7 +7,7 @@ gem 'activerecord-session_store'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise', '4.7.1'
 gem 'foreman', '0.87.0'
-gem 'jbuilder', '~> 2.9'
+gem 'jbuilder', '~> 2.10'
 gem 'omniauth-google-oauth2', '0.8.0'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3'
