@@ -880,11 +880,6 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
   integrity sha512-ce5d3q03Ex0sy4R14722Rmt6MT07Ua+k4FwDfdcToYJcMKNtRVQvJ6JCAPdAmAnbRb6CsX6aYb9m96NGod9uTw==
 
-"@ungap/global-this@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@ungap/global-this/-/global-this-0.3.1.tgz#e37e005301c64484a61eed90305210bf078a4bc5"
-  integrity sha512-6gxLxSsXmt3XcC2p0mRjeHOtZemfs/IswAyWJZU0b8UvCQAegRpjSrQK0Y+u3OQQ3V0ZYQkHVCV9V3dxnlJ5Zw==
-
 "@vue/component-compiler-utils@^3.1.0":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@vue/component-compiler-utils/-/component-compiler-utils-3.1.1.tgz#d4ef8f80292674044ad6211e336a302e4d2a6575"
@@ -3998,12 +3993,10 @@ ignore@^4.0.6:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
   integrity sha512-cyFDKrqc/YdcWFniJhzI42+AzS+gNwmUzOSFcRCQYwySuBBBy/KjuxWLZ/FHEH6Moq1NizMOBWyTcv8O4OZIMg==
 
-imask@6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/imask/-/imask-6.0.1.tgz#081b3cd90339ff5108e2110d686a1618bbad5331"
-  integrity sha512-UjsrfPtc+9eTOsaeWE76BTG0m7ZmjYdAe8tpvfmTfNBK9nk+h5cmCtXn/fUpBQ+Ggi2vG8Rovpki7l8Cs/JJkQ==
-  dependencies:
-    "@ungap/global-this" "^0.3.1"
+imask@6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/imask/-/imask-6.0.2.tgz#af5ac0b965dfc48d2edb7ee390f9fec276c0eeb5"
+  integrity sha512-tXuBtI/SmzMMn2Z2SRx4ShkmBKfb43RV4BkSTZxfB2h5NAzkCFqI3AWY9gbhESBHe8MCbX1OoJRjxVwT0QL5xA==
 
 import-cwd@^2.0.0:
   version "2.1.0"
