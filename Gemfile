@@ -27,7 +27,7 @@ group :development, :test do
   gem 'rubocop', '~> 0.79.0', require: false
   gem 'rubocop-rails', '~> 2.4.2', require: false
   gem 'rubocop-rspec', '~> 1.38.1', require: false
-  gem 'simplecov', '0.18.2', require: false
+  gem 'simplecov', '0.18.5', require: false
 end
 
 group :test do
