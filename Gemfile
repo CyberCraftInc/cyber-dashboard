@@ -34,7 +34,7 @@ group :test do
   gem 'capybara', '3.31.0'
   gem 'database_cleaner'
   gem 'guard-rspec', '4.7.3'
-  gem 'launchy', '2.4.3'
+  gem 'launchy', '2.5.0'
   gem 'selenium-webdriver', '3.142.7'
 end
 
