@@ -27,14 +27,14 @@ group :development, :test do
   gem 'rubocop', '~> 0.80.1', require: false
   gem 'rubocop-rails', '~> 2.4.2', require: false
   gem 'rubocop-rspec', '~> 1.38.1', require: false
-  gem 'simplecov', '0.18.2', require: false
+  gem 'simplecov', '0.18.5', require: false
 end
 
 group :test do
   gem 'capybara', '3.31.0'
   gem 'database_cleaner'
   gem 'guard-rspec', '4.7.3'
-  gem 'launchy', '2.4.3'
+  gem 'launchy', '2.5.0'
   gem 'selenium-webdriver', '3.142.7'
 end
 
