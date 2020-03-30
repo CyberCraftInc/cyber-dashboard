@@ -23,7 +23,7 @@ group :development, :test do
   gem 'letter_opener', '1.7.0'
   gem 'overcommit', '~> 0.52.1'
   gem 'pry-rails', '~> 0.3.8'
-  gem 'rspec-rails', '4.0.0.beta4'
+  gem 'rspec-rails', '4.0.0'
   gem 'rubocop', '~> 0.80.1', require: false
   gem 'rubocop-rails', '~> 2.4.2', require: false
   gem 'rubocop-rspec', '~> 1.38.1', require: false
