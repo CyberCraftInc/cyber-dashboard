@@ -16,12 +16,12 @@ gem 'rails', '~> 6.0.2'
 gem 'rails_admin', '~> 2.0', git: 'https://github.com/sferik/rails_admin.git'
 gem 'sass-rails', '~> 6.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'webpacker', '5.1.0'
+gem 'webpacker', '5.1.1'
 
 group :development, :test do
-  gem 'factory_bot_rails', '5.1.1'
+  gem 'factory_bot_rails', '5.2.0'
   gem 'letter_opener', '1.7.0'
-  gem 'overcommit', '~> 0.52.1'
+  gem 'overcommit', '~> 0.53.0'
   gem 'pry-rails', '~> 0.3.8'
   gem 'rspec-rails', '4.0.0'
   gem 'rubocop', '~> 0.82.0', require: false
