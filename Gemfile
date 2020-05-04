@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '5.1.1'
 
 group :development, :test do
-  gem 'factory_bot_rails', '5.1.1'
+  gem 'factory_bot_rails', '5.2.0'
   gem 'letter_opener', '1.7.0'
   gem 'overcommit', '~> 0.52.1'
   gem 'pry-rails', '~> 0.3.8'
