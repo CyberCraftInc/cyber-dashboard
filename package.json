@@ -38,7 +38,7 @@
     "webpack-cli": "3.3.11"
   },
   "devDependencies": {
-    "webpack-dev-server": "3.10.3"
+    "webpack-dev-server": "3.11.0"
   },
   "scripts": {
     "lint": "eslint app/javascript/"
