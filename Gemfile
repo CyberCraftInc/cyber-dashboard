@@ -12,7 +12,7 @@ gem 'omniauth-google-oauth2', '0.8.0'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3'
 gem 'pundit', '2.1.0'
-gem 'rails', '~> 6.0.2'
+gem 'rails', '~> 6.0.3'
 gem 'rails_admin', '~> 2.0', git: 'https://github.com/sferik/rails_admin.git'
 gem 'sass-rails', '~> 6.0'
 gem 'uglifier', '>= 1.3.0'
@@ -24,14 +24,14 @@ group :development, :test do
   gem 'overcommit', '~> 0.53.0'
   gem 'pry-rails', '~> 0.3.8'
   gem 'rspec-rails', '4.0.0'
-  gem 'rubocop', '~> 0.82.0', require: false
+  gem 'rubocop', '~> 0.83.0', require: false
   gem 'rubocop-rails', '~> 2.4.2', require: false
   gem 'rubocop-rspec', '~> 1.39.0', require: false
   gem 'simplecov', '0.18.5', require: false
 end
 
 group :test do
-  gem 'capybara', '3.32.1'
+  gem 'capybara', '3.32.2'
   gem 'database_cleaner'
   gem 'guard-rspec', '4.7.3'
   gem 'launchy', '2.5.0'
