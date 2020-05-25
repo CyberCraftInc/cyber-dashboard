@@ -403,7 +403,7 @@ GEM
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
     websocket (1.2.8)
-    websocket-driver (0.7.1)
+    websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
     xpath (3.2.0)
