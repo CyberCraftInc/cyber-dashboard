@@ -307,7 +307,7 @@ GEM
       ffi (~> 1.0)
     regexp_parser (1.7.0)
     remotipart (1.4.4)
-    responders (3.0.0)
+    responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.4)
