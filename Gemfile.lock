@@ -332,10 +332,11 @@ GEM
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
     rspec-support (3.9.3)
-    rubocop (0.84.0)
+    rubocop (0.85.1)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.7)
       rexml
       rubocop-ast (>= 0.0.3)
       ruby-progressbar (~> 1.7)
@@ -439,7 +440,7 @@ DEPENDENCIES
   rails (~> 6.0.3)
   rails_admin (~> 2.0)!
   rspec-rails (= 4.0.1)
-  rubocop (~> 0.84.0)
+  rubocop (~> 0.85.1)
   rubocop-rails (~> 2.4.2)
   rubocop-rspec (~> 1.39.0)
   sass-rails (~> 6.0)
