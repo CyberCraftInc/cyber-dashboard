@@ -266,7 +266,7 @@ GEM
     pusher-client (0.6.2)
       json
       websocket (~> 1.0)
-    rack (2.2.2)
+    rack (2.2.3)
     rack-pjax (1.1.0)
       nokogiri (~> 1.5)
       rack (>= 1.1)
@@ -409,7 +409,7 @@ GEM
     websocket (1.2.8)
     websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.4)
+    websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.3.0)
