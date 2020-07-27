@@ -15,7 +15,7 @@
     "babel-preset-react": "6.24.1",
     "bootstrap": "4.5.0",
     "core-js": "3",
-    "css-loader": "3.6.0",
+    "css-loader": "4.0.0",
     "eslint": "7.4.0",
     "eslint-plugin-react": "7.20.0",
     "imask": "6.0.5",
