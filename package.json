@@ -4,7 +4,7 @@
   "dependencies": {
     "@babel/core": "7.10.4",
     "@babel/preset-react": "7.10.4",
-    "@fortawesome/fontawesome-svg-core": "^1.2.29",
+    "@fortawesome/fontawesome-svg-core": "^1.2.31",
     "@fortawesome/free-solid-svg-icons": "^5.13.1",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "@rails/webpacker": "5.1.1",
@@ -17,7 +17,7 @@
     "core-js": "3",
     "css-loader": "3.6.0",
     "eslint": "7.4.0",
-    "eslint-plugin-react": "7.20.0",
+    "eslint-plugin-react": "7.21.3",
     "imask": "6.0.5",
     "jquery": "3.5.1",
     "moment": "2.27.0",
@@ -34,7 +34,7 @@
     "vue-axios": "2.1.5",
     "vue-loader": "15.9.3",
     "vue-template-compiler": "2.6.11",
-    "webpack": "4.43",
+    "webpack": "4.44",
     "webpack-cli": "3.3.12"
   },
   "devDependencies": {
