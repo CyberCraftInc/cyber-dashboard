@@ -16,7 +16,7 @@ gem 'rails', '~> 6.0.3'
 gem 'rails_admin', '~> 2.0', git: 'https://github.com/sferik/rails_admin.git'
 gem 'sass-rails', '~> 6.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'webpacker', '5.1.1'
+gem 'webpacker', '5.2.1'
 
 group :development, :test do
   gem 'factory_bot_rails', '6.1.0'
